@@ -2,7 +2,6 @@ package com.problem_solving.drawing_program.utils.validators;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.problem_solving.drawing_program.models.Rule;
@@ -124,10 +123,7 @@ public final class CommandValidator {
                 .flatMap(field -> {
                     try {
                         return ((Map<Character, Rule>) field.get(field)).keySet().stream();
-                    } catch (IllegalArgumentException e) {
-                        e.printStackTrace();
-                        throw new RuntimeException("Error reading stored commands values via reflections");
-                    } catch (IllegalAccessException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                         throw new RuntimeException("Error reading stored commands values via reflections");
                     }})
@@ -176,8 +172,8 @@ public final class CommandValidator {
                     }})
                 .filter(entry -> entry.getKey().charValue() == command)
                 .map(entry -> entry.getValue())
-                .collect(Collectors.toList())
-                .get(0);
+                .findFirst()
+                .get();
     }
 
     private boolean isLine(Point point1, Point point2) {

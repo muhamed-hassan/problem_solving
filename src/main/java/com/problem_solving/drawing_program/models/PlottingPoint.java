@@ -28,7 +28,7 @@ public class PlottingPoint extends Point {
         PlottingPoint other = (PlottingPoint) obj;
         if (!type.equals(other.getType())) {
             result = false;
-        }
+        }        
         if (characterToBeDrawn != other.characterToBeDrawn) {
             result = false;
         }

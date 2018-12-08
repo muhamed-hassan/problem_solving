@@ -14,7 +14,7 @@ public class HorizontalLinePlotter extends LinePlotter {
         int y = Integer.parseInt(args.get(1)); // or 3 -> represents y1, or y2
 
         int x1 = Integer.parseInt(args.get(0)),
-                x2 = Integer.parseInt(args.get(2));
+            x2 = Integer.parseInt(args.get(2));
 
         int startingPoint, endingPoint;
         if (x1 < x2) {

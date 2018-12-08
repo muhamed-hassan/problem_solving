@@ -14,7 +14,7 @@ public class VerticalLinePlotter extends LinePlotter {
         int x = Integer.parseInt(args.get(0)); // or 2 -> represents x1, or x2
 
         int y1 = Integer.parseInt(args.get(1)),
-                y2 = Integer.parseInt(args.get(3));
+            y2 = Integer.parseInt(args.get(3));
 
         int startingPoint, endingPoint;
         if (y1 < y2) {

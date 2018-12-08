@@ -1,11 +1,10 @@
 package com.problem_solving.drawing_program.models;
 
-import com.problem_solving.drawing_program.service.HorizontalLinePlotter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
+import com.problem_solving.drawing_program.service.HorizontalLinePlotter;
 import com.problem_solving.drawing_program.service.Plotter;
 import com.problem_solving.drawing_program.service.VerticalLinePlotter;
 
@@ -43,8 +42,8 @@ public class LineCommandRule extends Rule {
         return plotters
                     .stream()
                     .filter(plotterPredicate)
-                    .collect(Collectors.toList())
-                    .get(0);
+                    .findFirst()
+                    .get();
     }
 
 }

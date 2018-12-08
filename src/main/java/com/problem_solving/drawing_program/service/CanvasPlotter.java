@@ -12,7 +12,7 @@ public class CanvasPlotter extends Plotter {
     public void plot(List<String> args, PlottingPoint[][] matrix) {
 
         int w = Integer.parseInt(args.get(0)),
-                h = Integer.parseInt(args.get(1));
+            h = Integer.parseInt(args.get(1));
 
         // fill width
         for (int i = 0; i < w + 2; i++) {
