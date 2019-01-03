@@ -1,5 +1,6 @@
 package com.problem_solving.electronics_shop_program;
 
+import com.problem_solving.electronics_shop.ElectronicsShopProblem;
 import java.util.stream.Stream;
 import org.junit.Test;
 import static org.junit.Assert.*;
