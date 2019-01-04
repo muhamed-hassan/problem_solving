@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 
+//https://www.hackerrank.com/challenges/electronics-shop/problem
 public class ElectronicsShopProblemTest {
     
     @Rule

@@ -3,6 +3,7 @@ package com.problem_solving.electronics_shop;
 import java.util.ArrayList;
 import java.util.List;
 
+//https://www.hackerrank.com/challenges/electronics-shop/problem
 public class ElectronicsShopProblem {
 
     public int getMoneySpent(int[] keyboards, int[] drives, int b) {
@@ -25,10 +26,10 @@ public class ElectronicsShopProblem {
         }
 
         int affordableTotalPrice = priceSummtionOfitemsToBeBought
-                .stream()
-                .filter(totalPrice -> totalPrice <= b)
-                .max((x, y) -> x - y)
-                .orElse(-1);
+                                        .stream()
+                                        .filter(totalPrice -> totalPrice <= b)
+                                        .max((x, y) -> x - y)
+                                        .orElse(-1);
 
         return affordableTotalPrice;
     }
