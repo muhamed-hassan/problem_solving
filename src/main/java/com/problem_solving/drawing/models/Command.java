@@ -22,6 +22,7 @@ public final class Command {
     public static final Map<Character, Rule> VALID_COMMANDS = new HashMap<>(0);
 
     static {
+        
         VALID_COMMANDS.put(C, new GeneralCommandRule(2)
                 .addValidationRule(new ValidationRule(0, Integer.class))
                 .addValidationRule(new ValidationRule(1, Integer.class))

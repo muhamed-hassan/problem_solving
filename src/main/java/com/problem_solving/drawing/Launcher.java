@@ -3,7 +3,10 @@ package com.problem_solving.drawing;
 import java.util.List;
 
 import com.problem_solving.drawing.models.Command;
+import com.problem_solving.drawing.models.PlottingPoint;
 import com.problem_solving.drawing.presentation.Interface;
+import com.problem_solving.drawing.service.FillerPlotter;
+import com.problem_solving.drawing.service.Plotter;
 import com.problem_solving.drawing.utils.CommandUtils;
 import com.problem_solving.drawing.utils.validators.CommandValidator;
 
@@ -14,10 +17,11 @@ public final class Launcher {
         Interface ui = new Interface();
         CommandValidator commandValidator = new CommandValidator();
 
-        ApplicationState applicationState = null;
+        PlottingPoint[][] drawnTillNow = null; 
         String commandLine;
         char command;
         List<String> args;
+        boolean canvasDrawn = false;
 
         while (true) {
 
@@ -26,8 +30,9 @@ public final class Launcher {
 
             try {
                 
-                commandValidator.validateCommand(commandLine);
+                commandValidator.validateCommand(commandLine);                                
             } catch (Exception e) {
+                
                 e.printStackTrace();
                 continue;
             }
@@ -36,18 +41,26 @@ public final class Launcher {
             args = CommandUtils.extractArgs(commandLine);
 
             if (command == Command.Q) {
+                
                 System.exit(0);
             }
+            
+            if ( canvasDrawn && command == Command.C) {
+                System.err.println(" > Error: Canvas can be drawn only once");
+                continue;
+            }
 
-            if (!commandValidator.isCanvasDrawn()) {
+            if (!canvasDrawn) {
                 
+                //Before drawing any shape, you should draw the canvas first
                 switch (command) {
                     case Command.C:
                         int width = Integer.parseInt(args.get(0));
                         int height = Integer.parseInt(args.get(1));
-                        applicationState = new ApplicationState(height, width);
+                        drawnTillNow = new PlottingPoint[height + 2][width + 2];  
                         commandValidator.setCanvasDimensions(width, height);
-                        commandValidator.canvasDrawn();
+                        //commandValidator.canvasDrawn();
+                        canvasDrawn = true;
                         break;
                         
                     default:
@@ -56,9 +69,16 @@ public final class Launcher {
                 }
             }
 
-            Command.VALID_COMMANDS.get(command).getPlotter(args).plot(args, applicationState.getMatrix());
-
-            ui.drawMatrix(applicationState.getMatrix());
+            List<PlottingPoint> plottedPoints;
+            if ( command == Command.B ) {
+                
+                plottedPoints = ((FillerPlotter) Command.VALID_COMMANDS.get(command).getPlotter(args)).getPlottingPoints(args, drawnTillNow); 
+            } else {
+                
+                plottedPoints = ((Plotter) Command.VALID_COMMANDS.get(command).getPlotter(args)).getPlottingPoints(args); 
+            }
+            
+            ui.drawMatrix(drawnTillNow, plottedPoints);
         }
     }
 

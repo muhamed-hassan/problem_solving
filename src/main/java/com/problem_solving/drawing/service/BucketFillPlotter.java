@@ -8,13 +8,14 @@ import com.problem_solving.drawing.utils.constants.Type;
 import com.problem_solving.drawing.models.BucketFillPoint;
 import com.problem_solving.drawing.models.PlottingPoint;
 
-public class BucketFillPlotter extends Plotter {
+public class BucketFillPlotter extends FillerPlotter {
 
     @Override
-    public void plot(List<String> args, PlottingPoint[][] matrix) {
+    public List<PlottingPoint> getPlottingPoints(List<String> args, PlottingPoint[][] matrix) {
 
-        int x = Integer.parseInt(args.get(0)),
-            y = Integer.parseInt(args.get(1));
+        List<PlottingPoint> plottedPoints = new ArrayList<>();
+        
+        int y = Integer.parseInt(args.get(1));
         char fillingCharacter = args.get(2).charAt(0);
 
         List<List<BucketFillPoint>> validPointsForBucketFilling = new ArrayList<>(0);
@@ -26,15 +27,15 @@ public class BucketFillPlotter extends Plotter {
             validPointsForBucketFilling.add(validPointsCursor, new ArrayList<>(0));
 
             for (int column = 1; column < matrix[row].length - 1; column++) {
+                
                 PlottingPoint nextElement = matrix[row][column + 1];
                 PlottingPoint currentElement = matrix[row][column];
 
                 /**
                  * -- nonVacanct if currentElement eq 'X' then continue
                  */
-                if (currentElement != null && currentElement.getCharacterToBeDrawn() == DrawingCharacter.X) {
-                    continue;
-                }
+                if (currentElement != null 
+                        && currentElement.getCharacterToBeDrawn() == DrawingCharacter.X) continue;
 
                 /**
                  * collect points
@@ -52,9 +53,12 @@ public class BucketFillPlotter extends Plotter {
                  *                      nextElement.type ne Rectangle 
                  *                    -> then delete previous drawn characters then jump above the nextElement
                  */
-                if (currentElement == null && nextElement != null && nextElement.getCharacterToBeDrawn() == DrawingCharacter.X) {
+                if (currentElement == null 
+                        && nextElement != null 
+                        && nextElement.getCharacterToBeDrawn() == DrawingCharacter.X) {
 
-                    if (nextElement.getType().equals(Type.Rectangle) || nextElement.getType().equals(Type.Canvas)) {
+                    if (nextElement.getType().equals(Type.Rectangle) 
+                            || nextElement.getType().equals(Type.Canvas)) {
                         /**
                          * -- blocked: case1 if nextElement.type eq Rectangle or
                          *                      hit the canvas border 
@@ -82,17 +86,22 @@ public class BucketFillPlotter extends Plotter {
             if (row > 0
                     && validPointsForBucketFilling.get(validPointsCursor++).isEmpty()
                     && y > row) {
+                
                 validPointsCursor = 0;
                 validPointsForBucketFilling.clear();
             }
         }
 
         //plot valid points for drawing on the matrix
-        validPointsForBucketFilling
-                .stream()
-                .flatMap(points -> points.stream())
-                .forEach(point -> matrix[point.getY()][point.getX()] = new PlottingPoint(point.getX(), point.getY(), Type.BucketFilling, fillingCharacter));
-
+        for(List<BucketFillPoint> row : validPointsForBucketFilling) {
+            
+            for(BucketFillPoint point : row) {
+            
+                plottedPoints.add(new PlottingPoint(point.getY(), point.getX(), Type.BucketFilling, fillingCharacter));
+            }
+        }
+        
+        return plottedPoints;
     }
 
 }

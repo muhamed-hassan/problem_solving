@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.problem_solving.drawing.models.PlottingPoint;
 
-public abstract class Plotter {
+public abstract class Plotter extends BasePlotter {
 
-    public abstract void plot(List<String> args, PlottingPoint[][] matrix);
-
+    public abstract List<PlottingPoint> getPlottingPoints(List<String> args);
+    
 }
