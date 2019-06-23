@@ -28,7 +28,6 @@ public class BinaryGapProblem {
                     }
                 }
             }
-
         }
         
         return maxConsecutiveZerosBetween2Ones;

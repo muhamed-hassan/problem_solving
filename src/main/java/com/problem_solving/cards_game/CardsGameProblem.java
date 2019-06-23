@@ -34,28 +34,22 @@ public class CardsGameProblem {
     
     public String conanOrAgasa(int[] cards) {
 
-        //make sure that (1 ≤ cards.length ≤ 10^5)
-        int numberOfCards = cards.length;
-        if (numberOfCards < 1 || numberOfCards > Math.pow(10, 5)) {
-            throw new IllegalArgumentException("The number of cards violates this rule (1 ≤ n ≤ 10^5), where n is the number of cards.");
-        }
-
-        //make sure that (1 ≤ theValueOnEachCard ≤ 105)
-        int minCardValue = Arrays.stream(cards).summaryStatistics().getMin(),
-                maxCardValue = Arrays.stream(cards).summaryStatistics().getMax();
-        long maxCardValueOccurrences = Arrays.stream(cards).filter(card -> card == Arrays.stream(cards).max().getAsInt()).count();
-        if (minCardValue < 1 || maxCardValue > 105) {
-            throw new IllegalArgumentException("An invalid card value has been found which violates this rule (1 ≤ theValueOnEachCard ≤ 105)");
-        }
-
+        int numberOfCards = cards.length,
+            maxCardValue = Arrays.stream(cards).summaryStatistics().getMax(),
+            maxCardValueOccurrences = (int) Arrays.stream(cards)
+                                                    .filter(card -> card == Arrays.stream(cards).max().getAsInt())
+                                                    .count();
+        
         boolean connanWins = false,
                 maxCardValueSelected,
                 noCardsLeft;
         for (int cursor = 0; cursor < numberOfCards; cursor++) {
+            
             maxCardValueSelected = (cards[cursor] == maxCardValue) && (maxCardValueOccurrences == 1);
             noCardsLeft = (cursor == numberOfCards - 1);
 
             if (maxCardValueSelected || noCardsLeft) {
+                
                 connanWins = (cursor % 2 == 0); //conan's turn -> even #=# agasa's turn -> odd
                 break;
             }

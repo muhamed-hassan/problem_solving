@@ -10,6 +10,7 @@ public class CardsGameProblemTest {
     
     @Before
     public void setUp() {
+        
         cardsGameProblem = new CardsGameProblem();
     }
     
@@ -20,8 +21,7 @@ public class CardsGameProblemTest {
         
         String winner = cardsGameProblem.conanOrAgasa(cards);
         
-        assertEquals("Conan", winner);
-        
+        assertEquals("Conan", winner);        
     }
 
     @Test
@@ -31,8 +31,7 @@ public class CardsGameProblemTest {
         
         String winner = cardsGameProblem.conanOrAgasa(cards);
         
-        assertEquals("Agasa", winner);
-        
+        assertEquals("Agasa", winner);        
     }
     
 }

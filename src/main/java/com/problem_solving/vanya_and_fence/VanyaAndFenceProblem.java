@@ -15,8 +15,7 @@ public class VanyaAndFenceProblem {
             } else {
                 
                 minimumPossibleValidWidthOfTheRoad += 2;
-            }
-            
+            }            
         }
         
         return minimumPossibleValidWidthOfTheRoad;

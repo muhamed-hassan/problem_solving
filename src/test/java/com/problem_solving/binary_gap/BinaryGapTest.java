@@ -11,6 +11,7 @@ public class BinaryGapTest {
     
     @Before
     public void setUp() {
+        
         binaryGapProblem = new BinaryGapProblem();
     }
 
@@ -21,8 +22,7 @@ public class BinaryGapTest {
         
         int maxConsecutiveZerosBetween2Ones = binaryGapProblem.solution(n);
         
-        assertEquals(0, maxConsecutiveZerosBetween2Ones);
-        
+        assertEquals(0, maxConsecutiveZerosBetween2Ones);        
     }
     
     @Test
@@ -32,8 +32,7 @@ public class BinaryGapTest {
         
         int maxConsecutiveZerosBetween2Ones = binaryGapProblem.solution(n);
         
-        assertEquals(28, maxConsecutiveZerosBetween2Ones);
-        
+        assertEquals(28, maxConsecutiveZerosBetween2Ones);        
     }
     
     @Test
@@ -43,8 +42,7 @@ public class BinaryGapTest {
         
         int maxConsecutiveZerosBetween2Ones = binaryGapProblem.solution(n);
         
-        assertEquals(2, maxConsecutiveZerosBetween2Ones);
-        
+        assertEquals(2, maxConsecutiveZerosBetween2Ones);        
     }
     
 }

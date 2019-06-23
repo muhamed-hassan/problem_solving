@@ -11,11 +11,13 @@ public class OddOccurrencesInArrayProblemTest {
     
     @Before
     public void setUp() {
+        
         oddOccurrencesInArrayProblem = new OddOccurrencesInArrayProblem();
     }
 
     @Test
     public void testSolution_WhenPassingCollectionOfIntegers_ThenReturnUnpairedNumber() {
+        
         int[] array = {9, 3, 9, 3, 9, 7, 9};
         
         int unpairedNumber = oddOccurrencesInArrayProblem.solution(array);

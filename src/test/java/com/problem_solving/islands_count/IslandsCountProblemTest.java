@@ -10,11 +10,13 @@ public class IslandsCountProblemTest {
     
     @Before
     public void setUp() {
+        
         islandsCountProblem = new IslandsCountProblem();
     }
 
     @Test
     public void testSolution_WhenPassingValidMatrix_ThenReturnTheCountOfFoundIslands() {
+        
         int[][] matrix = {
                             {1, 0, 1}, 
                             {1, 1, 1}, 
@@ -30,6 +32,7 @@ public class IslandsCountProblemTest {
     
     @Test
     public void testSolution_WhenPassingNullMatrix_ThenReturnNegativeOne() {
+        
         int[][] matrix = null;
         
         int actualResult = islandsCountProblem.solution(matrix);

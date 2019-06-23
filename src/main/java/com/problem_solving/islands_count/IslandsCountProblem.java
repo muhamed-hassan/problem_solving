@@ -20,28 +20,34 @@ public class IslandsCountProblem {
             
             //Horizontal scanning
             for(int j = 0; j < matrixWidth; j++) {
+                
                 elementsProduct *= matrix[i][j];
                 elementsProductOccurs = true;
             }
                         
             if ( elementsProduct == 1 && elementsProductOccurs ) {
+                
                 islandsCount++;
                 elementsProductOccurs = false;
             } else {
+                
                 elementsProduct = 1;
             }
             
             
             //Vertical scanning
             for(int j = 0; j < matrixHeight && i < matrixWidth; j++) {
+                
                 elementsProduct *= matrix[j][i];
                 elementsProductOccurs = true;
             }
             
             if ( elementsProduct == 1 && elementsProductOccurs ) {
+                
                 islandsCount++;
                 elementsProductOccurs = false;
             } else {
+                
                 elementsProduct = 1;
             }
             

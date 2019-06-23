@@ -11,6 +11,7 @@ public class TwoDimensionalArrayProblemTest {
     
     @Before
     public void setUp() {
+        
         twoDimensionalArrayProblem = new TwoDimensionalArrayProblem();
     }
 
@@ -28,8 +29,7 @@ public class TwoDimensionalArrayProblemTest {
         
         int hourglassSum = twoDimensionalArrayProblem.hourglassSum(matrix);
         
-        assertEquals(28, hourglassSum);
-        
+        assertEquals(28, hourglassSum);       
     }
     
 }

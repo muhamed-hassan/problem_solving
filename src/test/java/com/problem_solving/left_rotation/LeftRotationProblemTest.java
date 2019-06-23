@@ -11,6 +11,7 @@ public class LeftRotationProblemTest {
     
     @Before
     public void setUp() {
+        
         leftRotation = new LeftRotationProblem();
     }
 
@@ -22,8 +23,7 @@ public class LeftRotationProblemTest {
         
         int[] result = leftRotation.rotLeft(array, d);
         
-        assertArrayEquals(new int[]{87, 97, 33, 47, 70, 37, 8, 53, 13, 93, 71, 72, 51, 100, 60}, result);
-        
+        assertArrayEquals(new int[]{87, 97, 33, 47, 70, 37, 8, 53, 13, 93, 71, 72, 51, 100, 60}, result);        
     }
     
 }

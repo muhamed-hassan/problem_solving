@@ -16,18 +16,21 @@ public class BaseballGameProblem {
             switch(recordedEvent) {
                 case "+":
                     if ( result.size() > 1 ) {
+                        
                         result.add(result.get(lastElementCursor-1) + result.get(lastElementCursor++));
                     }
                     break;
                     
                 case "C":
                     if ( !result.isEmpty() ) {
+                        
                         result.remove(lastElementCursor--);
                     }
                     break;
                     
                 case "D":
                     if ( !result.isEmpty() ) {
+                        
                         result.add(result.get(lastElementCursor++) * 2);
                     }
                     break;

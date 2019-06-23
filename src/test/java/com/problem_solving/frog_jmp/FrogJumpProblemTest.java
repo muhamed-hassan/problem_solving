@@ -11,11 +11,13 @@ public class FrogJumpProblemTest {
     
     @Before
     public void setUp() {
+        
         frogJumpProblem = new FrogJumpProblem();
     }
 
     @Test
     public void testSolution_WhenPassing10And85And30_ThenReturn3() {
+        
         int x = 10,
             y = 85,
             d = 30;

@@ -11,11 +11,13 @@ public class CyclicRotationProblemTest {
     
     @Before
     public void setUp() {
+        
         cyclicRotationProblem = new CyclicRotationProblem();
     }
 
     @Test
     public void testSolution_WhenPassingAnArrayAndShiftingTimes_ThenReturnShiftedArrayAccordingToShiftTimes() {
+        
         int[] array = {3, 8, 9, 7, 6};
         int shiftingTimes = 3;
         
