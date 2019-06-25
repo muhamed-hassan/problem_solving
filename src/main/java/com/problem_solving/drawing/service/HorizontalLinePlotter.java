@@ -15,7 +15,7 @@ public class HorizontalLinePlotter extends LinePlotter {
 
         List<PlottingPoint> plottedPoints = new ArrayList<>();
         
-        int y = Integer.parseInt(args.get(Point.Y1)); // or 3 -> represents y1, or y2
+        int y = Integer.parseInt(args.get(Point.Y1)); // y1, or y2 there is no difference
 
         int x1 = Integer.parseInt(args.get(Point.X1)),
             x2 = Integer.parseInt(args.get(Point.X2));
@@ -33,7 +33,7 @@ public class HorizontalLinePlotter extends LinePlotter {
 
         for (int i = startingPoint; i <= endingPoint; i++) {
             
-            plottedPoints.add(new PlottingPoint(y, i, Type.Line, DrawingCharacter.X));
+            plottedPoints.add(new PlottingPoint(i, y, Type.Line, DrawingCharacter.X));
         }
         
         return plottedPoints;

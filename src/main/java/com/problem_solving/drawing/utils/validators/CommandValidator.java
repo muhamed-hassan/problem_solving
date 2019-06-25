@@ -186,11 +186,12 @@ public final class CommandValidator {
         return (point1.getX() < point2.getX()) && (point1.getY() < point2.getY());
     }
 
-    private void isInsideCanvasDimensions(Point... points) {
+    private void isInsideCanvasDimensions(Point ... points) {
 
         for (Point point : points) {
             
-            if (point.getX() > canvasWidth || point.getY() > canvasHeight) {
+            if (point.getX() > canvasWidth  
+                    || point.getY() > canvasHeight) {
                 
                 throw new IllegalArgumentException("This " + point + " outside canvas dimensions and can't be drawn");
             }

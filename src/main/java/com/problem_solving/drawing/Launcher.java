@@ -59,7 +59,6 @@ public final class Launcher {
                         int height = Integer.parseInt(args.get(1));
                         drawnTillNow = new PlottingPoint[height + 2][width + 2];  
                         commandValidator.setCanvasDimensions(width, height);
-                        //commandValidator.canvasDrawn();
                         canvasDrawn = true;
                         break;
                         

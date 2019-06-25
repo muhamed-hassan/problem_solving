@@ -11,7 +11,7 @@ public class Point {
     public static final int Y2 = 3;
 
     public Point(int x, int y) {
-        
+                        
         this.x = x;
         this.y = y;
     }
@@ -39,29 +39,24 @@ public class Point {
     @Override
     public boolean equals(Object obj) {
         
+        boolean result = true;
         if (this == obj) {
-            return true;
+            result = true;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
+        if (obj == null || getClass() != obj.getClass()) {
+            result = false;
         }
         Point other = (Point) obj;
-        if (x != other.x) {
-            return false;
+        if (x != other.x || y != other.y) {
+            result = false;
         }
-        if (y != other.y) {
-            return false;
-        }
-        return true;
+        return result;
     }
 
     @Override
     public String toString() {
         
-        return "[" + x + ", " + y + "]";
+        return "(" + x + ", " + y + ")";
     }
 
 }

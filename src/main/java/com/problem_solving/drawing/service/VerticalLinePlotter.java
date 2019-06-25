@@ -15,7 +15,7 @@ public class VerticalLinePlotter extends LinePlotter {
 
         List<PlottingPoint> plottedPoints = new ArrayList<>();
                 
-        int x = Integer.parseInt(args.get(Point.X1)); // or 2 -> represents x1, or x2
+        int x = Integer.parseInt(args.get(Point.X1)); // x1, or x2 there is no difference
 
         int y1 = Integer.parseInt(args.get(Point.Y1)),
             y2 = Integer.parseInt(args.get(Point.Y2));
@@ -33,7 +33,7 @@ public class VerticalLinePlotter extends LinePlotter {
 
         for (int i = startingPoint; i <= endingPoint; i++) {
             
-            plottedPoints.add(new PlottingPoint(i, x, Type.Line, DrawingCharacter.X));
+            plottedPoints.add(new PlottingPoint(x, i, Type.Line, DrawingCharacter.X));
         }
         
         return plottedPoints;

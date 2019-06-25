@@ -31,13 +31,13 @@ public class Interface {
         
         for(PlottingPoint point : points) {
             
-            matrix[point.getX()][point.getY()] = point; 
+            matrix[point.getY()][point.getX()] = point; 
         }
         
         
-        for(PlottingPoint[] row : matrix) {
+        for(PlottingPoint[] line : matrix) {
             
-            for(PlottingPoint point : row) {
+            for(PlottingPoint point : line) {
             
                 System.out.print(point != null ? point.getCharacterToBeDrawn() : " ");
             }

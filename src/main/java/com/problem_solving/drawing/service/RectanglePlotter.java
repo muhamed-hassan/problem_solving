@@ -21,16 +21,18 @@ public class RectanglePlotter extends Plotter {
         int x2 = Integer.parseInt(args.get(Point.X2));
         int y2 = Integer.parseInt(args.get(Point.Y2));
 
+        // drawing horizontal sides
         for (int i = x1; i <= x2; i++) {
             
-            plottedPoints.add(new PlottingPoint(y1, i, Type.Rectangle, DrawingCharacter.X));
-            plottedPoints.add(new PlottingPoint(y2, i, Type.Rectangle, DrawingCharacter.X));
+            plottedPoints.add(new PlottingPoint(i, y1, Type.Rectangle, DrawingCharacter.X));
+            plottedPoints.add(new PlottingPoint(i, y2, Type.Rectangle, DrawingCharacter.X));
         }
 
+        // drawing vertical sides
         for (int i = y1 + 1; i < y2; i++) {
          
-            plottedPoints.add(new PlottingPoint(i, x1, Type.Rectangle, DrawingCharacter.X));
-            plottedPoints.add(new PlottingPoint(i, x2, Type.Rectangle, DrawingCharacter.X));
+            plottedPoints.add(new PlottingPoint(x1, i, Type.Rectangle, DrawingCharacter.X));
+            plottedPoints.add(new PlottingPoint(x2, i, Type.Rectangle, DrawingCharacter.X));
         }
         
         return plottedPoints;

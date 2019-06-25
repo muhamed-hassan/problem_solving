@@ -20,15 +20,15 @@ public class CanvasPlotter extends Plotter {
         // fill width
         for (int i = 0; i < w + 2; i++) {
             
-            plottedPoints.add(new PlottingPoint(0, i, Type.Canvas, DrawingCharacter.CANVAS_W));
-            plottedPoints.add(new PlottingPoint(h + 1, i, Type.Canvas, DrawingCharacter.CANVAS_W));
+            plottedPoints.add(new PlottingPoint(i, 0, Type.Canvas, DrawingCharacter.CANVAS_W));
+            plottedPoints.add(new PlottingPoint(i, h + 1, Type.Canvas, DrawingCharacter.CANVAS_W));
         }
 
         // fill height
         for (int i = 1; i < h + 1; i++) {
             
-            plottedPoints.add(new PlottingPoint(i, 0, Type.Canvas, DrawingCharacter.CANVAS_H));
-            plottedPoints.add(new PlottingPoint(i, w + 1, Type.Canvas, DrawingCharacter.CANVAS_H));
+            plottedPoints.add(new PlottingPoint(0, i, Type.Canvas, DrawingCharacter.CANVAS_H));
+            plottedPoints.add(new PlottingPoint(w + 1, i, Type.Canvas, DrawingCharacter.CANVAS_H));
         }
         
         return plottedPoints;

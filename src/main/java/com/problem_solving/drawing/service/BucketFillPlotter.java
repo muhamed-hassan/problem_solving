@@ -93,11 +93,11 @@ public class BucketFillPlotter extends FillerPlotter {
         }
 
         //plot valid points for drawing on the matrix
-        for(List<BucketFillPoint> row : validPointsForBucketFilling) {
+        for(List<BucketFillPoint> line : validPointsForBucketFilling) {
             
-            for(BucketFillPoint point : row) {
+            for(BucketFillPoint point : line) {
             
-                plottedPoints.add(new PlottingPoint(point.getY(), point.getX(), Type.BucketFilling, fillingCharacter));
+                plottedPoints.add(new PlottingPoint(point.getX(), point.getY(), Type.BucketFilling, fillingCharacter));
             }
         }
         
