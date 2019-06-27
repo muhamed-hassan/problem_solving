@@ -22,12 +22,13 @@ public class VerticalLinePlotterTest {
     @Test
     public void testGetPlottingPoints_WhenUsingVerticalLineCoordinates_ThenReturnListOfPlottedPointsOfVerticalLine() {
         
-        List<String> args = Arrays.asList("6", "3", "6", "4"); //X1:6, Y1:3, X2:6, Y2:4
+        Integer x1 = 6, y1 = 3, x2 = 6, y2 = 4;
+        List<String> args = Arrays.asList(x1.toString(), y1.toString(), x2.toString(), y2.toString()); 
         
         List<PlottingPoint> actualResult = verticalLinePlotter.getPlottingPoints(args);
 
         //Assert that all plotted points drawn on the same X axis
-        assertTrue(actualResult.stream().map(PlottingPoint::getX).allMatch(x -> x == 6));
+        assertTrue(actualResult.stream().map(PlottingPoint::getX).allMatch(x -> x == x1.intValue() && x == x2.intValue()));
     }
     
 }

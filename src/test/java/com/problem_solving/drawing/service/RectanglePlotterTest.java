@@ -2,6 +2,9 @@ package com.problem_solving.drawing.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,24 +27,17 @@ public class RectanglePlotterTest {
     @Test
     public void testGetPlottingPoints_WhenUsingRectangleCoordinates_ThenReturnListOfPlottedPointsOfRectangle() {
         
-        List<String> args = Arrays.asList("16", "1", "20", "3"); //X1:16, Y1:1, X2:20, Y2:3
+        Integer x1 = 16, y1 = 1, x2 = 20, y2 = 3;
+        List<String> args = Arrays.asList(x1.toString(), y1.toString(), x2.toString(), y2.toString()); 
         
         List<PlottingPoint> actualResult = rectanglePlotter.getPlottingPoints(args);
         
-        List<PlottingPoint> expectedResult = Arrays.asList(
-                                                    new PlottingPoint(16, 1, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(17, 1, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(18, 1, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(19, 1, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(20, 1, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(16, 3, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(17, 3, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(18, 3, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(19, 3, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(20, 3, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(16, 2, Type.Rectangle, DrawingCharacter.X),
-                                                    new PlottingPoint(20, 2, Type.Rectangle, DrawingCharacter.X)
-                                            );                
+        List<PlottingPoint> expectedResult = new ArrayList<PlottingPoint>(){{
+            addAll(IntStream.rangeClosed(x1, x2).mapToObj(x -> new PlottingPoint(x, y1, Type.Rectangle, DrawingCharacter.X)).collect(Collectors.toList()));
+            addAll(IntStream.rangeClosed(x1, x2).mapToObj(x -> new PlottingPoint(x, y2, Type.Rectangle, DrawingCharacter.X)).collect(Collectors.toList()));
+            addAll(IntStream.range(y1+1, y2).mapToObj(y -> new PlottingPoint(x1, y, Type.Rectangle, DrawingCharacter.X)).collect(Collectors.toList()));
+            addAll(IntStream.range(y1+1, y2).mapToObj(y -> new PlottingPoint(x2, y, Type.Rectangle, DrawingCharacter.X)).collect(Collectors.toList()));
+        }}; 
         assertTrue(expectedResult.containsAll(actualResult)); //Assert that all plotted points represent a rectangle according to the given coordinates
     }
     
