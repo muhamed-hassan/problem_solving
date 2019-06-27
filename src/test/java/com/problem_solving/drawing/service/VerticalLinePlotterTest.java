@@ -11,7 +11,7 @@ import com.problem_solving.drawing.models.PlottingPoint;
 
 public class VerticalLinePlotterTest {
     
-    private VerticalLinePlotter verticalLinePlotter;
+    private Plotter verticalLinePlotter;
     
     @Before
     public void setUp() {

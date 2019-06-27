@@ -11,7 +11,7 @@ import com.problem_solving.drawing.models.PlottingPoint;
 
 public class HorizontalLinePlotterTest {
     
-    private HorizontalLinePlotter horizontalLinePlotter;
+    private Plotter horizontalLinePlotter;
     
     @Before
     public void setUp() {
