@@ -48,7 +48,7 @@ public final class CommandValidator {
 
         if (command == Command.Q) return;
 
-        validateArgsType(commandLine, getValidationRule(CommandUtils.extractCommand(commandLine)));
+        validateNumricArgsType(commandLine, getValidationRule(CommandUtils.extractCommand(commandLine)));
 
         List<String> extractedArgs = CommandUtils.extractArgs(commandLine.trim());
 
@@ -123,7 +123,7 @@ public final class CommandValidator {
                 .anyMatch(validCommand -> validCommand == enteredCommand);
     }
 
-    private void validateArgsType(String commandLine, Rule rule) {
+    private void validateNumricArgsType(String commandLine, Rule rule) {
 
         List<String> extractedArgs = CommandUtils.extractArgs(commandLine.trim());
 
@@ -141,10 +141,15 @@ public final class CommandValidator {
             //characters like 'c' used for drawing, doesn't have that much of importance 
             if (expectedDataType == Integer.class) {
                 
-                int parsedArg = Integer.parseInt(currentArg);
-                if (parsedArg <= 0) {
+                if ( !currentArg.matches("[0-9]+") ) {
+                    
+                    throw new IllegalArgumentException("Invalid value for argument number " + (argPosition+1) + " whose value is " + currentArg);
+                }
                 
-                    throw new IllegalArgumentException("All integer arguments should be greater than zero");
+                int parsedArg = Integer.parseInt(currentArg);
+                if (parsedArg == 0) {
+                
+                    throw new IllegalArgumentException("Value for argument number " + (argPosition+1) + " whose value is " + currentArg + " should be greater than zero");
                 }
             }
         }
@@ -190,7 +195,7 @@ public final class CommandValidator {
 
         for (Point point : points) {
             
-            if (point.getX() > canvasWidth  
+            if (point.getX() > canvasWidth
                     || point.getY() > canvasHeight) {
                 
                 throw new IllegalArgumentException("This " + point + " outside canvas dimensions and can't be drawn");
