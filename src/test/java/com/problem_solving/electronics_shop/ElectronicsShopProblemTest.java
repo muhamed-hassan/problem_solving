@@ -1,6 +1,4 @@
-package com.problem_solving.electronics_shop_program;
-
-import com.problem_solving.electronics_shop.ElectronicsShopProblem;
+package com.problem_solving.electronics_shop;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

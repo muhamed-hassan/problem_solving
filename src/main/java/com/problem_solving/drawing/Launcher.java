@@ -40,10 +40,8 @@ public final class Launcher {
             command = CommandUtils.extractCommand(commandLine);
             args = CommandUtils.extractArgs(commandLine);
 
-            if (command == Command.Q) {
-                
-                System.exit(0);
-            }
+            if (command == Command.Q) System.exit(0);
+            
             
             if ( canvasDrawn && command == Command.C) {
                 System.err.println(" > Error: Canvas can be drawn only once");
