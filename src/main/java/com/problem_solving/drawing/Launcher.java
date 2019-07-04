@@ -75,6 +75,7 @@ public final class Launcher {
                 plottedPoints = ((Plotter) Command.VALID_COMMANDS.get(command).getPlotter(args)).getPlottingPoints(args); 
             }
             
+            ui.plotDrawingPoints(drawnTillNow, plottedPoints);
             ui.drawMatrix(drawnTillNow, plottedPoints);
         }
     }

@@ -27,13 +27,15 @@ public class Interface {
         System.out.print("enter command: ");
     }
 
-    public void drawMatrix(PlottingPoint[][] matrix, List<PlottingPoint> points) {
+    public void plotDrawingPoints(PlottingPoint[][] matrix, List<PlottingPoint> points) {
         
         for(PlottingPoint point : points) {
             
             matrix[point.getY()][point.getX()] = point; 
         }
-        
+    }
+    
+    public void drawMatrix(PlottingPoint[][] matrix, List<PlottingPoint> points) {
         
         for(PlottingPoint[] line : matrix) {
             
