@@ -60,8 +60,8 @@ public class BucketFillPlotterTest {
         ui.plotDrawingPoints(drawnTillNow, plottedPoints);
         
         List<PlottingPoint> expectedPlottedPoints = 
-                constructExpectedPlottedPoints(point -> !((point.getX() >= x1 && point.getX() <= x2) && 
-                                                            (point.getY() == y1 || point.getY() == y2)));
+                constructExpectedPlottedPoints(point -> !((point.getX() >= x1.intValue() && point.getX() <= x2.intValue()) &&
+                                                            (point.getY() == y1.intValue() || point.getY() == y2.intValue())));
         assertTrue(expectedPlottedPoints.containsAll(plottedPoints));
     }
     
@@ -80,8 +80,8 @@ public class BucketFillPlotterTest {
         ui.plotDrawingPoints(drawnTillNow, plottedPoints);
         
         List<PlottingPoint> expectedPlottedPoints = 
-                constructExpectedPlottedPoints(point -> !((point.getX() >= x1 && point.getX() <= x2) && 
-                                                            (point.getY() == y1 || point.getY() == y2)));
+                constructExpectedPlottedPoints(point -> !((point.getX() >= x1.intValue() && point.getX() <= x2.intValue()) &&
+                                                            (point.getY() == y1.intValue() || point.getY() == y2.intValue())));
         assertTrue(expectedPlottedPoints.containsAll(plottedPoints));
     }
     
@@ -100,7 +100,8 @@ public class BucketFillPlotterTest {
         ui.plotDrawingPoints(drawnTillNow, plottedPoints);
         
         List<PlottingPoint> expectedPlottedPoints = 
-                constructExpectedPlottedPoints(point -> !(point.getX() >= x1 && point.getX() <=x2 && point.getY() >= y1 && point.getY() <= y2));
+                constructExpectedPlottedPoints(point -> !(point.getX() >= x1.intValue() && point.getX() <=x2.intValue()
+                                                            && point.getY() >= y1.intValue() && point.getY() <= y2.intValue()));
         assertTrue(expectedPlottedPoints.containsAll(plottedPoints));
     }
     

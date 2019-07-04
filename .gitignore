@@ -1,2 +1,22 @@
+### Common ###
+target/
+!**/src/main/**
+!**/src/test/**
+
+### Eclipse ###
+.classpath
+.project
+.settings
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
 /nbproject/
-/target/
+/nbbuild/
+/dist/
+/nbdist/
+build/
