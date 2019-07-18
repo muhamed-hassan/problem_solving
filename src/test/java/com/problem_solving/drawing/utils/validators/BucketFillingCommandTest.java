@@ -11,7 +11,7 @@ public class BucketFillingCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Unexpected number of command line args");
 
-        String commandLine = "B 10 3 o 1";
+        var commandLine = "B 10 3 o 1";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -21,7 +21,7 @@ public class BucketFillingCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Unexpected number of command line args");
 
-        String commandLine = "B 10 3";
+        var commandLine = "B 10 3";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -32,7 +32,7 @@ public class BucketFillingCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 1 whose value is X");
 
-        String commandLine = "B X 3 o";
+        var commandLine = "B X 3 o";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -42,7 +42,7 @@ public class BucketFillingCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 2 whose value is X");
 
-        String commandLine = "B 10 X o";
+        var commandLine = "B 10 X o";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -53,7 +53,7 @@ public class BucketFillingCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 1 whose value is -10");
 
-        String commandLine = "B -10 3 o";
+        var commandLine = "B -10 3 o";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -63,7 +63,7 @@ public class BucketFillingCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 2 whose value is -3");
 
-        String commandLine = "B 10 -3 o";
+        var commandLine = "B 10 -3 o";
         commandValidator.validateCommand(commandLine);
     }
     
@@ -74,7 +74,7 @@ public class BucketFillingCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Value for argument number 1 whose value is 0 should be greater than zero");
 
-        String commandLine = "B 0 3 o";
+        var commandLine = "B 0 3 o";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -84,7 +84,7 @@ public class BucketFillingCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Value for argument number 2 whose value is 0 should be greater than zero");
 
-        String commandLine = "B 10 0 o";
+        var commandLine = "B 10 0 o";
         commandValidator.validateCommand(commandLine);
     }
     
@@ -95,7 +95,7 @@ public class BucketFillingCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 1 whose value is 10.5");
 
-        String commandLine = "B 10.5 3 o";
+        var commandLine = "B 10.5 3 o";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -105,7 +105,7 @@ public class BucketFillingCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 2 whose value is 3.5");
 
-        String commandLine = "B 10 3.5 o";
+        var commandLine = "B 10 3.5 o";
         commandValidator.validateCommand(commandLine);
     }
     

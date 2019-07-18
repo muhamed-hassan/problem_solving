@@ -1,7 +1,6 @@
 package com.problem_solving.baseball_game;
 
 import java.util.ArrayList;
-import java.util.List;
 
 //https://leetcode.com/problems/baseball-game/
 public class BaseballGameProblem {
@@ -9,9 +8,9 @@ public class BaseballGameProblem {
     public int calPoints(String[] ops) {
         
         int lastElementCursor = -1;
-        List<Integer> result = new ArrayList<>(ops.length);
+        var result = new ArrayList<Integer>(ops.length);
         
-        for(String recordedEvent : ops) {
+        for(var recordedEvent : ops) {
             
             switch(recordedEvent) {
                 case "+":

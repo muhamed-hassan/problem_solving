@@ -1,6 +1,5 @@
 package com.problem_solving.drawing.utils.validators;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -40,7 +39,7 @@ public final class CommandValidator {
         }
 
         commandLine = commandLine.trim();
-        char command = CommandUtils.extractCommand(commandLine);
+        var command = CommandUtils.extractCommand(commandLine);
         if (!commandValid(command)) {
             
             throw new IllegalArgumentException("Unknown command ...!");
@@ -50,7 +49,7 @@ public final class CommandValidator {
 
         validateNumricArgsType(commandLine, getValidationRule(CommandUtils.extractCommand(commandLine)));
 
-        List<String> extractedArgs = CommandUtils.extractArgs(commandLine.trim());
+        var extractedArgs = CommandUtils.extractArgs(commandLine.trim());
 
         switch (command) {
             case Command.L: {
@@ -117,7 +116,6 @@ public final class CommandValidator {
                         return ((Map<Character, Rule>) field.get(field)).keySet().stream();
                     } catch (IllegalArgumentException | IllegalAccessException e) {
                         
-                        e.printStackTrace();
                         throw new RuntimeException("Error reading stored commands values via reflections");
                     }})
                 .anyMatch(validCommand -> validCommand == enteredCommand);
@@ -125,18 +123,18 @@ public final class CommandValidator {
 
     private void validateNumricArgsType(String commandLine, Rule rule) {
 
-        List<String> extractedArgs = CommandUtils.extractArgs(commandLine.trim());
+    	var extractedArgs = CommandUtils.extractArgs(commandLine.trim());
 
         if (extractedArgs.size() != rule.getValidNoOfArgs()) {
             
             throw new IllegalArgumentException("Unexpected number of command line args");
         }
 
-        for (int argPosition = 0; argPosition < extractedArgs.size(); argPosition++) {
+        for (var argPosition = 0; argPosition < extractedArgs.size(); argPosition++) {
 
-            Class<?> expectedDataType = rule.getExpectedDataTypeForArgsAtPositionOf(argPosition);
+        	var expectedDataType = rule.getExpectedDataTypeForArgsAtPositionOf(argPosition);
 
-            String currentArg = extractedArgs.get(argPosition);
+            var currentArg = extractedArgs.get(argPosition);
             //till now only integers should be validated
             //characters like 'c' used for drawing, doesn't have that much of importance 
             if (expectedDataType == Integer.class) {
@@ -146,7 +144,7 @@ public final class CommandValidator {
                     throw new IllegalArgumentException("Invalid value for argument number " + (argPosition+1) + " whose value is " + currentArg);
                 }
                 
-                int parsedArg = Integer.parseInt(currentArg);
+                var parsedArg = Integer.parseInt(currentArg);
                 if (parsedArg == 0) {
                 
                     throw new IllegalArgumentException("Value for argument number " + (argPosition+1) + " whose value is " + currentArg + " should be greater than zero");
@@ -193,7 +191,7 @@ public final class CommandValidator {
 
     private void isInsideCanvasDimensions(Point ... points) {
 
-        for (Point point : points) {
+        for (var point : points) {
             
             if (point.getX() > canvasWidth
                     || point.getY() > canvasHeight) {

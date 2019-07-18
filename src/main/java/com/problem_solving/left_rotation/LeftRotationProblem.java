@@ -6,10 +6,10 @@ public class LeftRotationProblem {
     public int[] rotLeft(int[] a, int d) {
         
         int arraySize = a.length;
-        int[] leftRotatedArray = new int[arraySize];
+        var leftRotatedArray = new int[arraySize];
 
         int newIndex;
-        for(int currentIndex = 0; currentIndex < arraySize; currentIndex++) {
+        for(var currentIndex = 0; currentIndex < arraySize; currentIndex++) {
             
             newIndex = ((currentIndex - d) < 0) ? 
                             (((currentIndex - d) + arraySize) % arraySize) : 

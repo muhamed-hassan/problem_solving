@@ -17,7 +17,7 @@ public class CardsGameProblemTest {
     @Test
     public void testConanOrAgasa_WhenConanWins() {
         
-        int[] cards = {4, 5, 7};
+        var cards = new int[]{4, 5, 7};
         
         String winner = cardsGameProblem.conanOrAgasa(cards);
         
@@ -27,7 +27,7 @@ public class CardsGameProblemTest {
     @Test
     public void testConanOrAgasa_WhenAgasaWins() {
         
-        int[] cards = {1, 1};
+    	var cards = new int[]{1, 1};
         
         String winner = cardsGameProblem.conanOrAgasa(cards);
         

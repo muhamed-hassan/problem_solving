@@ -20,7 +20,7 @@ public class CommandValidatorTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Can't parse empty command");
 
-        String commandLine = "";
+        var commandLine = "";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -30,7 +30,7 @@ public class CommandValidatorTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Unknown command ...!");
 
-        String commandLine = "X 10 5";
+        var commandLine = "X 10 5";
         commandValidator.validateCommand(commandLine);
     }
     

@@ -9,7 +9,7 @@ public class BinaryGapProblem {
         int maxConsecutiveZerosBetween2Ones = 0, count = 0;
         boolean startFound = false;
 
-        for (int i = 0; i < binaryValue.length(); i++) {
+        for (var i = 0; i < binaryValue.length(); i++) {
 
             if (i < binaryValue.length() - 1) {
                 

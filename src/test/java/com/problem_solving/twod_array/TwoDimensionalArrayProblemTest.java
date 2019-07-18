@@ -18,7 +18,7 @@ public class TwoDimensionalArrayProblemTest {
     @Test
     public void testHourglassSum() {
       
-        int[][] matrix = {
+        var matrix = new int[][]{
                             {-9, -9, -9, 1, 1, 1},
                             {0, -9, 0, 4, 3, 2},
                             {-9, -9, -9, 1, 2, 3},
@@ -27,7 +27,7 @@ public class TwoDimensionalArrayProblemTest {
                             {0, 0, 1, 2, 4, 0}
                         };
         
-        int hourglassSum = twoDimensionalArrayProblem.hourglassSum(matrix);
+        var hourglassSum = twoDimensionalArrayProblem.hourglassSum(matrix);
         
         assertEquals(28, hourglassSum);       
     }

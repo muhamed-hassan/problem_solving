@@ -18,10 +18,10 @@ public class LeftRotationProblemTest {
     @Test
     public void testRotLeft() {
         
-        int[] array = {33, 47, 70, 37, 8, 53, 13, 93, 71, 72, 51, 100, 60, 87, 97};
-        int d = 13;
+        var array = new int[]{33, 47, 70, 37, 8, 53, 13, 93, 71, 72, 51, 100, 60, 87, 97};
+        var d = 13;
         
-        int[] result = leftRotation.rotLeft(array, d);
+        var result = leftRotation.rotLeft(array, d);
         
         assertArrayEquals(new int[]{87, 97, 33, 47, 70, 37, 8, 53, 13, 93, 71, 72, 51, 100, 60}, result);        
     }

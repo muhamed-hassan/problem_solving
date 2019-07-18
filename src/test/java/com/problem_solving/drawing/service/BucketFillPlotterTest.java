@@ -38,48 +38,43 @@ public class BucketFillPlotterTest {
     @Test
     public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndAnEmptyCanvas_ThenReturnListOfPlottedPointsThatFillsTheEntireCanvas() {
         
-        List<PlottingPoint> plottedPoints = bucketFillPlotter.getPlottingPoints(
-                Arrays.asList(fillingPointX, fillingPointY, fillingChar), drawnTillNow);
+        var plottedPoints = bucketFillPlotter.getPlottingPoints(List.of(fillingPointX, fillingPointY, fillingChar), drawnTillNow);
 
-        List<PlottingPoint> expectedPlottedPoints = constructExpectedPlottedPoints(point -> true);
+        var expectedPlottedPoints = constructExpectedPlottedPoints(point -> true);
         assertTrue(expectedPlottedPoints.containsAll(plottedPoints));
     }
         
     @Test
     public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndCanvasContainsHorizontalLine_ThenReturnListOfPlottedPointsThatFillsTheCanvasWithoutDrawingOverTheHorizontalLine() {
         
-        Interface ui = new Interface();        
+        var ui = new Interface();        
         Integer x1 = 1, y1 = 2, x2 = 6, y2 = 2;
-        Plotter horizontalLinePlotter = new HorizontalLinePlotter();
-        List<PlottingPoint> plottedHorizontalLinePoints = horizontalLinePlotter.getPlottingPoints(
-                        Arrays.asList(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
+        var horizontalLinePlotter = new HorizontalLinePlotter();
+        var plottedHorizontalLinePoints = horizontalLinePlotter.getPlottingPoints(List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
         ui.plotDrawingPoints(drawnTillNow, plottedHorizontalLinePoints);
         
-        List<PlottingPoint> plottedPoints = bucketFillPlotter.getPlottingPoints(
-                Arrays.asList(fillingPointX, fillingPointY, fillingChar), drawnTillNow);
+        var plottedPoints = bucketFillPlotter.getPlottingPoints(List.of(fillingPointX, fillingPointY, fillingChar), drawnTillNow);
         ui.plotDrawingPoints(drawnTillNow, plottedPoints);
         
-        List<PlottingPoint> expectedPlottedPoints = 
-                constructExpectedPlottedPoints(point -> !((point.getX() >= x1.intValue() && point.getX() <= x2.intValue()) &&
-                                                            (point.getY() == y1.intValue() || point.getY() == y2.intValue())));
+        var expectedPlottedPoints = constructExpectedPlottedPoints(point -> 
+				        													!((point.getX() >= x1.intValue() && point.getX() <= x2.intValue()) &&
+				                                                            (point.getY() == y1.intValue() || point.getY() == y2.intValue())));
         assertTrue(expectedPlottedPoints.containsAll(plottedPoints));
     }
     
     @Test
     public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndCanvasContainsVerticalLine_ThenReturnListOfPlottedPointsThatFillsTheCanvasWithoutDrawingOverTheVerticalLine() {
         
-        Interface ui = new Interface();        
+        var ui = new Interface();        
         Integer x1 = 6, y1 = 3, x2 = 6, y2 = 4;
-        Plotter verticalLinePlotter = new VerticalLinePlotter();
-        List<PlottingPoint> plottedVerticalLinePoints = verticalLinePlotter.getPlottingPoints(
-                        Arrays.asList(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
+        var verticalLinePlotter = new VerticalLinePlotter();
+        var plottedVerticalLinePoints = verticalLinePlotter.getPlottingPoints(List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
         ui.plotDrawingPoints(drawnTillNow, plottedVerticalLinePoints);
         
-        List<PlottingPoint> plottedPoints = bucketFillPlotter.getPlottingPoints(
-                Arrays.asList(fillingPointX, fillingPointY, fillingChar), drawnTillNow);
+        var plottedPoints = bucketFillPlotter.getPlottingPoints(List.of(fillingPointX, fillingPointY, fillingChar), drawnTillNow);
         ui.plotDrawingPoints(drawnTillNow, plottedPoints);
         
-        List<PlottingPoint> expectedPlottedPoints = 
+        var expectedPlottedPoints = 
                 constructExpectedPlottedPoints(point -> !((point.getX() >= x1.intValue() && point.getX() <= x2.intValue()) &&
                                                             (point.getY() == y1.intValue() || point.getY() == y2.intValue())));
         assertTrue(expectedPlottedPoints.containsAll(plottedPoints));
@@ -88,18 +83,16 @@ public class BucketFillPlotterTest {
     @Test
     public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndCanvasContainsRectangle_ThenReturnListOfPlottedPointsThatFillsTheCanvasWithoutDrawingOverAndWithinTheRectangleCoordinates() {
         
-        Interface ui = new Interface();        
+    	var ui = new Interface();        
         Integer x1 = 16, y1 = 1, x2 = 20, y2 = 3;
-        Plotter rectanglePlotter = new RectanglePlotter();
-        List<PlottingPoint> plottedVerticalLinePoints = rectanglePlotter.getPlottingPoints(
-                        Arrays.asList(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
+        var rectanglePlotter = new RectanglePlotter();
+        var plottedVerticalLinePoints = rectanglePlotter.getPlottingPoints(List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
         ui.plotDrawingPoints(drawnTillNow, plottedVerticalLinePoints);
         
-        List<PlottingPoint> plottedPoints = bucketFillPlotter.getPlottingPoints(
-                Arrays.asList(fillingPointX, fillingPointY, fillingChar), drawnTillNow);        
+        var plottedPoints = bucketFillPlotter.getPlottingPoints(List.of(fillingPointX, fillingPointY, fillingChar), drawnTillNow);        
         ui.plotDrawingPoints(drawnTillNow, plottedPoints);
         
-        List<PlottingPoint> expectedPlottedPoints = 
+        var expectedPlottedPoints = 
                 constructExpectedPlottedPoints(point -> !(point.getX() >= x1.intValue() && point.getX() <=x2.intValue()
                                                             && point.getY() >= y1.intValue() && point.getY() <= y2.intValue()));
         assertTrue(expectedPlottedPoints.containsAll(plottedPoints));

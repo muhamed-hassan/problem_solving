@@ -13,14 +13,14 @@ public class VerticalLinePlotter extends LinePlotter {
     @Override
     public List<PlottingPoint> getPlottingPoints(List<String> args) {
 
-        List<PlottingPoint> plottedPoints = new ArrayList<>();
+        var plottedPoints = new ArrayList<PlottingPoint>();
                 
-        int x = Integer.parseInt(args.get(Point.X1)); // x1, or x2 there is no difference
+        int x = Integer.parseInt(args.get(Point.X1)), // x1, or x2 there is no difference
 
-        int y1 = Integer.parseInt(args.get(Point.Y1)),
-            y2 = Integer.parseInt(args.get(Point.Y2));
+            y1 = Integer.parseInt(args.get(Point.Y1)),
+            y2 = Integer.parseInt(args.get(Point.Y2)),
 
-        int startingPoint, endingPoint;
+            startingPoint, endingPoint;
         if (y1 < y2) {
             
             startingPoint = y1;
@@ -31,7 +31,7 @@ public class VerticalLinePlotter extends LinePlotter {
             endingPoint = y1;
         }
 
-        for (int i = startingPoint; i <= endingPoint; i++) {
+        for (var i = startingPoint; i <= endingPoint; i++) {
             
             plottedPoints.add(new PlottingPoint(x, i, Type.Line, DrawingCharacter.X));
         }

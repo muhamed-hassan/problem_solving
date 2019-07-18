@@ -18,9 +18,9 @@ public class OddOccurrencesInArrayProblemTest {
     @Test
     public void testSolution_WhenPassingCollectionOfIntegers_ThenReturnUnpairedNumber() {
         
-        int[] array = {9, 3, 9, 3, 9, 7, 9};
+        var array = new int[]{9, 3, 9, 3, 9, 7, 9};
         
-        int unpairedNumber = oddOccurrencesInArrayProblem.solution(array);
+        var unpairedNumber = oddOccurrencesInArrayProblem.solution(array);
         
         assertEquals(7, unpairedNumber);
     }

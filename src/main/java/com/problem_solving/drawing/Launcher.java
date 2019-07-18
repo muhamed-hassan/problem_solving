@@ -14,14 +14,14 @@ public final class Launcher {
 
     public static void main(String[] argse) {
 
-        Interface ui = new Interface();
-        CommandValidator commandValidator = new CommandValidator();
+    	var ui = new Interface();
+    	var commandValidator = new CommandValidator();
 
         PlottingPoint[][] drawnTillNow = null; 
         String commandLine;
         char command;
         List<String> args;
-        boolean canvasDrawn = false;
+        var canvasDrawn = false;
 
         while (true) {
 
@@ -53,8 +53,8 @@ public final class Launcher {
                 //Before drawing any shape, you should draw the canvas first
                 switch (command) {
                     case Command.C:
-                        int width = Integer.parseInt(args.get(0));
-                        int height = Integer.parseInt(args.get(1));
+                        int width = Integer.parseInt(args.get(0)),
+                            height = Integer.parseInt(args.get(1));
                         drawnTillNow = new PlottingPoint[height + 2][width + 2];  
                         commandValidator.setCanvasDimensions(width, height);
                         canvasDrawn = true;

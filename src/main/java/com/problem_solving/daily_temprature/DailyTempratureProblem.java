@@ -5,13 +5,13 @@ public class DailyTempratureProblem {
     
     public int[] dailyTemperatures(int[] T) {
         
-        int[] result = new int[T.length];
+        var result = new int[T.length];
         int waitingPeriod = 0, 
             resultCursor = 0;
         
-        for(int i = 0; i < T.length; i++) {
+        for(var i = 0; i < T.length; i++) {
             
-            for(int j = i+1; j < T.length; j++) {
+            for(var j = i+1; j < T.length; j++) {
                 
                 waitingPeriod++;
                 

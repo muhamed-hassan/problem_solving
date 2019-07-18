@@ -12,20 +12,20 @@ public class CanvasPlotter extends Plotter {
     @Override
     public List<PlottingPoint> getPlottingPoints(List<String> args) {
 
-        List<PlottingPoint> plottedPoints = new ArrayList<>();
+        var plottedPoints = new ArrayList<PlottingPoint>();
         
         int w = Integer.parseInt(args.get(0)),
             h = Integer.parseInt(args.get(1));
 
         // fill width
-        for (int i = 0; i < w + 2; i++) {
+        for (var i = 0; i < w + 2; i++) {
             
             plottedPoints.add(new PlottingPoint(i, 0, Type.Canvas, DrawingCharacter.CANVAS_W));
             plottedPoints.add(new PlottingPoint(i, h + 1, Type.Canvas, DrawingCharacter.CANVAS_W));
         }
 
         // fill height
-        for (int i = 1; i < h + 1; i++) {
+        for (var i = 1; i < h + 1; i++) {
             
             plottedPoints.add(new PlottingPoint(0, i, Type.Canvas, DrawingCharacter.CANVAS_H));
             plottedPoints.add(new PlottingPoint(w + 1, i, Type.Canvas, DrawingCharacter.CANVAS_H));

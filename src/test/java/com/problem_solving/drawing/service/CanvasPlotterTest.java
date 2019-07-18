@@ -1,7 +1,6 @@
 package com.problem_solving.drawing.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -28,11 +27,11 @@ public class CanvasPlotterTest {
     public void testGetPlottingPoints_WhenUsingCanvasCoordinates_ThenReturnListOfPlottedPointsOfCanvas() {
         
         Integer w = 20, h = 4;
-        List<String> args = Arrays.asList(w.toString(), h.toString());
+        var args = List.of(w.toString(), h.toString());
         
-        List<PlottingPoint> actualResult = canvasPlotter.getPlottingPoints(args);
+        var actualResult = canvasPlotter.getPlottingPoints(args);
         
-        List<PlottingPoint> expectedResult = new ArrayList<PlottingPoint>(){{
+        var expectedResult = new ArrayList<PlottingPoint>(){{
             addAll(IntStream.rangeClosed(0, w+1).mapToObj(x -> new PlottingPoint(x, 0, Type.Canvas, DrawingCharacter.CANVAS_W)).collect(Collectors.toList()));
             addAll(IntStream.rangeClosed(0, w+1).mapToObj(x -> new PlottingPoint(x, h+1, Type.Canvas, DrawingCharacter.CANVAS_W)).collect(Collectors.toList()));
             addAll(IntStream.rangeClosed(1, h).mapToObj(y -> new PlottingPoint(0, y, Type.Canvas, DrawingCharacter.CANVAS_H)).collect(Collectors.toList()));

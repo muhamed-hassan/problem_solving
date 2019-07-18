@@ -29,7 +29,7 @@ public class Interface {
 
     public void plotDrawingPoints(PlottingPoint[][] matrix, List<PlottingPoint> points) {
         
-        for(PlottingPoint point : points) {
+        for(var point : points) {
             
             matrix[point.getY()][point.getX()] = point; 
         }
@@ -37,9 +37,9 @@ public class Interface {
     
     public void drawMatrix(PlottingPoint[][] matrix, List<PlottingPoint> points) {
         
-        for(PlottingPoint[] line : matrix) {
+        for(var line : matrix) {
             
-            for(PlottingPoint point : line) {
+            for(var point : line) {
             
                 System.out.print(point != null ? point.getCharacterToBeDrawn() : " ");
             }

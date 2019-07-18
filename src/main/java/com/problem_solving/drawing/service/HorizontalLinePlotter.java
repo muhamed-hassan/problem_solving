@@ -13,14 +13,14 @@ public class HorizontalLinePlotter extends LinePlotter {
     @Override
     public List<PlottingPoint> getPlottingPoints(List<String> args) {
 
-        List<PlottingPoint> plottedPoints = new ArrayList<>();
+        var plottedPoints = new ArrayList<PlottingPoint>();
         
-        int y = Integer.parseInt(args.get(Point.Y1)); // y1, or y2 there is no difference
+        int y = Integer.parseInt(args.get(Point.Y1)), // y1, or y2 there is no difference
 
-        int x1 = Integer.parseInt(args.get(Point.X1)),
-            x2 = Integer.parseInt(args.get(Point.X2));
+            x1 = Integer.parseInt(args.get(Point.X1)),
+            x2 = Integer.parseInt(args.get(Point.X2)),
 
-        int startingPoint, endingPoint;
+            startingPoint, endingPoint;
         if (x1 < x2) {
             
             startingPoint = x1;
@@ -31,7 +31,7 @@ public class HorizontalLinePlotter extends LinePlotter {
             endingPoint = x1;
         }
 
-        for (int i = startingPoint; i <= endingPoint; i++) {
+        for (var i = startingPoint; i <= endingPoint; i++) {
             
             plottedPoints.add(new PlottingPoint(i, y, Type.Line, DrawingCharacter.X));
         }

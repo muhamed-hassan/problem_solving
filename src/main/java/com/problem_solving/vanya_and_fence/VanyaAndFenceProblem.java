@@ -7,7 +7,7 @@ public class VanyaAndFenceProblem {
         
         int minimumPossibleValidWidthOfTheRoad = 0;
         
-        for(int i = 0; i < n; i++) {
+        for(var i = 0; i < n; i++) {
             
             if (friendsHeights[i] <= h) {
                 

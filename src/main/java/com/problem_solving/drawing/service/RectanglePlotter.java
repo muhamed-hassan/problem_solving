@@ -13,23 +13,23 @@ public class RectanglePlotter extends Plotter {
     @Override
     public List<PlottingPoint> getPlottingPoints(List<String> args) {
 
-        List<PlottingPoint> plottedPoints = new ArrayList<>();
+        var plottedPoints = new ArrayList<PlottingPoint>();
         
-        int x1 = Integer.parseInt(args.get(Point.X1));
-        int y1 = Integer.parseInt(args.get(Point.Y1));
+        int x1 = Integer.parseInt(args.get(Point.X1)),
+            y1 = Integer.parseInt(args.get(Point.Y1)),
 
-        int x2 = Integer.parseInt(args.get(Point.X2));
-        int y2 = Integer.parseInt(args.get(Point.Y2));
+            x2 = Integer.parseInt(args.get(Point.X2)),
+            y2 = Integer.parseInt(args.get(Point.Y2));
 
         // drawing horizontal sides
-        for (int i = x1; i <= x2; i++) {
+        for (var i = x1; i <= x2; i++) {
             
             plottedPoints.add(new PlottingPoint(i, y1, Type.Rectangle, DrawingCharacter.X));
             plottedPoints.add(new PlottingPoint(i, y2, Type.Rectangle, DrawingCharacter.X));
         }
 
         // drawing vertical sides
-        for (int i = y1 + 1; i < y2; i++) {
+        for (var i = y1 + 1; i < y2; i++) {
          
             plottedPoints.add(new PlottingPoint(x1, i, Type.Rectangle, DrawingCharacter.X));
             plottedPoints.add(new PlottingPoint(x2, i, Type.Rectangle, DrawingCharacter.X));

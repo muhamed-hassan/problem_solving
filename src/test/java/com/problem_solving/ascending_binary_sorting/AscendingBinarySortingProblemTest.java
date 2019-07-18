@@ -1,6 +1,5 @@
 package com.problem_solving.ascending_binary_sorting;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -20,11 +19,11 @@ public class AscendingBinarySortingProblemTest {
     @Test
     public void testRearrange() {
         
-        List<Integer> dataSet = Arrays.asList(5, 5, 3, 7, 10, 14);
+        var dataSet = List.of(5, 5, 3, 7, 10, 14);
         
-        List<Integer> sortedDataSet = ascendingBinarySortingProblem.rearrange(dataSet);
+        var sortedDataSet = ascendingBinarySortingProblem.rearrange(dataSet);
         
-        assertEquals(Arrays.asList(3, 5, 10, 7, 14), sortedDataSet);        
+        assertEquals(List.of(3, 5, 10, 7, 14), sortedDataSet);        
     }
     
 }

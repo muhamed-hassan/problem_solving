@@ -17,27 +17,25 @@ public class IslandsCountProblemTest {
     @Test
     public void testSolution_WhenPassingValidMatrix_ThenReturnTheCountOfFoundIslands() {
         
-        int[][] matrix = {
+        var matrix = new int[][]{
                             {1, 0, 1}, 
                             {1, 1, 1}, 
                             {0, 0, 1}, 
                             {1, 1, 1}
                         };
         
-        int actualCountOfIslands = islandsCountProblem.solution(matrix);
+        var actualCountOfIslands = islandsCountProblem.solution(matrix);
         
-        int expectedCountOfIslands = 3;
+        var expectedCountOfIslands = 3;
         assertEquals(expectedCountOfIslands, actualCountOfIslands);
     }
     
     @Test
     public void testSolution_WhenPassingNullMatrix_ThenReturnNegativeOne() {
         
-        int[][] matrix = null;
+        var actualResult = islandsCountProblem.solution(null);
         
-        int actualResult = islandsCountProblem.solution(matrix);
-        
-        int expectedResult = -1;
+        var expectedResult = -1;
         assertEquals(expectedResult, actualResult);
     }
     

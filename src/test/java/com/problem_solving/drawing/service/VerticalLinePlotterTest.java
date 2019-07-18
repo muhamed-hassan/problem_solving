@@ -1,6 +1,5 @@
 package com.problem_solving.drawing.service;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -23,9 +22,9 @@ public class VerticalLinePlotterTest {
     public void testGetPlottingPoints_WhenUsingVerticalLineCoordinates_ThenReturnListOfPlottedPointsOfVerticalLine() {
         
         Integer x1 = 6, y1 = 3, x2 = 6, y2 = 4;
-        List<String> args = Arrays.asList(x1.toString(), y1.toString(), x2.toString(), y2.toString()); 
+        var args = List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString()); 
         
-        List<PlottingPoint> actualResult = verticalLinePlotter.getPlottingPoints(args);
+        var actualResult = verticalLinePlotter.getPlottingPoints(args);
 
         //Assert that all plotted points drawn on the same X axis
         assertTrue(actualResult.stream().map(PlottingPoint::getX).allMatch(x -> x == x1.intValue() && x == x2.intValue()));

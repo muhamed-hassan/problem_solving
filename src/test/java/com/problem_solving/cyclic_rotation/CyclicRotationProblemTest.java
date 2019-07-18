@@ -18,10 +18,10 @@ public class CyclicRotationProblemTest {
     @Test
     public void testSolution_WhenPassingAnArrayAndShiftingTimes_ThenReturnShiftedArrayAccordingToShiftTimes() {
         
-        int[] array = {3, 8, 9, 7, 6};
-        int shiftingTimes = 3;
+        var array = new int[]{3, 8, 9, 7, 6};
+        var shiftingTimes = 3;
         
-        int[] shiftedArray = cyclicRotationProblem.solution(array, shiftingTimes);
+        var shiftedArray = cyclicRotationProblem.solution(array, shiftingTimes);
         
         assertArrayEquals(new int[]{9, 7, 6, 3, 8}, shiftedArray);
     }

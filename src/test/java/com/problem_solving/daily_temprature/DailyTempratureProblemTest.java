@@ -17,9 +17,9 @@ public class DailyTempratureProblemTest {
     @Test
     public void testRearrange() {
         
-        int[] T = {55,38,53,81,61,93,97,32,43,78};
+        var T = new int[]{55,38,53,81,61,93,97,32,43,78};
         
-        int[] result = dailyTempratureProblem.dailyTemperatures(T);
+        var result = dailyTempratureProblem.dailyTemperatures(T);
         
         assertArrayEquals(new int[]{3,1,1,2,1,1,0,1,1,0}, result);
     }

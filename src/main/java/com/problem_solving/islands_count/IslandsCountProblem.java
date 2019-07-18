@@ -16,10 +16,10 @@ public class IslandsCountProblem {
             matrixWidth = matrix[0].length, 
             matrixHeight = matrix.length;
         boolean elementsProductOccurs = false;
-        for(int i = 0; i < matrixHeight; i++) {            
+        for(var i = 0; i < matrixHeight; i++) {            
             
             //Horizontal scanning
-            for(int j = 0; j < matrixWidth; j++) {
+            for(var j = 0; j < matrixWidth; j++) {
                 
                 elementsProduct *= matrix[i][j];
                 elementsProductOccurs = true;
@@ -36,7 +36,7 @@ public class IslandsCountProblem {
             
             
             //Vertical scanning
-            for(int j = 0; j < matrixHeight && i < matrixWidth; j++) {
+            for(var j = 0; j < matrixHeight && i < matrixWidth; j++) {
                 
                 elementsProduct *= matrix[j][i];
                 elementsProductOccurs = true;

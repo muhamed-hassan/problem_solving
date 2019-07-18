@@ -18,11 +18,11 @@ public class ElectronicsShopProblemTest {
     @Test
     public void testGetMoneySpent_WhenBudgetIsSufficient_ThenCalcTheMaxAmountOfBudgetTheCustomerCouldAffordFromBudget() {
         
-        int budget = 10;
+        var budget = 10;
         int[] keyboards = {3, 1},
               usbDrives = {5, 2, 8};
         
-        int moneyToSpent = electronicsShopProblem.getMoneySpent(keyboards, usbDrives, budget);
+        var moneyToSpent = electronicsShopProblem.getMoneySpent(keyboards, usbDrives, budget);
         
         assertTrue(moneyToSpent <= budget);
         assertEquals(9, moneyToSpent);                
@@ -31,11 +31,11 @@ public class ElectronicsShopProblemTest {
     @Test
     public void testGetMoneySpent_WhenBudgetIsNotSufficient_ThenReturnNegativeOne() {
         
-        int budget = 5;
+        var budget = 5;
         int[] keyboards = {4},
               usbDrives = {5};
         
-        int moneyToSpent = electronicsShopProblem.getMoneySpent(keyboards, usbDrives, budget);
+        var moneyToSpent = electronicsShopProblem.getMoneySpent(keyboards, usbDrives, budget);
         
         assertEquals(-1, moneyToSpent);        
     }

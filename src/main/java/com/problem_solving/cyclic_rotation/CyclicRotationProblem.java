@@ -7,7 +7,7 @@ public class CyclicRotationProblem {
         
         int[] result = new int[array.length];
 
-        for (int currentIndex = 0; currentIndex < array.length; currentIndex++) {
+        for (var currentIndex = 0; currentIndex < array.length; currentIndex++) {
             
             result[(currentIndex + shiftingTimes) % array.length] = array[currentIndex];
         }

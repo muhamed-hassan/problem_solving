@@ -24,8 +24,8 @@ rearrange has the following parameter(s):
 public class AscendingBinarySortingProblem {
         
     public List<Integer> rearrange(List<Integer> elements) {
-        
-        return elements.stream()
+    	
+    	return elements.stream()
                         .distinct()
                         .map(intValue -> Integer.toBinaryString(intValue))
                         .sorted((a, b) -> {

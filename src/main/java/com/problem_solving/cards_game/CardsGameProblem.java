@@ -43,7 +43,7 @@ public class CardsGameProblem {
         boolean connanWins = false,
                 maxCardValueSelected,
                 noCardsLeft;
-        for (int cursor = 0; cursor < numberOfCards; cursor++) {
+        for (var cursor = 0; cursor < numberOfCards; cursor++) {
             
             maxCardValueSelected = (cards[cursor] == maxCardValue) && (maxCardValueOccurrences == 1);
             noCardsLeft = (cursor == numberOfCards - 1);

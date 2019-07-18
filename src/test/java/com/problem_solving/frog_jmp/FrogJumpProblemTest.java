@@ -22,7 +22,7 @@ public class FrogJumpProblemTest {
             y = 85,
             d = 30;
         
-        int minimalNumberOfJumps = frogJumpProblem.solution(x, y, d);
+        var minimalNumberOfJumps = frogJumpProblem.solution(x, y, d);
                 
         assertEquals(3, minimalNumberOfJumps);
     }

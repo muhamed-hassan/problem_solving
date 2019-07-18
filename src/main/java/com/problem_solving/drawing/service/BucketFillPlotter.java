@@ -13,23 +13,23 @@ public class BucketFillPlotter extends FillerPlotter {
     @Override
     public List<PlottingPoint> getPlottingPoints(List<String> args, PlottingPoint[][] matrix) {
 
-        List<PlottingPoint> plottedPoints = new ArrayList<>();
+        var plottedPoints = new ArrayList<PlottingPoint>();
         
-        int y = Integer.parseInt(args.get(1));
-        char fillingCharacter = args.get(2).charAt(0);
+        var y = Integer.parseInt(args.get(1));
+        var fillingCharacter = args.get(2).charAt(0);
 
-        List<List<BucketFillPoint>> validPointsForBucketFilling = new ArrayList<>(0);
-        int validPointsCursor = 0;
+        var validPointsForBucketFilling = new ArrayList<ArrayList<BucketFillPoint>>(0);
+        var validPointsCursor = 0;
 
         //collecting valid points for bucket filling
-        for (int row = 1; row < matrix.length - 1; row++) {
+        for (var row = 1; row < matrix.length - 1; row++) {
 
             validPointsForBucketFilling.add(validPointsCursor, new ArrayList<>(0));
 
-            for (int column = 1; column < matrix[row].length - 1; column++) {
+            for (var column = 1; column < matrix[row].length - 1; column++) {
                 
-                PlottingPoint nextElement = matrix[row][column + 1];
-                PlottingPoint currentElement = matrix[row][column];
+            	var nextElement = matrix[row][column + 1];
+            	var currentElement = matrix[row][column];
 
                 /**
                  * -- nonVacanct if currentElement eq 'X' then continue
@@ -93,9 +93,9 @@ public class BucketFillPlotter extends FillerPlotter {
         }
 
         //plot valid points for drawing on the matrix
-        for(List<BucketFillPoint> line : validPointsForBucketFilling) {
+        for(var line : validPointsForBucketFilling) {
             
-            for(BucketFillPoint point : line) {
+            for(var point : line) {
             
                 plottedPoints.add(new PlottingPoint(point.getX(), point.getY(), Type.BucketFilling, fillingCharacter));
             }
