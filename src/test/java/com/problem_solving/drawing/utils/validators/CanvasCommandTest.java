@@ -11,7 +11,7 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Unexpected number of command line args");
 
-        String commandLine = "C 20 4 3";
+        var commandLine = "C 20 4 3";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -21,7 +21,7 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Unexpected number of command line args");
 
-        String commandLine = "C 20";
+        var commandLine = "C 20";
         commandValidator.validateCommand(commandLine);
     }
     
@@ -32,7 +32,7 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 1 whose value is X");
 
-        String commandLine = "C X 4";
+        var commandLine = "C X 4";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -42,7 +42,7 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 2 whose value is X");
 
-        String commandLine = "C 20 X";
+        var commandLine = "C 20 X";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -53,7 +53,7 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 1 whose value is -20");
 
-        String commandLine = "C -20 4";
+        var commandLine = "C -20 4";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -63,7 +63,7 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 2 whose value is -4");
 
-        String commandLine = "C 20 -4";
+        var commandLine = "C 20 -4";
         commandValidator.validateCommand(commandLine);
     }
         
@@ -74,7 +74,7 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Value for argument number 1 whose value is 0 should be greater than zero");
 
-        String commandLine = "C 0 4";
+        var commandLine = "C 0 4";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -84,7 +84,7 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Value for argument number 2 whose value is 0 should be greater than zero");
 
-        String commandLine = "C 20 0";
+        var commandLine = "C 20 0";
         commandValidator.validateCommand(commandLine);
     }
     
@@ -95,7 +95,7 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 1 whose value is 20.5");
 
-        String commandLine = "C 20.5 4";
+        var commandLine = "C 20.5 4";
         commandValidator.validateCommand(commandLine);
     }
 
@@ -105,7 +105,7 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
         thrownException.expect(IllegalArgumentException.class);
         thrownException.expectMessage("Invalid value for argument number 2 whose value is 4.5");
 
-        String commandLine = "C 20 4.5";
+        var commandLine = "C 20 4.5";
         commandValidator.validateCommand(commandLine);
     }
     
