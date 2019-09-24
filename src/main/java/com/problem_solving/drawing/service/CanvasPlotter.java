@@ -2,15 +2,13 @@ package com.problem_solving.drawing.service;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 import java.util.ArrayList;
 
 import com.problem_solving.drawing.utils.constants.DrawingCharacter;
 import com.problem_solving.drawing.utils.constants.Type;
 import com.problem_solving.drawing.models.PlottingPoint;
 
-public class CanvasPlotter extends Plotter {
+public class CanvasPlotter extends FourSidedPlotter {
 
     @Override
     public List<PlottingPoint> getPlottingPoints(List<String> args) {
@@ -43,25 +41,7 @@ public class CanvasPlotter extends Plotter {
     		
     		return verticalPlottedPoints;
 		});
-		
-    	List<CompletableFuture<List<PlottingPoint>>> futures = List.of(horizontalSideDrawer, verticalSideDrawer);
-    	CompletableFuture<Void> combinedFutures = CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()]));
-            	
-    	List<PlottingPoint> plottedPoints = null;
-		try {
-			
-			plottedPoints = combinedFutures.thenApply(voidType -> futures.stream()
-																			.map(CompletableFuture::join)
-																			.flatMap(List::stream)
-																			.collect(Collectors.toList()))
-											.get();
-
-		} catch (InterruptedException | ExecutionException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} 
-        
-        return plottedPoints;
+		        
+        return combineAndGetPlottingPoints(horizontalSideDrawer, verticalSideDrawer);
     }
-
 }

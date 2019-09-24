@@ -1,8 +1,6 @@
 package com.problem_solving.drawing.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -13,9 +11,9 @@ import com.problem_solving.drawing.models.PlottingPoint;
 import com.problem_solving.drawing.utils.constants.DrawingCharacter;
 import com.problem_solving.drawing.utils.constants.Type;
 
-public class RectanglePlotterTest {
+public class RectanglePlotterTest extends FourSidedPlotterTest {
     
-    private Plotter rectanglePlotter;
+    private FourSidedPlotter rectanglePlotter;
     
     @Before
     public void setUp() {
@@ -32,27 +30,11 @@ public class RectanglePlotterTest {
         var actualResult = rectanglePlotter.getPlottingPoints(args);
         
         var expectedResult = new ArrayList<PlottingPoint>(){{
-            addAll(generateHorizontalAxisPoints(x1, x2, y1));
-        	addAll(generateHorizontalAxisPoints(x1, x2, y2));
-        	addAll(generateVerticalAxisPoints(y1, y2, x1));
-        	addAll(generateVerticalAxisPoints(y1, y2, x2));
+            addAll(generateHorizontalAxisPoints(x1, x2, y1, Type.Rectangle, DrawingCharacter.X));
+        	addAll(generateHorizontalAxisPoints(x1, x2, y2, Type.Rectangle, DrawingCharacter.X));
+        	addAll(generateVerticalAxisPoints(y1+1, y2, x1, Type.Rectangle, DrawingCharacter.X));
+        	addAll(generateVerticalAxisPoints(y1+1, y2, x2, Type.Rectangle, DrawingCharacter.X));
         }}; 
         assertTrue(actualResult.containsAll(expectedResult)); //Assert that all plotted points represent a rectangle according to the given coordinates
-    }
-    
-    private List<PlottingPoint> generateHorizontalAxisPoints(int x1, int x2, int y) {
-    	
-    	return IntStream.rangeClosed(x1, x2)
-    					.parallel()
-    					.mapToObj(x -> new PlottingPoint(x, y, Type.Rectangle, DrawingCharacter.X))
-    					.collect(Collectors.toList());
-    }
-    
-    private List<PlottingPoint> generateVerticalAxisPoints(int y1, int y2, int x) {
-    	
-    	return IntStream.range(y1+1, y2)
-		    			.parallel()
-		    			.mapToObj(y -> new PlottingPoint(x, y, Type.Rectangle, DrawingCharacter.X))
-		    			.collect(Collectors.toList());
     }
 }
