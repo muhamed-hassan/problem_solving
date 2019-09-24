@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import com.problem_solving.drawing.models.PlottingPoint;
 import com.problem_solving.drawing.utils.constants.DrawingCharacter;
@@ -32,12 +32,27 @@ public class CanvasPlotterTest {
         var actualResult = canvasPlotter.getPlottingPoints(args);
         
         var expectedResult = new ArrayList<PlottingPoint>(){{
-            addAll(IntStream.rangeClosed(0, w+1).mapToObj(x -> new PlottingPoint(x, 0, Type.Canvas, DrawingCharacter.CANVAS_W)).collect(Collectors.toList()));
-            addAll(IntStream.rangeClosed(0, w+1).mapToObj(x -> new PlottingPoint(x, h+1, Type.Canvas, DrawingCharacter.CANVAS_W)).collect(Collectors.toList()));
-            addAll(IntStream.rangeClosed(1, h).mapToObj(y -> new PlottingPoint(0, y, Type.Canvas, DrawingCharacter.CANVAS_H)).collect(Collectors.toList()));
-            addAll(IntStream.rangeClosed(1, h).mapToObj(y -> new PlottingPoint(w+1, y, Type.Canvas, DrawingCharacter.CANVAS_H)).collect(Collectors.toList()));
+            addAll(generateHorizontalAxisPoints(0, w+1, 0));
+        	addAll(generateHorizontalAxisPoints(0, w+1, h+1));
+        	addAll(generateVerticalAxisPoints(1, h, 0));
+        	addAll(generateVerticalAxisPoints(1, h, w+1));
         }};        
-        assertTrue(expectedResult.containsAll(actualResult));
+        assertTrue(actualResult.containsAll(expectedResult));
     }
     
+    private List<PlottingPoint> generateHorizontalAxisPoints(int startFrom, int endAt, int y) {
+    	
+    	return IntStream.rangeClosed(startFrom, endAt)
+    					.parallel()
+    					.mapToObj(x -> new PlottingPoint(x, y, Type.Canvas, DrawingCharacter.CANVAS_W))
+    					.collect(Collectors.toList());
+    }
+    
+    private List<PlottingPoint> generateVerticalAxisPoints(int startFrom, int endAt, int x) {
+    	
+    	return IntStream.range(startFrom, endAt)
+		    			.parallel()
+		    			.mapToObj(y -> new PlottingPoint(x, y, Type.Canvas, DrawingCharacter.CANVAS_H))
+		    			.collect(Collectors.toList());
+    }
 }
