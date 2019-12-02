@@ -1,5 +1,6 @@
 package com.problem_solving.drawing.models;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,35 +23,50 @@ public final class Command {
     public static final Map<Character, Rule> VALID_COMMANDS = new HashMap<>(0);
 
     static {
-        
-        VALID_COMMANDS.put(C, new GeneralCommandRule(2)
-                .addValidationRule(new ValidationRule(0, Integer.class))
-                .addValidationRule(new ValidationRule(1, Integer.class))
-                .addPlotter(new CanvasPlotter()));
+            	
+        VALID_COMMANDS.put(C, new Rule.RuleBuilder()
+						            	.validNoOfArgs(2)
+						            	.withValidationRules(Arrays.asList(
+						            			new ValidationRule(0, Integer.class),
+						            			new ValidationRule(1, Integer.class)))
+						            	.withPlotters(Arrays.asList(new CanvasPlotter()))
+						            	.build(GeneralCommandRule.class));       
 
-        VALID_COMMANDS.put(L, new LineCommandRule(4)
-                .addValidationRule(new ValidationRule(0, Integer.class))
-                .addValidationRule(new ValidationRule(1, Integer.class))
-                .addValidationRule(new ValidationRule(2, Integer.class))
-                .addValidationRule(new ValidationRule(3, Integer.class))
-                .addPlotter(new VerticalLinePlotter())
-                .addPlotter(new HorizontalLinePlotter()));
+        VALID_COMMANDS.put(L, new Rule.RuleBuilder()
+						            	.validNoOfArgs(4)
+						            	.withValidationRules(Arrays.asList(
+						            			new ValidationRule(0, Integer.class),
+						            			new ValidationRule(1, Integer.class),
+						            			new ValidationRule(2, Integer.class),
+						            			new ValidationRule(3, Integer.class) ))
+						            	.withPlotters(Arrays.asList(new VerticalLinePlotter(), 
+						            			new HorizontalLinePlotter()))
+						            	.build(LineCommandRule.class));
 
-        VALID_COMMANDS.put(R, new GeneralCommandRule(4)
-                .addValidationRule(new ValidationRule(0, Integer.class))
-                .addValidationRule(new ValidationRule(1, Integer.class))
-                .addValidationRule(new ValidationRule(2, Integer.class))
-                .addValidationRule(new ValidationRule(3, Integer.class))
-                .addPlotter(new RectanglePlotter()));
+        VALID_COMMANDS.put(R, new Rule.RuleBuilder()
+						            	.validNoOfArgs(4)
+						            	.withValidationRules(Arrays.asList(
+						            			new ValidationRule(0, Integer.class),
+						            			new ValidationRule(1, Integer.class),
+						            			new ValidationRule(2, Integer.class),
+						            			new ValidationRule(3, Integer.class) ))
+						            	.withPlotters(Arrays.asList(new RectanglePlotter()))
+						            	.build(GeneralCommandRule.class));
 
-        VALID_COMMANDS.put(B, new GeneralCommandRule(3)
-                .addValidationRule(new ValidationRule(0, Integer.class))
-                .addValidationRule(new ValidationRule(1, Integer.class))
-                .addValidationRule(new ValidationRule(2, Character.class))
-                .addPlotter(new BucketFillPlotter()));
+        VALID_COMMANDS.put(B, new Rule.RuleBuilder()
+						            	.validNoOfArgs(3)
+						            	.withValidationRules(Arrays.asList(
+						            			new ValidationRule(0, Integer.class),
+						            			new ValidationRule(1, Integer.class),
+						            			new ValidationRule(2, Character.class) ))
+						            	.withPlotters(Arrays.asList(new BucketFillPlotter()))
+						            	.build(GeneralCommandRule.class));
 
-        VALID_COMMANDS.put(Q, new GeneralCommandRule(1)
-                .addValidationRule(new ValidationRule(0, Character.class)));
+        VALID_COMMANDS.put(Q, new Rule.RuleBuilder()
+						            	.validNoOfArgs(1)
+						            	.withValidationRules(Arrays.asList(
+						            			new ValidationRule(0, Character.class) ))    	
+						            	.build(GeneralCommandRule.class));
     }
 
 }

@@ -10,25 +10,21 @@ public class Point {
     public static final int Y1 = 1;
     public static final int Y2 = 3;
 
-    public Point(int x, int y) {
-                        
+    public Point(int x, int y) {                        
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
-        
+    public int getX() {        
         return x;
     }
 
-    public int getY() {
-        
+    public int getY() {        
         return y;
     }
 
     @Override
-    public int hashCode() {
-        
+    public int hashCode() {        
         final int prime = 31;
         int result = 1;
         result = prime * result + x;
@@ -54,8 +50,7 @@ public class Point {
     }
 
     @Override
-    public String toString() {
-        
+    public String toString() {        
         return "(" + x + ", " + y + ")";
     }
 

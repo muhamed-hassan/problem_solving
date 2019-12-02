@@ -6,24 +6,13 @@ import com.problem_solving.drawing.service.BasePlotter;
 
 public class GeneralCommandRule extends Rule {
 
-    private BasePlotter plotter;
-
-    public GeneralCommandRule(int validNoOfArgs) {
-        
-        super(validNoOfArgs);
-    }
+	public GeneralCommandRule(int validNoOfArgs, List<ValidationRule> validations, List<BasePlotter> plotters) {
+		super(validNoOfArgs, validations, plotters);
+	}
 
     @Override
-    public Rule addPlotter(BasePlotter plotter) {
-        
-        this.plotter = plotter;
-        return this;
+    public BasePlotter getPlotter(List<String> args) {        
+        return plotters.get(0);
     }
-
-    @Override
-    public BasePlotter getPlotter(List<String> args) {
-        
-        return plotter;
-    }
-
+    
 }

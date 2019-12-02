@@ -7,20 +7,17 @@ public class PlottingPoint extends Point {
     private final Type type;
     private final char characterToBeDrawn;
 
-    public PlottingPoint(int x, int y, Type type, char characterToBeDrawn) {
-        
+    public PlottingPoint(int x, int y, Type type, char characterToBeDrawn) {        
         super(x, y);
         this.type = type;
         this.characterToBeDrawn = characterToBeDrawn;
     }
 
-    public Type getType() {
-        
+    public Type getType() {       
         return type;
     }
 
-    public char getCharacterToBeDrawn() {
-        
+    public char getCharacterToBeDrawn() {       
         return characterToBeDrawn;
     }
 
