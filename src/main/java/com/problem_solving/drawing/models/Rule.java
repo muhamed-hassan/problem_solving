@@ -1,6 +1,7 @@
 package com.problem_solving.drawing.models;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.problem_solving.drawing.service.BasePlotter;
 
@@ -10,10 +11,10 @@ public abstract class Rule {
     private final List<ValidationRule> validations;
     protected final List<BasePlotter> plotters;
     
-    public Rule(int validNoOfArgs, List<ValidationRule> validations, List<BasePlotter> plotters) {
-		this.validNoOfArgs = validNoOfArgs;
-		this.validations = validations;
-		this.plotters = plotters;
+    public Rule(RuleBuilder ruleBuilder) {
+		this.validNoOfArgs = ruleBuilder.validNoOfArgs;
+		this.validations = ruleBuilder.validations;
+		this.plotters = ruleBuilder.plotters;
 	}
 
 	public int getValidNoOfArgs() {        
@@ -26,38 +27,33 @@ public abstract class Rule {
 
     public abstract BasePlotter getPlotter(List<String> args);
 
-    public static class RuleBuilder {
+    protected abstract static class RuleBuilder {
 
-		private int validNoOfArgs;
-    	private List<ValidationRule> validations;
-    	private List<BasePlotter> plotters;
+		private int validNoOfArgs; // mandatory
+    	private List<ValidationRule> validations; // mandatory 
+    	private List<BasePlotter> plotters; // optional
     	
     	public RuleBuilder validNoOfArgs(int validNoOfArgs) {
     		this.validNoOfArgs = validNoOfArgs;
-    		return this;
+    		return self();
     	}
     	
     	public RuleBuilder withValidationRules(List<ValidationRule> validations) {
-    		if (validations != null 
-    				&& validNoOfArgs < validations.size()) {                
+    		Objects.requireNonNull(validations, "A list of validation rules should be supplied");
+    		if (validNoOfArgs < validations.size()) {                
                 throw new IllegalArgumentException("Validation rules for this command exceeded the predefined number");
             }
     		this.validations = validations;
-    		return this;
+    		return self();
     	}
     	
     	public RuleBuilder withPlotters(List<BasePlotter> plotters) {
     		this.plotters = plotters;
-    		return this;
+    		return self();
     	}
     	
-    	public Rule build(Class<? extends Rule> targetRule) {    		
-    		try {    			
-    			return (Rule) targetRule.getConstructor(int.class, List.class, List.class)
-    									.newInstance(validNoOfArgs,validations, plotters);    			
-    		} catch (Exception exception) {
-    			throw new RuntimeException("Unable to build an instance from " + targetRule.getName());
-    		}    		
-    	}
+    	protected abstract RuleBuilder self(); 
+    	
+    	protected abstract Rule build();
     }
 }

@@ -24,15 +24,17 @@ public final class Command {
 
     static {
             	
-        VALID_COMMANDS.put(C, new Rule.RuleBuilder()
+    	VALID_COMMANDS.put(C, new GeneralCommandRule
+    								.GeneralCommandRuleBuilder()
 						            	.validNoOfArgs(2)
 						            	.withValidationRules(Arrays.asList(
 						            			new ValidationRule(0, Integer.class),
 						            			new ValidationRule(1, Integer.class)))
 						            	.withPlotters(Arrays.asList(new CanvasPlotter()))
-						            	.build(GeneralCommandRule.class));       
+						            	.build());       
 
-        VALID_COMMANDS.put(L, new Rule.RuleBuilder()
+        VALID_COMMANDS.put(L, new LineCommandRule
+        							.LineCommandRuleBuilder()
 						            	.validNoOfArgs(4)
 						            	.withValidationRules(Arrays.asList(
 						            			new ValidationRule(0, Integer.class),
@@ -41,9 +43,10 @@ public final class Command {
 						            			new ValidationRule(3, Integer.class) ))
 						            	.withPlotters(Arrays.asList(new VerticalLinePlotter(), 
 						            			new HorizontalLinePlotter()))
-						            	.build(LineCommandRule.class));
+						            	.build());
 
-        VALID_COMMANDS.put(R, new Rule.RuleBuilder()
+        VALID_COMMANDS.put(R, new GeneralCommandRule
+        							.GeneralCommandRuleBuilder()
 						            	.validNoOfArgs(4)
 						            	.withValidationRules(Arrays.asList(
 						            			new ValidationRule(0, Integer.class),
@@ -51,22 +54,22 @@ public final class Command {
 						            			new ValidationRule(2, Integer.class),
 						            			new ValidationRule(3, Integer.class) ))
 						            	.withPlotters(Arrays.asList(new RectanglePlotter()))
-						            	.build(GeneralCommandRule.class));
+						            	.build());
 
-        VALID_COMMANDS.put(B, new Rule.RuleBuilder()
+        VALID_COMMANDS.put(B, new GeneralCommandRule
+        							.GeneralCommandRuleBuilder()
 						            	.validNoOfArgs(3)
 						            	.withValidationRules(Arrays.asList(
 						            			new ValidationRule(0, Integer.class),
 						            			new ValidationRule(1, Integer.class),
 						            			new ValidationRule(2, Character.class) ))
 						            	.withPlotters(Arrays.asList(new BucketFillPlotter()))
-						            	.build(GeneralCommandRule.class));
+						            	.build());
 
-        VALID_COMMANDS.put(Q, new Rule.RuleBuilder()
+        VALID_COMMANDS.put(Q, new GeneralCommandRule
+        							.GeneralCommandRuleBuilder()
 						            	.validNoOfArgs(1)
-						            	.withValidationRules(Arrays.asList(
-						            			new ValidationRule(0, Character.class) ))    	
-						            	.build(GeneralCommandRule.class));
+						            	.withValidationRules(Arrays.asList(new ValidationRule(0, Character.class)))    	
+						            	.build());
     }
-
 }

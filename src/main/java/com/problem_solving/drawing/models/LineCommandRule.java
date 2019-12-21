@@ -9,10 +9,10 @@ import com.problem_solving.drawing.service.VerticalLinePlotter;
 
 public class LineCommandRule extends Rule {
 
-    public LineCommandRule(int validNoOfArgs, List<ValidationRule> validations, List<BasePlotter> plotters) {
-		super(validNoOfArgs, validations, plotters);
+    public LineCommandRule(RuleBuilder lineCommandRuleBuilder) {
+		super(lineCommandRuleBuilder);
 	}
-
+   
     @Override
     public BasePlotter getPlotter(List<String> args) {
         
@@ -35,4 +35,16 @@ public class LineCommandRule extends Rule {
                     .get();
     }
 
+    public static class LineCommandRuleBuilder extends RuleBuilder {
+
+		@Override
+		protected LineCommandRuleBuilder self() {
+			return this;
+		}
+
+		@Override
+		protected LineCommandRule build() {
+			return new LineCommandRule(this);
+		} 
+	}
 }
