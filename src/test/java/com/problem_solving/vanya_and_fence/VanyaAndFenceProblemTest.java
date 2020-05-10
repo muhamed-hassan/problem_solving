@@ -1,22 +1,21 @@
 package com.problem_solving.vanya_and_fence;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class VanyaAndFenceProblemTest {
     
-    private VanyaAndFenceProblem vafp;
+    private static VanyaAndFenceProblem vafp;
     
-    @Before
-    public void setUp() {
-
+    @BeforeAll
+    public static void setUp() {
         vafp = new VanyaAndFenceProblem(); 
     }
 
     @Test
     public void testFindTheMinimumPossibleValidWidthOfTheRoad() {
-        
         int n = 6, h = 5;
         var heights = new int[]{7, 6, 8, 9, 10, 5};
         

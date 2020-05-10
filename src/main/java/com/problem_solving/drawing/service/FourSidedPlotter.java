@@ -13,7 +13,6 @@ public abstract class FourSidedPlotter extends Plotter {
 
 	protected List<PlottingPoint> combineAndGetPlottingPoints(CompletableFuture<List<PlottingPoint>> horizontalSideDrawer, 
 																CompletableFuture<List<PlottingPoint>> verticalSideDrawer) {
-		
 		List<CompletableFuture<List<PlottingPoint>>> futures = List.of(horizontalSideDrawer, verticalSideDrawer);
     	CompletableFuture<Void> combinedFutures = CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()]));
             	
@@ -33,4 +32,5 @@ public abstract class FourSidedPlotter extends Plotter {
 		
 		return plottedPoints;
 	}
+
 }

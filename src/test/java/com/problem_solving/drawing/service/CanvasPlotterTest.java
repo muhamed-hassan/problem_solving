@@ -1,11 +1,13 @@
 package com.problem_solving.drawing.service;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.problem_solving.drawing.models.PlottingPoint;
 import com.problem_solving.drawing.utils.constants.DrawingCharacter;
@@ -13,17 +15,15 @@ import com.problem_solving.drawing.utils.constants.Type;
 
 public class CanvasPlotterTest extends FourSidedPlotterTest {
     
-    private FourSidedPlotter canvasPlotter;
+    private static FourSidedPlotter canvasPlotter;
     
-    @Before
-    public void setUp() {
-        
+    @BeforeAll
+    public static void setUp() {
         canvasPlotter = new CanvasPlotter();
     }
 
     @Test
     public void testGetPlottingPoints_WhenUsingCanvasCoordinates_ThenReturnListOfPlottedPointsOfCanvas() {
-        
         Integer w = 20, h = 4;
         var args = List.of(w.toString(), h.toString());
         
@@ -37,4 +37,5 @@ public class CanvasPlotterTest extends FourSidedPlotterTest {
         }};        
         assertTrue(actualResult.containsAll(expectedResult));
     }
+
 }

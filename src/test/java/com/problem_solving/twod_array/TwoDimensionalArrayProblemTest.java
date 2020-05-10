@@ -1,23 +1,22 @@
 package com.problem_solving.twod_array;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 //https://www.hackerrank.com/challenges/2d-array/problem
 public class TwoDimensionalArrayProblemTest {
     
-    private TwoDimensionalArrayProblem twoDimensionalArrayProblem;
+    private static TwoDimensionalArrayProblem twoDimensionalArrayProblem;
     
-    @Before
-    public void setUp() {
-        
+    @BeforeAll
+    public static void setUp() {
         twoDimensionalArrayProblem = new TwoDimensionalArrayProblem();
     }
 
     @Test
     public void testHourglassSum() {
-      
         var matrix = new int[][]{
                             {-9, -9, -9, 1, 1, 1},
                             {0, -9, 0, 4, 3, 2},

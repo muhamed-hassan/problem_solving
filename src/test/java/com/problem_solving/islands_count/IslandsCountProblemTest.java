@@ -1,22 +1,21 @@
 package com.problem_solving.islands_count;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class IslandsCountProblemTest {
     
-    private IslandsCountProblem islandsCountProblem;    
+    private static IslandsCountProblem islandsCountProblem;
     
-    @Before
-    public void setUp() {
-        
+    @BeforeAll
+    public static void setUp() {
         islandsCountProblem = new IslandsCountProblem();
     }
 
     @Test
     public void testSolution_WhenPassingValidMatrix_ThenReturnTheCountOfFoundIslands() {
-        
         var matrix = new int[][]{
                             {1, 0, 1}, 
                             {1, 1, 1}, 
@@ -32,11 +31,10 @@ public class IslandsCountProblemTest {
     
     @Test
     public void testSolution_WhenPassingNullMatrix_ThenReturnNegativeOne() {
+        var actualCountOfIslands = islandsCountProblem.solution(null);
         
-        var actualResult = islandsCountProblem.solution(null);
-        
-        var expectedResult = -1;
-        assertEquals(expectedResult, actualResult);
+        var expectedCountOfIslands = -1;
+        assertEquals(expectedCountOfIslands, actualCountOfIslands);
     }
     
 }

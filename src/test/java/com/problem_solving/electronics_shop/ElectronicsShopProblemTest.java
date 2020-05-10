@@ -1,23 +1,23 @@
 package com.problem_solving.electronics_shop;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Before;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 //https://www.hackerrank.com/challenges/electronics-shop/problem
 public class ElectronicsShopProblemTest {
     
-    private ElectronicsShopProblem electronicsShopProblem;
+    private static ElectronicsShopProblem electronicsShopProblem;
     
-    @Before
-    public void setup() {
-        
+    @BeforeAll
+    public static void setup() {
         electronicsShopProblem = new ElectronicsShopProblem();
     }
     
     @Test
     public void testGetMoneySpent_WhenBudgetIsSufficient_ThenCalcTheMaxAmountOfBudgetTheCustomerCouldAffordFromBudget() {
-        
         var budget = 10;
         int[] keyboards = {3, 1},
               usbDrives = {5, 2, 8};
@@ -30,7 +30,6 @@ public class ElectronicsShopProblemTest {
         
     @Test
     public void testGetMoneySpent_WhenBudgetIsNotSufficient_ThenReturnNegativeOne() {
-        
         var budget = 5;
         int[] keyboards = {4},
               usbDrives = {5};

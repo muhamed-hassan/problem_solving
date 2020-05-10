@@ -1,23 +1,22 @@
 package com.problem_solving.binary_gap;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 //https://app.codility.com/programmers/lessons/1-iterations/binary_gap/
 public class BinaryGapTest {
     
-    private BinaryGapProblem binaryGapProblem;
+    private static BinaryGapProblem binaryGapProblem;
     
-    @Before
-    public void setUp() {
-        
+    @BeforeAll
+    public static void setUp() {
         binaryGapProblem = new BinaryGapProblem();
     }
 
     @Test
     public void testSolution_WhenAllBitsAreOnes() {
-        
         int n = 2147483647;
         
         int maxConsecutiveZerosBetween2Ones = binaryGapProblem.solution(n);
@@ -27,7 +26,6 @@ public class BinaryGapTest {
     
     @Test
     public void testSolution_WhenTheBinaryValueIsLarge() {
-        
         int n = 1610612737;
         
         int maxConsecutiveZerosBetween2Ones = binaryGapProblem.solution(n);
@@ -37,7 +35,6 @@ public class BinaryGapTest {
     
     @Test
     public void testSolution_WhenZeroBitsAtTheEnd() {
-        
         int n = 328;
         
         int maxConsecutiveZerosBetween2Ones = binaryGapProblem.solution(n);

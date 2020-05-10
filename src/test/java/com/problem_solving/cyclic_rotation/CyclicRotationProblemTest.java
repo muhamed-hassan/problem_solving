@@ -1,23 +1,22 @@
 package com.problem_solving.cyclic_rotation;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 //https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/
 public class CyclicRotationProblemTest {
     
-    private CyclicRotationProblem cyclicRotationProblem;
+    private static CyclicRotationProblem cyclicRotationProblem;
     
-    @Before
-    public void setUp() {
-        
+    @BeforeAll
+    public static void setUp() {
         cyclicRotationProblem = new CyclicRotationProblem();
     }
 
     @Test
     public void testSolution_WhenPassingAnArrayAndShiftingTimes_ThenReturnShiftedArrayAccordingToShiftTimes() {
-        
         var array = new int[]{3, 8, 9, 7, 6};
         var shiftingTimes = 3;
         

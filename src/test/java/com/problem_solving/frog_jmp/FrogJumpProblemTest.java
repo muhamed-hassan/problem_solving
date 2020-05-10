@@ -1,23 +1,22 @@
 package com.problem_solving.frog_jmp;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 //https://app.codility.com/programmers/lessons/3-time_complexity/frog_jmp/
 public class FrogJumpProblemTest {
     
-    private FrogJumpProblem frogJumpProblem;
+    private static FrogJumpProblem frogJumpProblem;
     
-    @Before
-    public void setUp() {
-        
+    @BeforeAll
+    public static void setUp() {
         frogJumpProblem = new FrogJumpProblem();
     }
 
     @Test
     public void testSolution_WhenPassing10And85And30_ThenReturn3() {
-        
         int x = 10,
             y = 85,
             d = 30;
