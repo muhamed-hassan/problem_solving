@@ -1,105 +1,32 @@
 package com.problem_solving.drawing.utils.validators;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class CanvasCommandTest extends BaseCommandValidatorTest {
 
-    //######################################## TEST ARGS LENGTH ###########################################################
-    @Test
-    public void testValidateCommand_WhenUsingArgsGreaterThanAllowedArgs_ThenThrowException() {
-        var commandLine = "C 20 4 3";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Unexpected number of command line args", thrownException.getMessage());
+    @ParameterizedTest
+    @MethodSource("provideArgsForTestValidateCommand")
+    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
+        super.testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(commandLine, expectedErrorMsg);
     }
 
-    @Test
-    public void testValidateCommand_WhenUsingArgsLessThanAllowedArgs_ThenThrowException() {
-        var commandLine = "C 20";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Unexpected number of command line args", thrownException.getMessage());
-    }
-    
-    //################################# TEST NON-NUMERIC ARGS AS CANVAS DIMENSIONS ########################################
-    @Test
-    public void testValidateCommand_WhenUsingNonNumericArgAsCanvasWidth_ThenThrowException() {
-        var commandLine = "C X 4";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 1 whose value is X", thrownException.getMessage());
-    }
-
-    @Test
-    public void testValidateCommand_WhenUsingNonNumericArgAsCanvasHeight_ThenThrowException() {
-        var commandLine = "C 20 X";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 2 whose value is X", thrownException.getMessage());
-    }
-
-    //################################# TEST NEGATIVE INTEGERES ARGS AS CANVAS DIMENSIONS #################################
-    @Test
-    public void testValidateCommand_WhenUsingNegativeIntegerArgAsCanvasWidth_ThenThrowException() {
-        var commandLine = "C -20 4";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 1 whose value is -20", thrownException.getMessage());
-    }
-
-    @Test
-    public void testValidateCommand_WhenUsingNegativeIntegerArgAsCanvasHeight_ThenThrowException() {
-        var commandLine = "C 20 -4";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 2 whose value is -4", thrownException.getMessage());
-    }
-        
-    //######################################## TEST ZERO ARGS AS CANVAS DIMENSIONS ########################################
-    @Test
-    public void testValidateCommand_WhenUsingZeroArgAsCanvasWidth_ThenThrowException() {
-        var commandLine = "C 0 4";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Value for argument number 1 whose value is 0 should be greater than zero", thrownException.getMessage());
-    }
-
-    @Test
-    public void testValidateCommand_WhenUsingZeroArgAsCanvasHeight_ThenThrowException() {
-        var commandLine = "C 20 0";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Value for argument number 2 whose value is 0 should be greater than zero", thrownException.getMessage());
-    }
-    
-    //################################## TEST DECIMAL ARGS AS CANVAS DIMENSIONS ###########################################
-    @Test
-    public void testValidateCommand_WhenUsingDecimalArgAsX1_ThenThrowException() {
-        var commandLine = "C 20.5 4";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 1 whose value is 20.5", thrownException.getMessage());
-    }
-
-    @Test
-    public void testValidateCommand_WhenUsingDecimalArgAsY1_ThenThrowException() {
-        var commandLine = "C 20 4.5";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 2 whose value is 4.5", thrownException.getMessage());
+    private static Stream<Arguments> provideArgsForTestValidateCommand() {
+        return Stream.of(
+            Arguments.of("C 20 4 3", "Unexpected number of command line args"),
+            Arguments.of("C 20", "Unexpected number of command line args"),
+            Arguments.of("C X 4", "Invalid value for argument number 1 whose value is X"),
+            Arguments.of("C 20 X", "Invalid value for argument number 2 whose value is X"),
+            Arguments.of("C -20 4", "Invalid value for argument number 1 whose value is -20"),
+            Arguments.of("C 20 -4", "Invalid value for argument number 2 whose value is -4"),
+            Arguments.of("C 0 4", "Value for argument number 1 whose value is 0 should be greater than zero"),
+            Arguments.of("C 20 0", "Value for argument number 2 whose value is 0 should be greater than zero"),
+            Arguments.of("C 20.5 4", "Invalid value for argument number 1 whose value is 20.5"),
+            Arguments.of("C 20 4.5", "Invalid value for argument number 2 whose value is 4.5")
+        );
     }
     
 }

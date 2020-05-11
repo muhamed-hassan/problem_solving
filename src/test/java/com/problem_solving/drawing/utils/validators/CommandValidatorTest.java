@@ -1,37 +1,25 @@
 package com.problem_solving.drawing.utils.validators;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class CommandValidatorTest extends BaseCommandValidatorTest {
 
-    @Test
-    public void testValidateCommand_WhenUsingNullCommandLine_ThenThrowException() {
-        String commandLine = null;
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Can't parse empty command", thrownException.getMessage());
+    @ParameterizedTest
+    @MethodSource("provideArgsForTestValidateCommand")
+    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
+        super.testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(commandLine, expectedErrorMsg);
     }
 
-    @Test
-    public void testValidateCommand_WhenUsingEmptyCommandLine_ThenThrowException() {
-        var commandLine = "";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Can't parse empty command", thrownException.getMessage());
-    }
-
-    @Test
-    public void testValidateCommand_WhenUsingInValidCommandLine_ThenThrowException() {
-        var commandLine = "X 10 5";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Unknown command ...!", thrownException.getMessage());
+    private static Stream<Arguments> provideArgsForTestValidateCommand() {
+        return Stream.of(
+            Arguments.of(null, "Can't parse empty command"),
+            Arguments.of("", "Can't parse empty command"),
+            Arguments.of("X 10 5", "Unknown command ...!")
+        );
     }
     
 }

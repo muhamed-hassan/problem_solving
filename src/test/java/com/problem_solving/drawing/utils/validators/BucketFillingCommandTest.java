@@ -1,105 +1,32 @@
 package com.problem_solving.drawing.utils.validators;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class BucketFillingCommandTest extends BaseCommandValidatorTest {
 
-    //######################################## TEST ARGS LENGTH ###########################################################
-    @Test
-    public void testValidateCommand_WhenUsingArgsGreaterThanAllowedArgs_ThenThrowException() {
-        var commandLine = "B 10 3 o 1";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Unexpected number of command line args", thrownException.getMessage());
+    @ParameterizedTest
+    @MethodSource("provideArgsForTestValidateCommand")
+    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
+        super.testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(commandLine, expectedErrorMsg);
     }
 
-    @Test
-    public void testValidateCommand_WhenUsingArgsLessThanAllowedArgs_ThenThrowException() {
-        var commandLine = "B 10 3";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Unexpected number of command line args", thrownException.getMessage());
-    }
-
-    //#################################### TEST NON-NUMERIC ARGS AS COORDINATES ###########################################
-    @Test
-    public void testValidateCommand_WhenUsingNonNumericArgAsPointX_ThenThrowException() {
-        var commandLine = "B X 3 o";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 1 whose value is X", thrownException.getMessage());
-    }
-
-    @Test
-    public void testValidateCommand_WhenUsingNonNumericArgAsPointY_ThenThrowException() {
-        var commandLine = "B 10 X o";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 2 whose value is X", thrownException.getMessage());
-    }
-
-    //#################################### TEST NEGATIVE INTEGERES ARGS AS COORDINATES ####################################
-    @Test
-    public void testValidateCommand_WhenUsingNegativeIntegerArgAsPointX_ThenThrowException() {
-        var commandLine = "B -10 3 o";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 1 whose value is -10", thrownException.getMessage());
-    }
-
-    @Test
-    public void testValidateCommand_WhenUsingNegativeIntegerArgAsPointY_ThenThrowException() {
-        var commandLine = "B 10 -3 o";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 2 whose value is -3", thrownException.getMessage());
-    }
-    
-    //########################################### TEST ZERO ARGS AS COORDINATES ###########################################
-    @Test
-    public void testValidateCommand_WhenUsingZeroArgAsPointX_ThenThrowException() {
-        var commandLine = "B 0 3 o";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Value for argument number 1 whose value is 0 should be greater than zero", thrownException.getMessage());
-    }
-
-    @Test
-    public void testValidateCommand_WhenUsingZeroArgAsPointY_ThenThrowException() {
-        var commandLine = "B 10 0 o";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Value for argument number 2 whose value is 0 should be greater than zero", thrownException.getMessage());
-    }
-    
-    //##################################### TEST DECIMAL ARGS AS COORDINATES ##############################################
-    @Test
-    public void testValidateCommand_WhenUsingDecimalArgAsX1_ThenThrowException() {
-        var commandLine = "B 10.5 3 o";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 1 whose value is 10.5", thrownException.getMessage());
-    }
-
-    @Test
-    public void testValidateCommand_WhenUsingDecimalArgAsY1_ThenThrowException() {
-        var commandLine = "B 10 3.5 o";
-
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals("Invalid value for argument number 2 whose value is 3.5", thrownException.getMessage());
+    private static Stream<Arguments> provideArgsForTestValidateCommand() {
+        return Stream.of(
+            Arguments.of("B 10 3 o 1", "Unexpected number of command line args"),
+            Arguments.of("B 10 3", "Unexpected number of command line args"),
+            Arguments.of("B X 3 o", "Invalid value for argument number 1 whose value is X"),
+            Arguments.of("B 10 X o", "Invalid value for argument number 2 whose value is X"),
+            Arguments.of("B -10 3 o", "Invalid value for argument number 1 whose value is -10"),
+            Arguments.of("B 10 -3 o", "Invalid value for argument number 2 whose value is -3"),
+            Arguments.of("B 0 3 o", "Value for argument number 1 whose value is 0 should be greater than zero"),
+            Arguments.of("B 10 0 o", "Value for argument number 2 whose value is 0 should be greater than zero"),
+            Arguments.of("B 10.5 3 o", "Invalid value for argument number 1 whose value is 10.5"),
+            Arguments.of("B 10 3.5 o", "Invalid value for argument number 2 whose value is 3.5")
+        );
     }
     
 }
