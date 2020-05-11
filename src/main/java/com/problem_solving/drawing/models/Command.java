@@ -12,7 +12,7 @@ import com.problem_solving.drawing.service.VerticalLinePlotter;
 
 public final class Command {
 
-    private Command() { }
+    private Command() {}
 
     public static final char C = 'C';
     public static final char L = 'L';
@@ -23,7 +23,6 @@ public final class Command {
     public static final Map<Character, Rule> VALID_COMMANDS = new HashMap<>(0);
 
     static {
-            	
     	VALID_COMMANDS.put(C, new GeneralCommandRule
     								.GeneralCommandRuleBuilder()
 						            	.validNoOfArgs(2)
@@ -72,4 +71,5 @@ public final class Command {
 						            	.withValidationRules(Arrays.asList(new ValidationRule(0, Character.class)))    	
 						            	.build());
     }
+
 }

@@ -13,10 +13,8 @@ import com.problem_solving.drawing.utils.validators.CommandValidator;
 public final class Launcher {
 
     public static void main(String[] argse) {
-
     	var ui = new Interface();
     	var commandValidator = new CommandValidator();
-
         PlottingPoint[][] drawnTillNow = null; 
         String commandLine;
         char command;
@@ -24,15 +22,12 @@ public final class Launcher {
         var canvasDrawn = false;
 
         while (true) {
-
             ui.displayCommandPromptMsg();
             commandLine = ui.readCommand();
 
             try {
-                
                 commandValidator.validateCommand(commandLine);                                
             } catch (Exception e) {
-                
                 e.printStackTrace();
                 continue;
             }
@@ -42,14 +37,12 @@ public final class Launcher {
 
             if (command == Command.Q) System.exit(0);
             
-            
             if ( canvasDrawn && command == Command.C) {
                 System.err.println(" > Error: Canvas can be drawn only once");
                 continue;
             }
 
             if (!canvasDrawn) {
-                
                 //Before drawing any shape, you should draw the canvas first
                 switch (command) {
                     case Command.C:
@@ -68,10 +61,8 @@ public final class Launcher {
 
             List<PlottingPoint> plottedPoints;
             if ( command == Command.B ) {
-                
                 plottedPoints = ((FillerPlotter) Command.VALID_COMMANDS.get(command).getPlotter(args)).getPlottingPoints(args, drawnTillNow); 
             } else {
-                
                 plottedPoints = ((Plotter) Command.VALID_COMMANDS.get(command).getPlotter(args)).getPlottingPoints(args); 
             }
             

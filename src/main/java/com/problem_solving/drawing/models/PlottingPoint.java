@@ -23,7 +23,6 @@ public class PlottingPoint extends Point {
 
     @Override
     public boolean equals(Object obj) {
-        
         PlottingPoint other = (PlottingPoint) obj;
         return super.equals(obj) 
                 && type.equals(other.getType()) 

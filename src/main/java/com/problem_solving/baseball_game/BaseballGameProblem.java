@@ -6,30 +6,25 @@ import java.util.ArrayList;
 public class BaseballGameProblem {
 
     public int calPoints(String[] ops) {
-        
         int lastElementCursor = -1;
         var result = new ArrayList<Integer>(ops.length);
         
         for(var recordedEvent : ops) {
-            
             switch(recordedEvent) {
                 case "+":
-                    if ( result.size() > 1 ) {
-                        
+                    if (result.size() > 1) {
                         result.add(result.get(lastElementCursor-1) + result.get(lastElementCursor++));
                     }
                     break;
                     
                 case "C":
-                    if ( !result.isEmpty() ) {
-                        
+                    if (!result.isEmpty()) {
                         result.remove(lastElementCursor--);
                     }
                     break;
                     
                 case "D":
-                    if ( !result.isEmpty() ) {
-                        
+                    if (!result.isEmpty()) {
                         result.add(result.get(lastElementCursor++) * 2);
                     }
                     break;

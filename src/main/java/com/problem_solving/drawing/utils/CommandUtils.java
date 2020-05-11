@@ -6,10 +6,9 @@ import java.util.stream.Stream;
 
 public final class CommandUtils {
 
-    private CommandUtils() { }
+    private CommandUtils() {}
 
     public static List<String> extractArgs(String commandLine) {
-
         return Stream
                 .of(commandLine.substring(1).split("\\s"))
                 .filter(arg -> !arg.isEmpty())
@@ -17,7 +16,6 @@ public final class CommandUtils {
     }
 
     public static char extractCommand(String commandLine) {
-
         return commandLine.charAt(0);
     }
 

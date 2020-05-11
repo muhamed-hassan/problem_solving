@@ -34,7 +34,6 @@ public class Point {
 
     @Override
     public boolean equals(Object obj) {
-        
         boolean result = true;
         if (this == obj) {
             result = true;

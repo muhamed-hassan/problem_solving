@@ -12,7 +12,6 @@ public class BucketFillPlotter extends FillerPlotter {
 
     @Override
     public List<PlottingPoint> getPlottingPoints(List<String> args, PlottingPoint[][] matrix) {
-
         var plottedPoints = new ArrayList<PlottingPoint>();
         
         var y = Integer.parseInt(args.get(1));
@@ -23,11 +22,9 @@ public class BucketFillPlotter extends FillerPlotter {
 
         //collecting valid points for bucket filling
         for (var row = 1; row < matrix.length - 1; row++) {
-
             validPointsForBucketFilling.add(validPointsCursor, new ArrayList<>(0));
 
             for (var column = 1; column < matrix[row].length - 1; column++) {
-                
             	var nextElement = matrix[row][column + 1];
             	var currentElement = matrix[row][column];
 
@@ -86,7 +83,6 @@ public class BucketFillPlotter extends FillerPlotter {
             if (row > 0
                     && validPointsForBucketFilling.get(validPointsCursor++).isEmpty()
                     && y > row) {
-                
                 validPointsCursor = 0;
                 validPointsForBucketFilling.clear();
             }
@@ -94,9 +90,7 @@ public class BucketFillPlotter extends FillerPlotter {
 
         //plot valid points for drawing on the matrix
         for(var line : validPointsForBucketFilling) {
-            
             for(var point : line) {
-            
                 plottedPoints.add(new PlottingPoint(point.getX(), point.getY(), Type.BucketFilling, fillingCharacter));
             }
         }

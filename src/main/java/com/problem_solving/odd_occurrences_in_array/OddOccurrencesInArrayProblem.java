@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 public class OddOccurrencesInArrayProblem {
     
     public int solution(int[] A) {
-        
         return Arrays.stream(A)
                         .boxed()
                         .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))

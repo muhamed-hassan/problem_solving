@@ -6,12 +6,9 @@ import java.util.ArrayList;
 public class ElectronicsShopProblem {
 
     public int getMoneySpent(int[] keyboards, int[] drives, int b) {
-        
         var priceSummtionOfitemsToBeBought = new ArrayList<Integer>();
         for (var keyboardIndex = 0; keyboardIndex < keyboards.length; keyboardIndex++) {
-
             for (var driveIndex = 0; driveIndex < drives.length; driveIndex++) {
-                
                 priceSummtionOfitemsToBeBought.add(keyboards[keyboardIndex] + drives[driveIndex]);
             }
         }

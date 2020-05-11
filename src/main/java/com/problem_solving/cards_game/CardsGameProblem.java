@@ -33,23 +33,18 @@ Input	Result
 public class CardsGameProblem {
     
     public String conanOrAgasa(int[] cards) {
-
         int numberOfCards = cards.length,
             maxCardValue = Arrays.stream(cards).summaryStatistics().getMax(),
             maxCardValueOccurrences = (int) Arrays.stream(cards)
                                                     .filter(card -> card == Arrays.stream(cards).max().getAsInt())
                                                     .count();
-        
         boolean connanWins = false,
                 maxCardValueSelected,
                 noCardsLeft;
         for (var cursor = 0; cursor < numberOfCards; cursor++) {
-            
             maxCardValueSelected = (cards[cursor] == maxCardValue) && (maxCardValueOccurrences == 1);
             noCardsLeft = (cursor == numberOfCards - 1);
-
             if (maxCardValueSelected || noCardsLeft) {
-                
                 connanWins = (cursor % 2 == 0); //conan's turn -> even #=# agasa's turn -> odd
                 break;
             }

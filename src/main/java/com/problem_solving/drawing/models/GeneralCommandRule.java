@@ -25,6 +25,8 @@ public class GeneralCommandRule extends Rule {
 		@Override
 		protected GeneralCommandRule build() {
 			return new GeneralCommandRule(this);
-		} 
+		}
+
 	}
+
 }

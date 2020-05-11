@@ -24,28 +24,21 @@ rearrange has the following parameter(s):
 public class AscendingBinarySortingProblem {
         
     public List<Integer> rearrange(List<Integer> elements) {
-    	
     	return elements.stream()
                         .distinct()
                         .map(intValue -> Integer.toBinaryString(intValue))
                         .sorted((a, b) -> {
-                            
                                     int comparisonResult;
-
                                     long countOfOnesOfFirst = a.chars().mapToObj(intChar -> (char)intChar).filter(literalChar -> literalChar == '1').count();
                                     long countOfOnesOfSecond = b.chars().mapToObj(intChar -> (char)intChar).filter(literalChar -> literalChar == '1').count();
 
                                     if ( countOfOnesOfFirst == countOfOnesOfSecond ) {
-                                        
                                          int intValueOfFirst = Integer.parseInt(a, 2);
                                          int intValueOfSecond = Integer.parseInt(b, 2);
-
                                          comparisonResult = intValueOfFirst - intValueOfSecond;
                                     } else {
-                                        
                                         comparisonResult = (int) (countOfOnesOfFirst - countOfOnesOfSecond);
                                     }
-
                                     return comparisonResult;})
                         .map(binaryValue -> Integer.parseInt(binaryValue, 2))
                         .collect(Collectors.toList());

@@ -18,13 +18,11 @@ public abstract class FourSidedPlotter extends Plotter {
             	
     	List<PlottingPoint> plottedPoints = null;
 		try {
-			
 			plottedPoints = combinedFutures.thenApply(voidType -> futures.stream()
 																			.map(CompletableFuture::join)
 																			.flatMap(List::stream)
 																			.collect(Collectors.toList()))
 											.get();
-
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

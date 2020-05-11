@@ -16,32 +16,18 @@ public final class CommandValidator {
     private int canvasHeight;
 
     public void setCanvasDimensions(int canvasWidth, int canvasHeight) {
-        
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
     }
 
-    public int getCanvasHeight() {
-        
-        return canvasHeight;
-    }
-
-    public int getCanvasWidth() {
-        
-        return canvasWidth;
-    }
-
-    public void validateCommand(String commandLine) throws Exception {
-
+    public void validateCommand(String commandLine) {
         if (commandLine == null || commandLine.isEmpty()) {
-            
             throw new IllegalArgumentException("Can't parse empty command");
         }
 
         commandLine = commandLine.trim();
         var command = CommandUtils.extractCommand(commandLine);
         if (!commandValid(command)) {
-            
             throw new IllegalArgumentException("Unknown command ...!");
         }
 
@@ -53,7 +39,6 @@ public final class CommandValidator {
 
         switch (command) {
             case Command.L: {
-
                 int x1 = Integer.parseInt(extractedArgs.get(Point.X1)),
                     y1 = Integer.parseInt(extractedArgs.get(Point.Y1)),
                     x2 = Integer.parseInt(extractedArgs.get(Point.X2)),
@@ -67,14 +52,12 @@ public final class CommandValidator {
                 //Horizontal line -> y1 eq y2
                 if (!isLine(point1, point2) 
                         || isPoint(point1, point2)) {
-                    
                     throw new IllegalArgumentException("Invalid line coordinates");
                 }
             }
             break;
 
             case Command.R: {
-
                 int x1 = Integer.parseInt(extractedArgs.get(Point.X1)),
                     y1 = Integer.parseInt(extractedArgs.get(Point.Y1)),
                     x2 = Integer.parseInt(extractedArgs.get(Point.X2)),
@@ -88,14 +71,12 @@ public final class CommandValidator {
                 if (!isRectangle(point1, point2) 
                         || isLine(point1, point2) 
                         || isPoint(point1, point2)) {
-                    
                     throw new IllegalArgumentException("Invalid rectangle coordinates");
                 }
             }
             break;
 
             case Command.B: {
-
                 int x = Integer.parseInt(extractedArgs.get(0)),
                     y = Integer.parseInt(extractedArgs.get(1));
 
@@ -105,97 +86,87 @@ public final class CommandValidator {
         }
     }
 
-    private boolean commandValid(char enteredCommand) throws NoSuchFieldException, SecurityException {
-
-        return Stream
-                .of(Command.class.getDeclaredField(VALID_COMMANDS))
-                .flatMap(field -> {
-                    
-                    try {
-                        
-                        return ((Map<Character, Rule>) field.get(field)).keySet().stream();
-                    } catch (IllegalArgumentException | IllegalAccessException e) {
-                        
-                        throw new RuntimeException("Error reading stored commands values via reflections");
-                    }})
-                .anyMatch(validCommand -> validCommand == enteredCommand);
+    private boolean commandValid(char enteredCommand) {
+        boolean valid = false;
+        try {
+            valid = Stream
+                    .of(Command.class.getDeclaredField(VALID_COMMANDS))
+                    .flatMap(field -> {
+                        try {
+                            return ((Map<Character, Rule>) field.get(field)).keySet().stream();
+                        } catch (IllegalAccessException e) {
+                            throw new RuntimeException("Error occured during command validation: " + e.getMessage());
+                        }})
+                    .anyMatch(validCommand -> validCommand == enteredCommand);
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException("Error occured during command validation: " + e.getMessage());
+        }
+        return valid;
     }
 
     private void validateNumricArgsType(String commandLine, Rule rule) {
-
     	var extractedArgs = CommandUtils.extractArgs(commandLine.trim());
 
         if (extractedArgs.size() != rule.getValidNoOfArgs()) {
-            
             throw new IllegalArgumentException("Unexpected number of command line args");
         }
 
         for (var argPosition = 0; argPosition < extractedArgs.size(); argPosition++) {
-
         	var expectedDataType = rule.getExpectedDataTypeForArgsAtPositionOf(argPosition);
-
             var currentArg = extractedArgs.get(argPosition);
             //till now only integers should be validated
             //characters like 'c' used for drawing, doesn't have that much of importance 
             if (expectedDataType == Integer.class) {
-                
-                if ( !currentArg.matches("[0-9]+") ) {
-                    
+                if (!currentArg.matches("[0-9]+")) {
                     throw new IllegalArgumentException("Invalid value for argument number " + (argPosition+1) + " whose value is " + currentArg);
                 }
                 
                 var parsedArg = Integer.parseInt(currentArg);
                 if (parsedArg == 0) {
-                
                     throw new IllegalArgumentException("Value for argument number " + (argPosition+1) + " whose value is " + currentArg + " should be greater than zero");
                 }
             }
         }
     }
 
-    private Rule getValidationRule(char command) throws NoSuchFieldException, SecurityException {
-
-        return Stream
-                .of(Command.class.getDeclaredField(VALID_COMMANDS))
-                .flatMap(field -> {
-                    
-                    try {
-                        
-                        return ((Map<Character, Rule>) field.get(field)).entrySet().stream();
-                    } catch (IllegalArgumentException | IllegalAccessException e) {
-                        
-                        e.printStackTrace();
-                        throw new RuntimeException("Error reading stored commands values via reflections");
-                    }})
-                .filter(entry -> entry.getKey().charValue() == command)
-                .map(entry -> entry.getValue())
-                .findFirst()
-                .get();
+    private Rule getValidationRule(char command) {
+        Rule rule = null;
+        try {
+            rule = Stream
+                    .of(Command.class.getDeclaredField(VALID_COMMANDS))
+                    .flatMap(field -> {
+                        try {
+                            return ((Map<Character, Rule>) field.get(field)).entrySet().stream();
+                        } catch (IllegalAccessException e) {
+                            throw new RuntimeException("Error occured during validation rule retrieval: " + e.getMessage());
+                        }})
+                    .filter(entry -> entry.getKey().charValue() == command)
+                    .map(entry -> entry.getValue())
+                    .findFirst()
+                    .get();
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException("Error occured during validation rule retrieval: " + e.getMessage());
+        }
+        return rule;
     }
 
     private boolean isLine(Point point1, Point point2) {
-        
         return (point1.getX() == point2.getX() && point1.getY() != point2.getY())
                 || (point1.getX() != point2.getX() && point1.getY() == point2.getY());
     }
 
     private boolean isPoint(Point point1, Point point2) {
-        
         return (point1.getX() == point2.getX()) && (point1.getY() == point2.getY());
     }
 
     private boolean isRectangle(Point point1, Point point2) {
-        
         return (point1.getX() < point2.getX()) && (point1.getY() < point2.getY());
     }
 
     private void isInsideCanvasDimensions(Point ... points) {
-
         for (var point : points) {
-            
             if (point.getX() > canvasWidth
                     || point.getY() > canvasHeight) {
-                
                 throw new IllegalArgumentException("This " + point + " outside canvas dimensions and can't be drawn");
             }
         }
