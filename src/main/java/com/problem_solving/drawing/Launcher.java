@@ -67,7 +67,7 @@ public final class Launcher {
             }
             
             ui.plotDrawingPoints(drawnTillNow, plottedPoints);
-            ui.drawMatrix(drawnTillNow, plottedPoints);
+            ui.drawMatrix(drawnTillNow);
         }
     }
 

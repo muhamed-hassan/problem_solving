@@ -29,7 +29,7 @@ public class Interface {
         }
     }
     
-    public void drawMatrix(PlottingPoint[][] matrix, List<PlottingPoint> points) {
+    public void drawMatrix(PlottingPoint[][] matrix) {
         for(var line : matrix) {
             for(var point : line) {
                 System.out.print(point != null ? point.getCharacterToBeDrawn() : " ");
