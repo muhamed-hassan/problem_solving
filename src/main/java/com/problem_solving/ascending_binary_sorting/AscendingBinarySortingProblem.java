@@ -1,6 +1,7 @@
 package com.problem_solving.ascending_binary_sorting;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /*
@@ -22,26 +23,35 @@ rearrange has the following parameter(s):
     elements[elements[0],...elements[n-1]]:  an array of integers to sort
 */
 public class AscendingBinarySortingProblem {
-        
+
     public List<Integer> rearrange(List<Integer> elements) {
-    	return elements.stream()
+        return elements.stream()
                         .distinct()
                         .map(intValue -> Integer.toBinaryString(intValue))
                         .sorted((a, b) -> {
-                                    int comparisonResult;
-                                    long countOfOnesOfFirst = a.chars().mapToObj(intChar -> (char)intChar).filter(literalChar -> literalChar == '1').count();
-                                    long countOfOnesOfSecond = b.chars().mapToObj(intChar -> (char)intChar).filter(literalChar -> literalChar == '1').count();
+                            int comparisonResult;
+                            Predicate<Character> filterPredicate = literalChar -> literalChar == '1';
+                            long countOfOnesOfFirst = countCharsOf(a, filterPredicate);
+                            long countOfOnesOfSecond = countCharsOf(b, filterPredicate);
 
-                                    if ( countOfOnesOfFirst == countOfOnesOfSecond ) {
-                                         int intValueOfFirst = Integer.parseInt(a, 2);
-                                         int intValueOfSecond = Integer.parseInt(b, 2);
-                                         comparisonResult = intValueOfFirst - intValueOfSecond;
-                                    } else {
-                                        comparisonResult = (int) (countOfOnesOfFirst - countOfOnesOfSecond);
-                                    }
-                                    return comparisonResult;})
+                            if (countOfOnesOfFirst == countOfOnesOfSecond) {
+                                int intValueOfFirst = Integer.parseInt(a, 2);
+                                int intValueOfSecond = Integer.parseInt(b, 2);
+                                comparisonResult = intValueOfFirst - intValueOfSecond;
+                            } else {
+                                comparisonResult = (int) (countOfOnesOfFirst - countOfOnesOfSecond);
+                            }
+                            return comparisonResult;
+                        })
                         .map(binaryValue -> Integer.parseInt(binaryValue, 2))
                         .collect(Collectors.toList());
     }
-    
+
+    private long countCharsOf(String element, Predicate<Character> filterPredicate) {
+        return element.chars()
+                        .mapToObj(intChar -> (char) intChar)
+                        .filter(filterPredicate)
+                        .count();
+    }
+
 }

@@ -6,9 +6,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class DailyTempratureProblemTest {
-    
+
     private static DailyTempratureProblem dailyTempratureProblem;
-    
+
     @BeforeAll
     public static void setUp() {
         dailyTempratureProblem = new DailyTempratureProblem();
@@ -16,11 +16,11 @@ public class DailyTempratureProblemTest {
 
     @Test
     public void testRearrange() {
-        var T = new int[]{55,38,53,81,61,93,97,32,43,78};
-        
+        var T = new int[] { 55, 38, 53, 81, 61, 93, 97, 32, 43, 78 };
+
         var result = dailyTempratureProblem.dailyTemperatures(T);
-        
-        assertArrayEquals(new int[]{3,1,1,2,1,1,0,1,1,0}, result);
+
+        assertArrayEquals(new int[] { 3, 1, 1, 2, 1, 1, 0, 1, 1, 0 }, result);
     }
-    
+
 }

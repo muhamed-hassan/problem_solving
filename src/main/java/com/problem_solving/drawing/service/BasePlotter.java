@@ -1,5 +1,3 @@
 package com.problem_solving.drawing.service;
 
-public abstract class BasePlotter {
-    
-}
+public abstract class BasePlotter {}

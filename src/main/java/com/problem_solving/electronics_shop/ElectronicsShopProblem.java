@@ -14,10 +14,10 @@ public class ElectronicsShopProblem {
         }
 
         return priceSummtionOfitemsToBeBought
-                                        .stream()
-                                        .filter(totalPrice -> totalPrice <= b)
-                                        .max((x, y) -> x - y)
-                                        .orElse(-1);
+                .stream()
+                .filter(totalPrice -> totalPrice <= b)
+                .max((x, y) -> x - y)
+                .orElse(-1);
     }
 
 }

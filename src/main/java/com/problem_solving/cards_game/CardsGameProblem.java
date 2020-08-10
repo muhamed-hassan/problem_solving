@@ -1,6 +1,6 @@
 package com.problem_solving.cards_game;
 
-import java.util.*;
+import java.util.Arrays;
 
 /*
 Conan Edogawa got tired of solving cases, and invited his friend, Professor Agasa, over. They decided to play a game of cards.
@@ -31,12 +31,12 @@ Input	Result
 1 1     Agasa
 */
 public class CardsGameProblem {
-    
+
     public String conanOrAgasa(int[] cards) {
         int numberOfCards = cards.length,
-            maxCardValue = Arrays.stream(cards).summaryStatistics().getMax(),
+            maxCardValue = Arrays.stream(cards).max().getAsInt(),
             maxCardValueOccurrences = (int) Arrays.stream(cards)
-                                                    .filter(card -> card == Arrays.stream(cards).max().getAsInt())
+                                                    .filter(card -> card == maxCardValue)
                                                     .count();
         boolean connanWins = false,
                 maxCardValueSelected,
@@ -52,5 +52,5 @@ public class CardsGameProblem {
 
         return connanWins ? "Conan" : "Agasa";
     }
-    
+
 }

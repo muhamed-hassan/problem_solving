@@ -5,7 +5,7 @@ public class ValidationRule {
     private final Class<?> expectedDataType;
 
     public ValidationRule(int argPosition, Class<?> expectedDataType) {
-        if (argPosition < 0) {            
+        if (argPosition < 0) {
             throw new IllegalArgumentException("Command line argument position should start from zero");
         }
         this.expectedDataType = expectedDataType;

@@ -10,9 +10,9 @@ public final class CommandUtils {
 
     public static List<String> extractArgs(String commandLine) {
         return Stream
-                .of(commandLine.substring(1).split("\\s"))
-                .filter(arg -> !arg.isEmpty())
-                .collect(Collectors.toList());
+            .of(commandLine.substring(1).split("\\s"))
+            .filter(arg -> !arg.isEmpty())
+            .collect(Collectors.toList());
     }
 
     public static char extractCommand(String commandLine) {

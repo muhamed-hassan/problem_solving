@@ -8,12 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class CommandValidatorTest extends BaseCommandValidatorTest {
 
-    @ParameterizedTest
-    @MethodSource("provideArgsForTestValidateCommand")
-    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
-        super.testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(commandLine, expectedErrorMsg);
-    }
-
     private static Stream<Arguments> provideArgsForTestValidateCommand() {
         return Stream.of(
             Arguments.of(null, "Can't parse empty command"),
@@ -21,5 +15,11 @@ public class CommandValidatorTest extends BaseCommandValidatorTest {
             Arguments.of("X 10 5", "Unknown command ...!")
         );
     }
-    
+
+    @ParameterizedTest
+    @MethodSource("provideArgsForTestValidateCommand")
+    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
+        super.testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(commandLine, expectedErrorMsg);
+    }
+
 }

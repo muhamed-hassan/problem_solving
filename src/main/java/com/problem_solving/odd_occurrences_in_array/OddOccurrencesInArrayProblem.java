@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 //https://app.codility.com/programmers/lessons/2-arrays/odd_occurrences_in_array/
 public class OddOccurrencesInArrayProblem {
-    
+
     public int solution(int[] A) {
         return Arrays.stream(A)
                         .boxed()
@@ -16,7 +16,7 @@ public class OddOccurrencesInArrayProblem {
                         .filter(entry -> entry.getValue() == 1)
                         .map(entry -> entry.getKey())
                         .findFirst()
-                        .get();        
+                        .get();
     }
-    
+
 }

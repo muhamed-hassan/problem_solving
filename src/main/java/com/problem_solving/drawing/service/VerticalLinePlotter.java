@@ -1,19 +1,19 @@
 package com.problem_solving.drawing.service;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-import com.problem_solving.drawing.utils.constants.DrawingCharacter;
-import com.problem_solving.drawing.utils.constants.Type;
 import com.problem_solving.drawing.models.PlottingPoint;
 import com.problem_solving.drawing.models.Point;
+import com.problem_solving.drawing.utils.constants.DrawingCharacter;
+import com.problem_solving.drawing.utils.constants.Type;
 
 public class VerticalLinePlotter extends LinePlotter {
 
     @Override
     public List<PlottingPoint> getPlottingPoints(List<String> args) {
         var plottedPoints = new ArrayList<PlottingPoint>();
-                
+
         int x = Integer.parseInt(args.get(Point.X1)), // x1, or x2 there is no difference
             y1 = Integer.parseInt(args.get(Point.Y1)),
             y2 = Integer.parseInt(args.get(Point.Y2)),
@@ -29,7 +29,7 @@ public class VerticalLinePlotter extends LinePlotter {
         for (var i = startingPoint; i <= endingPoint; i++) {
             plottedPoints.add(new PlottingPoint(x, i, Type.Line, DrawingCharacter.X));
         }
-        
+
         return plottedPoints;
     }
 

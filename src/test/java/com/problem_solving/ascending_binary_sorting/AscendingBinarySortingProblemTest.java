@@ -19,10 +19,10 @@ public class AscendingBinarySortingProblemTest {
     @Test
     public void testRearrange() {
         var dataSet = List.of(5, 5, 3, 7, 10, 14);
-        
+
         var sortedDataSet = ascendingBinarySortingProblem.rearrange(dataSet);
-        
-        assertEquals(List.of(3, 5, 10, 7, 14), sortedDataSet);        
+
+        assertEquals(List.of(3, 5, 10, 7, 14), sortedDataSet);
     }
-    
+
 }

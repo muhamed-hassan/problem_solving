@@ -8,12 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class HorizontalLineCommandTest extends BaseCommandValidatorTest {
 
-    @ParameterizedTest
-    @MethodSource("provideArgsForTestValidateCommand")
-    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
-        super.testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(commandLine, expectedErrorMsg);
-    }
-
     private static Stream<Arguments> provideArgsForTestValidateCommand() {
         return Stream.of(
             Arguments.of("L 1 2 6 2 1", "Unexpected number of command line args"),
@@ -36,5 +30,11 @@ public class HorizontalLineCommandTest extends BaseCommandValidatorTest {
             Arguments.of("L 1 2 6 2.5", "Invalid value for argument number 4 whose value is 2.5")
         );
     }
-    
+
+    @ParameterizedTest
+    @MethodSource("provideArgsForTestValidateCommand")
+    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
+        super.testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(commandLine, expectedErrorMsg);
+    }
+
 }

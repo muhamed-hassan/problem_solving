@@ -2,7 +2,7 @@ package com.problem_solving.binary_gap;
 
 //https://app.codility.com/programmers/lessons/1-iterations/binary_gap/
 public class BinaryGapProblem {
-    
+
     public int solution(int n) {
         String binaryValue = Integer.toBinaryString(n);
         int maxConsecutiveZerosBetween2Ones = 0, count = 0;
@@ -22,8 +22,8 @@ public class BinaryGapProblem {
                 }
             }
         }
-        
+
         return maxConsecutiveZerosBetween2Ones;
     }
-    
+
 }

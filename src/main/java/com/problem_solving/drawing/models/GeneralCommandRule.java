@@ -6,27 +6,27 @@ import com.problem_solving.drawing.service.BasePlotter;
 
 public class GeneralCommandRule extends Rule {
 
-	public GeneralCommandRule(RuleBuilder generalCommandRuleBuilder) {
-		super(generalCommandRuleBuilder);
-	}
-	
-	@Override
-    public BasePlotter getPlotter(List<String> args) {        
+    public GeneralCommandRule(RuleBuilder generalCommandRuleBuilder) {
+        super(generalCommandRuleBuilder);
+    }
+
+    @Override
+    public BasePlotter getPlotter(List<String> args) {
         return plotters.get(0);
     }
-	
-	public static class GeneralCommandRuleBuilder extends RuleBuilder {
 
-		@Override
-		protected GeneralCommandRuleBuilder self() {
-			return this;
-		}
+    public static class GeneralCommandRuleBuilder extends RuleBuilder {
 
-		@Override
-		protected GeneralCommandRule build() {
-			return new GeneralCommandRule(this);
-		}
+        @Override
+        protected GeneralCommandRuleBuilder self() {
+            return this;
+        }
 
-	}
+        @Override
+        protected GeneralCommandRule build() {
+            return new GeneralCommandRule(this);
+        }
+
+    }
 
 }

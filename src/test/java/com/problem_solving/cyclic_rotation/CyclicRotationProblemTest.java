@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 
 //https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/
 public class CyclicRotationProblemTest {
-    
+
     private static CyclicRotationProblem cyclicRotationProblem;
-    
+
     @BeforeAll
     public static void setUp() {
         cyclicRotationProblem = new CyclicRotationProblem();
@@ -17,12 +17,12 @@ public class CyclicRotationProblemTest {
 
     @Test
     public void testSolution_WhenPassingAnArrayAndShiftingTimes_ThenReturnShiftedArrayAccordingToShiftTimes() {
-        var array = new int[]{3, 8, 9, 7, 6};
+        var array = new int[] { 3, 8, 9, 7, 6 };
         var shiftingTimes = 3;
-        
+
         var shiftedArray = cyclicRotationProblem.solution(array, shiftingTimes);
-        
-        assertArrayEquals(new int[]{9, 7, 6, 3, 8}, shiftedArray);
+
+        assertArrayEquals(new int[] { 9, 7, 6, 3, 8 }, shiftedArray);
     }
-    
+
 }

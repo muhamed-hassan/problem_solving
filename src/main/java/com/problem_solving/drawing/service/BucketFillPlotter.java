@@ -3,17 +3,17 @@ package com.problem_solving.drawing.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.problem_solving.drawing.utils.constants.DrawingCharacter;
-import com.problem_solving.drawing.utils.constants.Type;
 import com.problem_solving.drawing.models.BucketFillPoint;
 import com.problem_solving.drawing.models.PlottingPoint;
+import com.problem_solving.drawing.utils.constants.DrawingCharacter;
+import com.problem_solving.drawing.utils.constants.Type;
 
 public class BucketFillPlotter extends FillerPlotter {
 
     @Override
     public List<PlottingPoint> getPlottingPoints(List<String> args, PlottingPoint[][] matrix) {
         var plottedPoints = new ArrayList<PlottingPoint>();
-        
+
         var y = Integer.parseInt(args.get(1));
         var fillingCharacter = args.get(2).charAt(0);
 
@@ -25,14 +25,15 @@ public class BucketFillPlotter extends FillerPlotter {
             validPointsForBucketFilling.add(validPointsCursor, new ArrayList<>(0));
 
             for (var column = 1; column < matrix[row].length - 1; column++) {
-            	var nextElement = matrix[row][column + 1];
-            	var currentElement = matrix[row][column];
+                var nextElement = matrix[row][column + 1];
+                var currentElement = matrix[row][column];
 
                 /**
                  * -- nonVacanct if currentElement eq 'X' then continue
                  */
-                if (currentElement != null 
-                        && currentElement.getCharacterToBeDrawn() == DrawingCharacter.X) continue;
+                if (currentElement != null
+                    && currentElement.getCharacterToBeDrawn() == DrawingCharacter.X)
+                    continue;
 
                 /**
                  * collect points
@@ -50,12 +51,12 @@ public class BucketFillPlotter extends FillerPlotter {
                  *                      nextElement.type ne Rectangle 
                  *                    -> then delete previous drawn characters then jump above the nextElement
                  */
-                if (currentElement == null 
-                        && nextElement != null 
-                        && nextElement.getCharacterToBeDrawn() == DrawingCharacter.X) {
+                if (currentElement == null
+                    && nextElement != null
+                    && nextElement.getCharacterToBeDrawn() == DrawingCharacter.X) {
 
-                    if (nextElement.getType().equals(Type.Rectangle) 
-                            || nextElement.getType().equals(Type.Canvas)) {
+                    if (nextElement.getType().equals(Type.Rectangle)
+                        || nextElement.getType().equals(Type.Canvas)) {
                         /**
                          * -- blocked: case1 if nextElement.type eq Rectangle or
                          *                      hit the canvas border 
@@ -81,20 +82,20 @@ public class BucketFillPlotter extends FillerPlotter {
              *                   -> then reset validPointsForBucketFilling
              */
             if (row > 0
-                    && validPointsForBucketFilling.get(validPointsCursor++).isEmpty()
-                    && y > row) {
+                && validPointsForBucketFilling.get(validPointsCursor++).isEmpty()
+                && y > row) {
                 validPointsCursor = 0;
                 validPointsForBucketFilling.clear();
             }
         }
 
         //plot valid points for drawing on the matrix
-        for(var line : validPointsForBucketFilling) {
-            for(var point : line) {
+        for (var line : validPointsForBucketFilling) {
+            for (var point : line) {
                 plottedPoints.add(new PlottingPoint(point.getX(), point.getY(), Type.BucketFilling, fillingCharacter));
             }
         }
-        
+
         return plottedPoints;
     }
 

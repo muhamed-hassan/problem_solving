@@ -1,7 +1,7 @@
 package com.problem_solving.drawing.presentation;
 
-import java.util.Scanner;
 import java.util.List;
+import java.util.Scanner;
 
 import com.problem_solving.drawing.models.PlottingPoint;
 
@@ -24,14 +24,14 @@ public class Interface {
     }
 
     public void plotDrawingPoints(PlottingPoint[][] matrix, List<PlottingPoint> points) {
-        for(var point : points) {
-            matrix[point.getY()][point.getX()] = point; 
+        for (var point : points) {
+            matrix[point.getY()][point.getX()] = point;
         }
     }
-    
+
     public void drawMatrix(PlottingPoint[][] matrix) {
-        for(var line : matrix) {
-            for(var point : line) {
+        for (var line : matrix) {
+            for (var point : line) {
                 System.out.print(point != null ? point.getCharacterToBeDrawn() : " ");
             }
             System.out.println();
