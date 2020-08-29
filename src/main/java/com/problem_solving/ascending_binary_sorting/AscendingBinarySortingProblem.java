@@ -25,6 +25,8 @@ rearrange has the following parameter(s):
 public class AscendingBinarySortingProblem {
 
     public List<Integer> rearrange(List<Integer> elements) {
+        if (elements == null) throw new IllegalArgumentException("invalid value of elements list");
+
         return elements.stream()
                         .distinct()
                         .map(intValue -> Integer.toBinaryString(intValue))
