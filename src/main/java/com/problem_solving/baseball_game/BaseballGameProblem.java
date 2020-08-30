@@ -6,6 +6,10 @@ import java.util.LinkedList;
 public class BaseballGameProblem {
 
     public int calPoints(String[] ops) {
+        if (ops == null) throw new IllegalArgumentException("operations list can not be null");
+
+        if (ops.length == 0) return -1;
+
         int lastElementCursor = -1;
         var result = new LinkedList<Integer>();
 
