@@ -11,7 +11,7 @@ public class TwoDimensionalArrayProblemTest {
     private static TwoDimensionalArrayProblem twoDimensionalArrayProblem;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         twoDimensionalArrayProblem = new TwoDimensionalArrayProblem();
     }
 

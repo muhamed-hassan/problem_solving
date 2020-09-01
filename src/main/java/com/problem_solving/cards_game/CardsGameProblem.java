@@ -1,6 +1,7 @@
 package com.problem_solving.cards_game;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 /*
 Conan Edogawa got tired of solving cases, and invited his friend, Professor Agasa, over. They decided to play a game of cards.
@@ -32,9 +33,13 @@ Input	Result
 */
 public class CardsGameProblem {
 
-    public String conanOrAgasa(int[] cards) {
-        int numberOfCards = cards.length,
-            maxCardValue = Arrays.stream(cards).max().getAsInt(),
+    public Optional<String> conanOrAgasa(int[] cards) {
+        if (cards == null) throw new IllegalArgumentException("cards can not be null");
+
+        int numberOfCards = cards.length;
+        if (numberOfCards == 0) return Optional.empty();
+
+        int maxCardValue = Arrays.stream(cards).max().getAsInt(),
             maxCardValueOccurrences = (int) Arrays.stream(cards)
                                                     .filter(card -> card == maxCardValue)
                                                     .count();
@@ -50,7 +55,7 @@ public class CardsGameProblem {
             }
         }
 
-        return connanWins ? "Conan" : "Agasa";
+        return Optional.of(connanWins ? "Conan" : "Agasa");
     }
 
 }

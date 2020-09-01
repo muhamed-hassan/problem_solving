@@ -11,7 +11,7 @@ public class BinaryGapProblemTest {
     private static BinaryGapProblem binaryGapProblem;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         binaryGapProblem = new BinaryGapProblem();
     }
 

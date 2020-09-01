@@ -12,7 +12,7 @@ public class SecondElementWithMaxFrequencyProblemTest {
     private static SecondElementWithMaxFrequencyProblem secondElementWithMaxFrequencyProblem;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         secondElementWithMaxFrequencyProblem = new SecondElementWithMaxFrequencyProblem();
     }
 

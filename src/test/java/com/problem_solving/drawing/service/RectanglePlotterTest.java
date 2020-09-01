@@ -17,7 +17,7 @@ public class RectanglePlotterTest extends FourSidedPlotterTest {
     private static FourSidedPlotter rectanglePlotter;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         rectanglePlotter = new RectanglePlotter();
     }
 

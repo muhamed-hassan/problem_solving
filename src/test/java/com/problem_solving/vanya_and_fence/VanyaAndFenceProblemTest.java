@@ -10,7 +10,7 @@ public class VanyaAndFenceProblemTest {
     private static VanyaAndFenceProblem vafp;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         vafp = new VanyaAndFenceProblem();
     }
 

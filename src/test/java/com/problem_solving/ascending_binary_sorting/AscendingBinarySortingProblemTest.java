@@ -13,7 +13,7 @@ public class AscendingBinarySortingProblemTest {
     private static AscendingBinarySortingProblem ascendingBinarySortingProblem;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         ascendingBinarySortingProblem = new AscendingBinarySortingProblem();
     }
 

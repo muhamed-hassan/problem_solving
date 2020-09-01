@@ -10,7 +10,7 @@ public class IslandsCountProblemTest {
     private static IslandsCountProblem islandsCountProblem;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         islandsCountProblem = new IslandsCountProblem();
     }
 

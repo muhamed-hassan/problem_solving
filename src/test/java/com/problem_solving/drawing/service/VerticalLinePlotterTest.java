@@ -14,7 +14,7 @@ public class VerticalLinePlotterTest {
     private static Plotter verticalLinePlotter;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         verticalLinePlotter = new VerticalLinePlotter();
     }
 

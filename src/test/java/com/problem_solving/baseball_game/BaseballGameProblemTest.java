@@ -11,7 +11,7 @@ public class BaseballGameProblemTest {
     private static BaseballGameProblem baseballGameProblem;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         baseballGameProblem = new BaseballGameProblem();
     }
 

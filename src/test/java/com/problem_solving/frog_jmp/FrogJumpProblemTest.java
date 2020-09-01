@@ -11,7 +11,7 @@ public class FrogJumpProblemTest {
     private static FrogJumpProblem frogJumpProblem;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         frogJumpProblem = new FrogJumpProblem();
     }
 

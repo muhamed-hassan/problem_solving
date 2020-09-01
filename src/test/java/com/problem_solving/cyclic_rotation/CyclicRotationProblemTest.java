@@ -11,7 +11,7 @@ public class CyclicRotationProblemTest {
     private static CyclicRotationProblem cyclicRotationProblem;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         cyclicRotationProblem = new CyclicRotationProblem();
     }
 

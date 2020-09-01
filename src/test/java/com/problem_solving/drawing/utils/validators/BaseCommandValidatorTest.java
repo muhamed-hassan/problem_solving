@@ -10,7 +10,7 @@ public class BaseCommandValidatorTest {
     protected CommandValidator commandValidator;
 
     @BeforeEach
-    public void setUp() {
+    public void setup() {
         commandValidator = new CommandValidator();
     }
 

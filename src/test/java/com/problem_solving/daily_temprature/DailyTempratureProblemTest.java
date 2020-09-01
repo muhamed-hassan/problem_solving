@@ -10,7 +10,7 @@ public class DailyTempratureProblemTest {
     private static DailyTempratureProblem dailyTempratureProblem;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         dailyTempratureProblem = new DailyTempratureProblem();
     }
 

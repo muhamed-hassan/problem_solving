@@ -11,7 +11,7 @@ public class LeftRotationProblemTest {
     private static LeftRotationProblem leftRotation;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         leftRotation = new LeftRotationProblem();
     }
 

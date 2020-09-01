@@ -11,7 +11,7 @@ public class OddOccurrencesInArrayProblemTest {
     private static OddOccurrencesInArrayProblem oddOccurrencesInArrayProblem;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         oddOccurrencesInArrayProblem = new OddOccurrencesInArrayProblem();
     }
 

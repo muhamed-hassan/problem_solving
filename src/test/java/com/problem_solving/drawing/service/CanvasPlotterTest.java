@@ -17,7 +17,7 @@ public class CanvasPlotterTest extends FourSidedPlotterTest {
     private static FourSidedPlotter canvasPlotter;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         canvasPlotter = new CanvasPlotter();
     }
 
