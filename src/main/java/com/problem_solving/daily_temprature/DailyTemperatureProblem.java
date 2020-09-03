@@ -1,9 +1,11 @@
 package com.problem_solving.daily_temprature;
 
 //https://leetcode.com/problems/daily-temperatures/
-public class DailyTempratureProblem {
+public class DailyTemperatureProblem {
 
     public int[] dailyTemperatures(int[] T) {
+        if (T == null || T.length == 0) throw new IllegalArgumentException("temperatures list can not be null or empty");
+
         var result = new int[T.length];
         int waitingPeriod = 0,
             resultCursor = 0;

@@ -32,16 +32,14 @@ public class CyclicRotationProblemTest {
         assertArrayEquals(expectedResult, actualResult);
     }
 
-
-
     @ParameterizedTest
-    @MethodSource("provideArgsForTestValidateCommand")
+    @MethodSource("provideArgsForTestSolution")
     public void testSolution_WhenPassingInvalidParameters_ThenThrowIllegalArgumentException(int[] array, int shiftingTimes) {
         assertThrows(IllegalArgumentException.class,
             () -> cyclicRotationProblem.solution(array, shiftingTimes));
     }
 
-    private static Stream<Arguments> provideArgsForTestValidateCommand() {
+    private static Stream<Arguments> provideArgsForTestSolution() {
         var validArray = new int[] { 3, 8, 9, 7, 6 };
         var emptyArray = new int[0];
         int[] nullArray = null;
