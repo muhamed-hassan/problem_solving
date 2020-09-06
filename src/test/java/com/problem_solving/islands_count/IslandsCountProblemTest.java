@@ -1,6 +1,7 @@
 package com.problem_solving.islands_count;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,21 +23,27 @@ public class IslandsCountProblemTest {
             { 0, 0, 1 },
             { 1, 1, 1 }
         };
+        var expectedCountOfIslands = 3;
 
         var actualCountOfIslands = islandsCountProblem.solution(matrix);
 
-        var expectedCountOfIslands = 3;
         assertEquals(expectedCountOfIslands, actualCountOfIslands);
     }
 
     @Test
-    public void testSolution_WhenPassingNullMatrix_ThenReturnNegativeOne() {
+    public void testSolution_WhenPassingNullMatrix_ThenThrowIllegalArgumentException() {
         int[][] matrix = null;
 
-        var actualCountOfIslands = islandsCountProblem.solution(matrix);
+        assertThrows(IllegalArgumentException.class,
+            () -> islandsCountProblem.solution(matrix));
+    }
 
-        var expectedCountOfIslands = -1;
-        assertEquals(expectedCountOfIslands, actualCountOfIslands);
+    @Test
+    public void testSolution_WhenPassingEmptyMatrix_ThenThrowIllegalArgumentException() {
+        int[][] matrix = new int[0][];
+
+        assertThrows(IllegalArgumentException.class,
+            () -> islandsCountProblem.solution(matrix));
     }
 
 }

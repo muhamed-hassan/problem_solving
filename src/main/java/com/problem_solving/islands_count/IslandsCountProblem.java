@@ -8,7 +8,7 @@ where island is represented as a sequence of 1s horizontally or vertically
 public class IslandsCountProblem {
 
     public int solution(int[][] matrix) {
-        if (matrix == null) return -1;
+        if (matrix == null || matrix.length == 0) throw new IllegalArgumentException("matrix can not be null or empty");
 
         int islandsCount = 0,
             elementsProduct = 1,
