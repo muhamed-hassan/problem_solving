@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 public class OddOccurrencesInArrayProblem {
 
     public int solution(int[] A) {
+        if (A == null || A.length == 0) throw new IllegalArgumentException("array can not be null or empty");
+
         return Arrays.stream(A)
                         .boxed()
                         .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
