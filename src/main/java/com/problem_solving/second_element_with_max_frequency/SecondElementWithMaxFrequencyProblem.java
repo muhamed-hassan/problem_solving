@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 public class SecondElementWithMaxFrequencyProblem {
 
     public int solve(List<Integer> numbers) {
+        if (numbers == null || numbers.isEmpty()) throw new IllegalArgumentException("numbers list can not be null or empty");
+
         return numbers.stream()
                         .collect(groupingBy(Function.identity(), Collectors.counting()))
                         .entrySet()
