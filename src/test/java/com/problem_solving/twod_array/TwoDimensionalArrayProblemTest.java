@@ -1,6 +1,7 @@
 package com.problem_solving.twod_array;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ public class TwoDimensionalArrayProblemTest {
     }
 
     @Test
-    public void testHourglassSum() {
+    public void testHourglassSum_WhenMatrixIsValid_ThenCalcTheResult() {
         var matrix = new int[][] {
             { -9, -9, -9, 1, 1, 1 },
             { 0, -9, 0, 4, 3, 2 },
@@ -25,10 +26,27 @@ public class TwoDimensionalArrayProblemTest {
             { 0, 0, 0, -2, 0, 0 },
             { 0, 0, 1, 2, 4, 0 }
         };
+        var expectedResult = 28;
 
-        var hourglassSum = twoDimensionalArrayProblem.hourglassSum(matrix);
+        var actualResult = twoDimensionalArrayProblem.hourglassSum(matrix);
 
-        assertEquals(28, hourglassSum);
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void testHourglassSum_WhenPassingNullMatrix_ThenThrowIllegalArgumentException() {
+        int[][] matrix = null;
+
+        assertThrows(IllegalArgumentException.class,
+            () -> twoDimensionalArrayProblem.hourglassSum(matrix));
+    }
+
+    @Test
+    public void testHourglassSum_WhenPassingEmptyMatrix_ThenThrowIllegalArgumentException() {
+        int[][] matrix = new int[0][];
+
+        assertThrows(IllegalArgumentException.class,
+            () -> twoDimensionalArrayProblem.hourglassSum(matrix));
     }
 
 }

@@ -6,20 +6,21 @@ import java.util.PriorityQueue;
 //https://www.hackerrank.com/challenges/2d-array/problem
 public class TwoDimensionalArrayProblem {
 
-    public int hourglassSum(int[][] arr) {
+    public int hourglassSum(int[][] matrix) {
+        if (matrix == null || matrix.length == 0) throw new IllegalArgumentException("matrix can not be null or empty");
+
         var hourglassSums = new PriorityQueue<Integer>(Comparator.reverseOrder());
 
         int hourglassSum, a, b, c, d, e, f, g;
         for (var i = 0; i < 4; i++) {
-            hourglassSum = 0;
             for (var j = 0; j < 4; j++) {
-                a = arr[i][j];
-                b = arr[i][j + 1];
-                c = arr[i][j + 2];
-                d = arr[i + 1][j + 1];
-                e = arr[i + 2][j];
-                f = arr[i + 2][j + 1];
-                g = arr[i + 2][j + 2];
+                a = matrix[i][j];
+                b = matrix[i][j + 1];
+                c = matrix[i][j + 2];
+                d = matrix[i + 1][j + 1];
+                e = matrix[i + 2][j];
+                f = matrix[i + 2][j + 1];
+                g = matrix[i + 2][j + 2];
                 hourglassSum = a + b + c + d + e + f + g;
                 hourglassSums.add(hourglassSum);
             }
