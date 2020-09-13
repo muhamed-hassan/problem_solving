@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.problem_solving.drawing.models.PlottingPoint;
+import com.problem_solving.drawing.domain.models.PlottingPoint;
 
 public class HorizontalLinePlotterTest {
 

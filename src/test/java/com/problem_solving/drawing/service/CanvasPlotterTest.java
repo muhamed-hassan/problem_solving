@@ -1,5 +1,6 @@
 package com.problem_solving.drawing.service;
 
+import static com.problem_solving.drawing.domain.models.Type.Canvas;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -8,9 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.problem_solving.drawing.models.PlottingPoint;
-import com.problem_solving.drawing.utils.constants.DrawingCharacter;
-import com.problem_solving.drawing.utils.constants.Type;
+import com.problem_solving.drawing.domain.models.PlottingPoint;
 
 public class CanvasPlotterTest extends FourSidedPlotterTest {
 
@@ -29,10 +28,10 @@ public class CanvasPlotterTest extends FourSidedPlotterTest {
         var actualResult = canvasPlotter.getPlottingPoints(args);
 
         var expectedResult = new ArrayList<PlottingPoint>() {{
-            addAll(generateHorizontalAxisPoints(0, w + 1, 0, Type.Canvas, DrawingCharacter.CANVAS_W));
-            addAll(generateHorizontalAxisPoints(0, w + 1, h + 1, Type.Canvas, DrawingCharacter.CANVAS_W));
-            addAll(generateVerticalAxisPoints(1, h, 0, Type.Canvas, DrawingCharacter.CANVAS_H));
-            addAll(generateVerticalAxisPoints(1, h, w + 1, Type.Canvas, DrawingCharacter.CANVAS_H));
+            addAll(generateHorizontalAxisPoints(0, w + 1, 0, Canvas, PlottingPoint.CANVAS_W));
+            addAll(generateHorizontalAxisPoints(0, w + 1, h + 1, Canvas, PlottingPoint.CANVAS_W));
+            addAll(generateVerticalAxisPoints(1, h, 0, Canvas, PlottingPoint.CANVAS_H));
+            addAll(generateVerticalAxisPoints(1, h, w + 1, Canvas, PlottingPoint.CANVAS_H));
         }};
         assertTrue(actualResult.containsAll(expectedResult));
     }

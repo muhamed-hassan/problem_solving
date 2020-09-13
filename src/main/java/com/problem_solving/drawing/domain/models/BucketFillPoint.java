@@ -1,4 +1,4 @@
-package com.problem_solving.drawing.models;
+package com.problem_solving.drawing.domain.models;
 
 public class BucketFillPoint extends Point {
 

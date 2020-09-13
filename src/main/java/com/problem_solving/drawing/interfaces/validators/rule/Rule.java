@@ -1,4 +1,4 @@
-package com.problem_solving.drawing.models;
+package com.problem_solving.drawing.interfaces.validators.rule;
 
 import java.util.List;
 import java.util.Objects;

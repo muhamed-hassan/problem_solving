@@ -1,12 +1,14 @@
 package com.problem_solving.drawing.service;
 
+import static com.problem_solving.drawing.domain.models.Type.BucketFilling;
+import static com.problem_solving.drawing.domain.models.Type.Canvas;
+import static com.problem_solving.drawing.domain.models.Type.Rectangle;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.problem_solving.drawing.models.BucketFillPoint;
-import com.problem_solving.drawing.models.PlottingPoint;
-import com.problem_solving.drawing.utils.constants.DrawingCharacter;
-import com.problem_solving.drawing.utils.constants.Type;
+import com.problem_solving.drawing.domain.models.BucketFillPoint;
+import com.problem_solving.drawing.domain.models.PlottingPoint;
 
 public class BucketFillPlotter extends FillerPlotter {
 
@@ -32,7 +34,7 @@ public class BucketFillPlotter extends FillerPlotter {
                  * -- nonVacanct if currentElement eq 'X' then continue
                  */
                 if (currentElement != null
-                    && currentElement.getCharacterToBeDrawn() == DrawingCharacter.X)
+                    && currentElement.getCharacterToBeDrawn() == PlottingPoint.X)
                     continue;
 
                 /**
@@ -53,10 +55,10 @@ public class BucketFillPlotter extends FillerPlotter {
                  */
                 if (currentElement == null
                     && nextElement != null
-                    && nextElement.getCharacterToBeDrawn() == DrawingCharacter.X) {
+                    && nextElement.getCharacterToBeDrawn() == PlottingPoint.X) {
 
-                    if (nextElement.getType().equals(Type.Rectangle)
-                        || nextElement.getType().equals(Type.Canvas)) {
+                    if (nextElement.getType().equals(Rectangle)
+                        || nextElement.getType().equals(Canvas)) {
                         /**
                          * -- blocked: case1 if nextElement.type eq Rectangle or
                          *                      hit the canvas border 
@@ -92,7 +94,7 @@ public class BucketFillPlotter extends FillerPlotter {
         //plot valid points for drawing on the matrix
         for (var line : validPointsForBucketFilling) {
             for (var point : line) {
-                plottedPoints.add(new PlottingPoint(point.getX(), point.getY(), Type.BucketFilling, fillingCharacter));
+                plottedPoints.add(new PlottingPoint(point.getX(), point.getY(), BucketFilling, fillingCharacter));
             }
         }
 

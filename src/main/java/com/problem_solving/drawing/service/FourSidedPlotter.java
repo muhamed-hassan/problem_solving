@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-import com.problem_solving.drawing.models.PlottingPoint;
+import com.problem_solving.drawing.domain.models.PlottingPoint;
 
 public abstract class FourSidedPlotter extends Plotter {
 

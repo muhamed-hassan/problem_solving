@@ -2,18 +2,17 @@ package com.problem_solving.drawing;
 
 import java.util.List;
 
-import com.problem_solving.drawing.models.Command;
-import com.problem_solving.drawing.models.PlottingPoint;
-import com.problem_solving.drawing.presentation.Interface;
+import com.problem_solving.drawing.interfaces.validators.rule.Command;
+import com.problem_solving.drawing.domain.models.PlottingPoint;
+import com.problem_solving.drawing.interfaces.ConsoleHandler;
 import com.problem_solving.drawing.service.FillerPlotter;
 import com.problem_solving.drawing.service.Plotter;
-import com.problem_solving.drawing.utils.CommandUtils;
-import com.problem_solving.drawing.utils.validators.CommandValidator;
+import com.problem_solving.drawing.interfaces.validators.CommandValidator;
 
 public final class Launcher {
 
     public static void main(String[] argse) {
-        var ui = new Interface();
+        var consoleHandler = new ConsoleHandler();
         var commandValidator = new CommandValidator();
         PlottingPoint[][] drawnTillNow = null;
         String commandLine;
@@ -22,8 +21,8 @@ public final class Launcher {
         var canvasDrawn = false;
 
         while (true) {
-            ui.displayCommandPromptMsg();
-            commandLine = ui.readCommand();
+            consoleHandler.displayCommandPromptMsg();
+            commandLine = consoleHandler.readCommand();
 
             try {
                 commandValidator.validateCommand(commandLine);
@@ -32,8 +31,8 @@ public final class Launcher {
                 continue;
             }
 
-            command = CommandUtils.extractCommand(commandLine);
-            args = CommandUtils.extractArgs(commandLine);
+            command = consoleHandler.extractCommand(commandLine);
+            args = consoleHandler.extractArgs(commandLine);
 
             if (command == Command.Q)
                 System.exit(0);
@@ -67,8 +66,8 @@ public final class Launcher {
                 plottedPoints = ((Plotter) Command.VALID_COMMANDS.get(command).getPlotter(args)).getPlottingPoints(args);
             }
 
-            ui.plotDrawingPoints(drawnTillNow, plottedPoints);
-            ui.drawMatrix(drawnTillNow);
+            consoleHandler.plotDrawingPoints(drawnTillNow, plottedPoints);
+            consoleHandler.drawMatrix(drawnTillNow);
         }
     }
 

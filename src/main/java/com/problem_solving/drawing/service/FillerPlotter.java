@@ -2,7 +2,7 @@ package com.problem_solving.drawing.service;
 
 import java.util.List;
 
-import com.problem_solving.drawing.models.PlottingPoint;
+import com.problem_solving.drawing.domain.models.PlottingPoint;
 
 public abstract class FillerPlotter extends BasePlotter {
 

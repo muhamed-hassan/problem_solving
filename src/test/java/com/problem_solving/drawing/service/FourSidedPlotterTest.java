@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import com.problem_solving.drawing.models.PlottingPoint;
-import com.problem_solving.drawing.utils.constants.Type;
+import com.problem_solving.drawing.domain.models.PlottingPoint;
+import com.problem_solving.drawing.domain.models.Type;
 
 public class FourSidedPlotterTest {
 

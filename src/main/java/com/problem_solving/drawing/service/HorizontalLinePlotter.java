@@ -1,12 +1,12 @@
 package com.problem_solving.drawing.service;
 
+import static com.problem_solving.drawing.domain.models.Type.Line;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.problem_solving.drawing.models.PlottingPoint;
-import com.problem_solving.drawing.models.Point;
-import com.problem_solving.drawing.utils.constants.DrawingCharacter;
-import com.problem_solving.drawing.utils.constants.Type;
+import com.problem_solving.drawing.domain.models.PlottingPoint;
+import com.problem_solving.drawing.domain.models.Point;
 
 public class HorizontalLinePlotter extends LinePlotter {
 
@@ -27,7 +27,7 @@ public class HorizontalLinePlotter extends LinePlotter {
         }
 
         for (var i = startingPoint; i <= endingPoint; i++) {
-            plottedPoints.add(new PlottingPoint(i, y, Type.Line, DrawingCharacter.X));
+            plottedPoints.add(new PlottingPoint(i, y, Line, PlottingPoint.X));
         }
 
         return plottedPoints;

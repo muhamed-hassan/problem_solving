@@ -1,4 +1,4 @@
-package com.problem_solving.drawing.utils.constants;
+package com.problem_solving.drawing.domain.models;
 
 public enum Type {
 

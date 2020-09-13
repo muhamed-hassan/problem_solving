@@ -1,12 +1,13 @@
-package com.problem_solving.drawing.utils.validators;
+package com.problem_solving.drawing.interfaces.validators;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.problem_solving.drawing.models.Command;
-import com.problem_solving.drawing.models.Point;
-import com.problem_solving.drawing.models.Rule;
-import com.problem_solving.drawing.utils.CommandUtils;
+import com.problem_solving.drawing.domain.models.Point;
+import com.problem_solving.drawing.interfaces.validators.rule.Command;
+import com.problem_solving.drawing.interfaces.validators.rule.Rule;
 
 public final class CommandValidator {
 
@@ -26,7 +27,7 @@ public final class CommandValidator {
         }
 
         commandLine = commandLine.trim();
-        var command = CommandUtils.extractCommand(commandLine);
+        var command = extractCommand(commandLine);
         if (!commandValid(command)) {
             throw new IllegalArgumentException("Unknown command ...!");
         }
@@ -34,9 +35,9 @@ public final class CommandValidator {
         if (command == Command.Q)
             return;
 
-        validateNumricArgsType(commandLine, getValidationRule(CommandUtils.extractCommand(commandLine)));
+        validateNumricArgsType(commandLine, getValidationRule(extractCommand(commandLine)));
 
-        var extractedArgs = CommandUtils.extractArgs(commandLine.trim());
+        var extractedArgs = extractArgs(commandLine.trim());
 
         switch (command) {
             case Command.L: {
@@ -107,7 +108,7 @@ public final class CommandValidator {
     }
 
     private void validateNumricArgsType(String commandLine, Rule rule) {
-        var extractedArgs = CommandUtils.extractArgs(commandLine.trim());
+        var extractedArgs = extractArgs(commandLine.trim());
 
         if (extractedArgs.size() != rule.getValidNoOfArgs()) {
             throw new IllegalArgumentException("Unexpected number of command line args");
@@ -175,5 +176,16 @@ public final class CommandValidator {
             }
         }
     }
+
+    public List<String> extractArgs(String commandLine) {
+        return Stream.of(commandLine.substring(1).split("\\s"))
+            .filter(arg -> !arg.isEmpty())
+            .collect(Collectors.toList());
+    }
+
+    public char extractCommand(String commandLine) {
+        return commandLine.charAt(0);
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.problem_solving.drawing.models;
+package com.problem_solving.drawing.interfaces.validators.rule;
 
 public class ValidationRule {
 

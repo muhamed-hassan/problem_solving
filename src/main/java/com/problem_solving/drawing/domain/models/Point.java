@@ -1,4 +1,4 @@
-package com.problem_solving.drawing.models;
+package com.problem_solving.drawing.domain.models;
 
 public class Point {
 
@@ -6,6 +6,7 @@ public class Point {
     public static final int X2 = 2;
     public static final int Y1 = 1;
     public static final int Y2 = 3;
+
     private final int x; //x = -1 in case of canvas type only
     private final int y; //y = -1 in case of canvas type only
 

@@ -1,5 +1,6 @@
 package com.problem_solving.drawing.service;
 
+import static com.problem_solving.drawing.domain.models.Type.BucketFilling;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -11,9 +12,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.problem_solving.drawing.models.PlottingPoint;
-import com.problem_solving.drawing.presentation.Interface;
-import com.problem_solving.drawing.utils.constants.Type;
+import com.problem_solving.drawing.domain.models.PlottingPoint;
+import com.problem_solving.drawing.interfaces.ConsoleHandler;
 
 public class BucketFillPlotterTest {
 
@@ -43,7 +43,7 @@ public class BucketFillPlotterTest {
 
     @Test
     public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndCanvasContainsHorizontalLine_ThenReturnListOfPlottedPointsThatFillsTheCanvasWithoutDrawingOverTheHorizontalLine() {
-        var ui = new Interface();
+        var ui = new ConsoleHandler();
         Integer x1 = 1, y1 = 2, x2 = 6, y2 = 2;
         var horizontalLinePlotter = new HorizontalLinePlotter();
         var plottedHorizontalLinePoints = horizontalLinePlotter.getPlottingPoints(List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
@@ -60,7 +60,7 @@ public class BucketFillPlotterTest {
 
     @Test
     public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndCanvasContainsVerticalLine_ThenReturnListOfPlottedPointsThatFillsTheCanvasWithoutDrawingOverTheVerticalLine() {
-        var ui = new Interface();
+        var ui = new ConsoleHandler();
         Integer x1 = 6, y1 = 3, x2 = 6, y2 = 4;
         var verticalLinePlotter = new VerticalLinePlotter();
         var plottedVerticalLinePoints = verticalLinePlotter.getPlottingPoints(List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
@@ -77,7 +77,7 @@ public class BucketFillPlotterTest {
 
     @Test
     public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndCanvasContainsRectangle_ThenReturnListOfPlottedPointsThatFillsTheCanvasWithoutDrawingOverAndWithinTheRectangleCoordinates() {
-        var ui = new Interface();
+        var ui = new ConsoleHandler();
         Integer x1 = 16, y1 = 1, x2 = 20, y2 = 3;
         var rectanglePlotter = new RectanglePlotter();
         var plottedVerticalLinePoints = rectanglePlotter.getPlottingPoints(List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
@@ -97,7 +97,7 @@ public class BucketFillPlotterTest {
                             .boxed()
                             .flatMap(x -> IntStream.rangeClosed(1, h)
                                 .boxed()
-                                .map(y -> new PlottingPoint(x, y, Type.BucketFilling, fillingChar.charAt(0))))
+                                .map(y -> new PlottingPoint(x, y, BucketFilling, fillingChar.charAt(0))))
                             .filter(predicate)
                             .collect(Collectors.toList());
     }

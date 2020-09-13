@@ -1,11 +1,13 @@
-package com.problem_solving.drawing.presentation;
+package com.problem_solving.drawing.interfaces;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import com.problem_solving.drawing.models.PlottingPoint;
+import com.problem_solving.drawing.domain.models.PlottingPoint;
 
-public class Interface {
+public class ConsoleHandler {
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -36,6 +38,16 @@ public class Interface {
             }
             System.out.println();
         }
+    }
+
+    public List<String> extractArgs(String commandLine) {
+        return Stream.of(commandLine.substring(1).split("\\s"))
+                        .filter(arg -> !arg.isEmpty())
+                        .collect(Collectors.toList());
+    }
+
+    public char extractCommand(String commandLine) {
+        return commandLine.charAt(0);
     }
 
 }

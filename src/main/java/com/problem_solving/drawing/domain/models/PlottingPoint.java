@@ -1,8 +1,10 @@
-package com.problem_solving.drawing.models;
-
-import com.problem_solving.drawing.utils.constants.Type;
+package com.problem_solving.drawing.domain.models;
 
 public class PlottingPoint extends Point {
+
+    public static final char X = 'X';
+    public static final char CANVAS_W = '-';
+    public static final char CANVAS_H = '|';
 
     private final Type type;
     private final char characterToBeDrawn;
