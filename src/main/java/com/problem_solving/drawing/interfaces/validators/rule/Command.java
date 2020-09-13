@@ -4,10 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.problem_solving.drawing.interfaces.validators.rule.GeneralCommandRule;
-import com.problem_solving.drawing.interfaces.validators.rule.LineCommandRule;
-import com.problem_solving.drawing.interfaces.validators.rule.Rule;
-import com.problem_solving.drawing.interfaces.validators.rule.ValidationRule;
 import com.problem_solving.drawing.service.BucketFillPlotter;
 import com.problem_solving.drawing.service.CanvasPlotter;
 import com.problem_solving.drawing.service.HorizontalLinePlotter;

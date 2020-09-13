@@ -1,17 +1,12 @@
 package com.problem_solving.drawing.interfaces.validators;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.problem_solving.drawing.domain.models.Point;
 import com.problem_solving.drawing.interfaces.validators.rule.Command;
 import com.problem_solving.drawing.interfaces.validators.rule.Rule;
 
 public final class CommandValidator {
-
-    private static final String VALID_COMMANDS = "VALID_COMMANDS";
 
     private int canvasWidth;
     private int canvasHeight;
@@ -21,30 +16,19 @@ public final class CommandValidator {
         this.canvasHeight = canvasHeight;
     }
 
-    public void validateCommand(String commandLine) {
-        if (commandLine == null || commandLine.isEmpty()) {
-            throw new IllegalArgumentException("Can't parse empty command");
-        }
+    public boolean isCommandLineValid(String commandLine) {
+        return commandLine != null && !commandLine.isBlank();
+    }
 
-        commandLine = commandLine.trim();
-        var command = extractCommand(commandLine);
-        if (!commandValid(command)) {
-            throw new IllegalArgumentException("Unknown command ...!");
-        }
+    public void isCommandArgsValid(char enteredCommand, List<String> args) {
+        validateNumricArgsType(args, getValidationRule(enteredCommand));
 
-        if (command == Command.Q)
-            return;
-
-        validateNumricArgsType(commandLine, getValidationRule(extractCommand(commandLine)));
-
-        var extractedArgs = extractArgs(commandLine.trim());
-
-        switch (command) {
+        switch (enteredCommand) {
             case Command.L: {
-                int x1 = Integer.parseInt(extractedArgs.get(Point.X1)),
-                    y1 = Integer.parseInt(extractedArgs.get(Point.Y1)),
-                    x2 = Integer.parseInt(extractedArgs.get(Point.X2)),
-                    y2 = Integer.parseInt(extractedArgs.get(Point.Y2));
+                int x1 = Integer.parseInt(args.get(Point.X1)),
+                    y1 = Integer.parseInt(args.get(Point.Y1)),
+                    x2 = Integer.parseInt(args.get(Point.X2)),
+                    y2 = Integer.parseInt(args.get(Point.Y2));
 
                 Point point1 = new Point(x1, y1),
                     point2 = new Point(x2, y2);
@@ -60,10 +44,10 @@ public final class CommandValidator {
             break;
 
             case Command.R: {
-                int x1 = Integer.parseInt(extractedArgs.get(Point.X1)),
-                    y1 = Integer.parseInt(extractedArgs.get(Point.Y1)),
-                    x2 = Integer.parseInt(extractedArgs.get(Point.X2)),
-                    y2 = Integer.parseInt(extractedArgs.get(Point.Y2));
+                int x1 = Integer.parseInt(args.get(Point.X1)),
+                    y1 = Integer.parseInt(args.get(Point.Y1)),
+                    x2 = Integer.parseInt(args.get(Point.X2)),
+                    y2 = Integer.parseInt(args.get(Point.Y2));
 
                 Point point1 = new Point(x1, y1),
                     point2 = new Point(x2, y2);
@@ -79,8 +63,8 @@ public final class CommandValidator {
             break;
 
             case Command.B: {
-                int x = Integer.parseInt(extractedArgs.get(0)),
-                    y = Integer.parseInt(extractedArgs.get(1));
+                int x = Integer.parseInt(args.get(0)),
+                    y = Integer.parseInt(args.get(1));
 
                 isInsideCanvasDimensions(new Point(x, y));
             }
@@ -88,35 +72,21 @@ public final class CommandValidator {
         }
     }
 
-    private boolean commandValid(char enteredCommand) {
-        boolean valid = false;
-        try {
-            valid = Stream
-                .of(Command.class.getDeclaredField(VALID_COMMANDS))
-                .flatMap(field -> {
-                    try {
-                        return ((Map<Character, Rule>) field.get(field)).keySet().stream();
-                    } catch (IllegalAccessException e) {
-                        throw new RuntimeException("Error occured during command validation: " + e.getMessage());
-                    }
-                })
-                .anyMatch(validCommand -> validCommand == enteredCommand);
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException("Error occured during command validation: " + e.getMessage());
-        }
-        return valid;
+    public boolean isCommandValid(char enteredCommand) {
+        return Command.VALID_COMMANDS
+                        .entrySet()
+                        .stream()
+                        .anyMatch(entry -> entry.getKey().charValue() == enteredCommand);
     }
 
-    private void validateNumricArgsType(String commandLine, Rule rule) {
-        var extractedArgs = extractArgs(commandLine.trim());
-
-        if (extractedArgs.size() != rule.getValidNoOfArgs()) {
+    private void validateNumricArgsType(List<String> args, Rule rule) {
+        if (args.size() != rule.getValidNoOfArgs()) {
             throw new IllegalArgumentException("Unexpected number of command line args");
         }
 
-        for (var argPosition = 0; argPosition < extractedArgs.size(); argPosition++) {
+        for (var argPosition = 0; argPosition < args.size(); argPosition++) {
             var expectedDataType = rule.getExpectedDataTypeForArgsAtPositionOf(argPosition);
-            var currentArg = extractedArgs.get(argPosition);
+            var currentArg = args.get(argPosition);
             //till now only integers should be validated
             //characters like 'c' used for drawing, doesn't have that much of importance 
             if (expectedDataType == Integer.class) {
@@ -134,25 +104,13 @@ public final class CommandValidator {
     }
 
     private Rule getValidationRule(char command) {
-        Rule rule = null;
-        try {
-            rule = Stream
-                .of(Command.class.getDeclaredField(VALID_COMMANDS))
-                .flatMap(field -> {
-                    try {
-                        return ((Map<Character, Rule>) field.get(field)).entrySet().stream();
-                    } catch (IllegalAccessException e) {
-                        throw new RuntimeException("Error occured during validation rule retrieval: " + e.getMessage());
-                    }
-                })
-                .filter(entry -> entry.getKey().charValue() == command)
-                .map(entry -> entry.getValue())
-                .findFirst()
-                .get();
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException("Error occured during validation rule retrieval: " + e.getMessage());
-        }
-        return rule;
+        return Command.VALID_COMMANDS
+                        .entrySet()
+                        .stream()
+                        .filter(entry -> entry.getKey().charValue() == command)
+                        .map(entry -> entry.getValue())
+                        .findFirst()
+                        .get();
     }
 
     private boolean isLine(Point point1, Point point2) {
@@ -176,16 +134,5 @@ public final class CommandValidator {
             }
         }
     }
-
-    public List<String> extractArgs(String commandLine) {
-        return Stream.of(commandLine.substring(1).split("\\s"))
-            .filter(arg -> !arg.isEmpty())
-            .collect(Collectors.toList());
-    }
-
-    public char extractCommand(String commandLine) {
-        return commandLine.charAt(0);
-    }
-
 
 }

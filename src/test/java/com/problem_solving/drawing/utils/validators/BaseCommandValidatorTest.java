@@ -16,10 +16,10 @@ public class BaseCommandValidatorTest {
         commandValidator = new CommandValidator();
     }
 
-    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
-        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
-                                                                    () -> commandValidator.validateCommand(commandLine));
-        assertEquals(expectedErrorMsg, thrownException.getMessage());
-    }
+//    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
+//        IllegalArgumentException thrownException = assertThrows(IllegalArgumentException.class,
+//                                                                    () -> commandValidator.validateCommand(commandLine));
+//        assertEquals(expectedErrorMsg, thrownException.getMessage());
+//    }
 
 }

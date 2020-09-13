@@ -16,10 +16,10 @@ public class CommandValidatorTest extends BaseCommandValidatorTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("provideArgsForTestValidateCommand")
-    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
-        super.testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(commandLine, expectedErrorMsg);
-    }
+//    @ParameterizedTest
+//    @MethodSource("provideArgsForTestValidateCommand")
+//    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
+//        super.testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(commandLine, expectedErrorMsg);
+//    }
 
 }
