@@ -1,4 +1,4 @@
-package com.problem_solving.drawing.service;
+package com.problem_solving.drawing.application;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package com.problem_solving.drawing.service;
+package com.problem_solving.drawing.application;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

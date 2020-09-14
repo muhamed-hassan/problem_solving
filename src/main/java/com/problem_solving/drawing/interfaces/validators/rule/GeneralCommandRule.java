@@ -2,7 +2,7 @@ package com.problem_solving.drawing.interfaces.validators.rule;
 
 import java.util.List;
 
-import com.problem_solving.drawing.service.BasePlotter;
+import com.problem_solving.drawing.application.BasePlotter;
 
 public class GeneralCommandRule extends Rule {
 

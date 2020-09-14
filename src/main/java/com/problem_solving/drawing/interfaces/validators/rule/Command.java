@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.problem_solving.drawing.service.BucketFillPlotter;
-import com.problem_solving.drawing.service.CanvasPlotter;
-import com.problem_solving.drawing.service.HorizontalLinePlotter;
-import com.problem_solving.drawing.service.RectanglePlotter;
-import com.problem_solving.drawing.service.VerticalLinePlotter;
+import com.problem_solving.drawing.application.BucketFillPlotter;
+import com.problem_solving.drawing.application.CanvasPlotter;
+import com.problem_solving.drawing.application.HorizontalLinePlotter;
+import com.problem_solving.drawing.application.RectanglePlotter;
+import com.problem_solving.drawing.application.VerticalLinePlotter;
 
 public final class Command {
 

@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import com.problem_solving.drawing.domain.models.Point;
-import com.problem_solving.drawing.service.BasePlotter;
-import com.problem_solving.drawing.service.HorizontalLinePlotter;
-import com.problem_solving.drawing.service.VerticalLinePlotter;
+import com.problem_solving.drawing.application.BasePlotter;
+import com.problem_solving.drawing.application.HorizontalLinePlotter;
+import com.problem_solving.drawing.application.VerticalLinePlotter;
 
 public class LineCommandRule extends Rule {
 

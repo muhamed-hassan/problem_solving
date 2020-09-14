@@ -1,5 +1,6 @@
-package com.problem_solving.drawing.utils.validators;
+package com.problem_solving.drawing.validators;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,7 +9,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class RectangleCommandTest extends BaseCommandValidatorTest {
 
-    private static Stream<Arguments> provideArgsForTestValidateCommand() {
+    @ParameterizedTest
+    @MethodSource("provideArgsForTestIsCommandArgsValid")
+    public void testIsCommandArgsValid_WhenUsingInvalidCommandArgs_ThenThrowIllegalArgumentException(char command, List<String> args) {
+        super.testIsCommandArgsValid_WhenUsingInvalidCommandArgs_ThenThrowIllegalArgumentException(command, args);
+    }
+
+    private static Stream<Arguments> provideArgsForTestIsCommandArgsValid() {
         return Stream.of(
             Arguments.of("R 16 1 20 3 5", "Unexpected number of command line args"),
             Arguments.of("R 16 1 20", "Unexpected number of command line args"),
@@ -30,11 +37,5 @@ public class RectangleCommandTest extends BaseCommandValidatorTest {
             Arguments.of("R 16 1 20 3.5", "Invalid value for argument number 4 whose value is 3.5")
         );
     }
-
-//    @ParameterizedTest
-//    @MethodSource("provideArgsForTestValidateCommand")
-//    public void testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(String commandLine, String expectedErrorMsg) {
-//        super.testValidateCommand_WhenUsingInvalidCommand_ThenThrowIllegalArgumentException(commandLine, expectedErrorMsg);
-//    }
 
 }

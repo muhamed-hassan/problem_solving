@@ -3,7 +3,7 @@ package com.problem_solving.drawing.interfaces.validators.rule;
 import java.util.List;
 import java.util.Objects;
 
-import com.problem_solving.drawing.service.BasePlotter;
+import com.problem_solving.drawing.application.BasePlotter;
 
 public abstract class Rule {
 

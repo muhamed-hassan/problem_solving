@@ -20,6 +20,13 @@ public final class CommandValidator {
         return commandLine != null && !commandLine.isBlank();
     }
 
+    public boolean isCommandValid(char enteredCommand) {
+        return Command.VALID_COMMANDS
+            .entrySet()
+            .stream()
+            .anyMatch(entry -> entry.getKey().charValue() == enteredCommand);
+    }
+
     public void isCommandArgsValid(char enteredCommand, List<String> args) {
         validateNumricArgsType(args, getValidationRule(enteredCommand));
 
@@ -70,13 +77,6 @@ public final class CommandValidator {
             }
             break;
         }
-    }
-
-    public boolean isCommandValid(char enteredCommand) {
-        return Command.VALID_COMMANDS
-                        .entrySet()
-                        .stream()
-                        .anyMatch(entry -> entry.getKey().charValue() == enteredCommand);
     }
 
     private void validateNumricArgsType(List<String> args, Rule rule) {

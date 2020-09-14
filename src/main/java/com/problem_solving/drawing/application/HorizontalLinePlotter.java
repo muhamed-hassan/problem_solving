@@ -1,4 +1,4 @@
-package com.problem_solving.drawing.service;
+package com.problem_solving.drawing.application;
 
 import static com.problem_solving.drawing.domain.models.Type.Line;
 
@@ -8,26 +8,26 @@ import java.util.List;
 import com.problem_solving.drawing.domain.models.PlottingPoint;
 import com.problem_solving.drawing.domain.models.Point;
 
-public class VerticalLinePlotter extends LinePlotter {
+public class HorizontalLinePlotter extends LinePlotter {
 
     @Override
     public List<PlottingPoint> getPlottingPoints(List<String> args) {
         var plottedPoints = new ArrayList<PlottingPoint>();
 
-        int x = Integer.parseInt(args.get(Point.X1)), // x1, or x2 there is no difference
-            y1 = Integer.parseInt(args.get(Point.Y1)),
-            y2 = Integer.parseInt(args.get(Point.Y2)),
+        int y = Integer.parseInt(args.get(Point.Y1)), // y1, or y2 there is no difference
+            x1 = Integer.parseInt(args.get(Point.X1)),
+            x2 = Integer.parseInt(args.get(Point.X2)),
             startingPoint, endingPoint;
-        if (y1 < y2) {
-            startingPoint = y1;
-            endingPoint = y2;
+        if (x1 < x2) {
+            startingPoint = x1;
+            endingPoint = x2;
         } else {
-            startingPoint = y2;
-            endingPoint = y1;
+            startingPoint = x2;
+            endingPoint = x1;
         }
 
         for (var i = startingPoint; i <= endingPoint; i++) {
-            plottedPoints.add(new PlottingPoint(x, i, Line, PlottingPoint.X));
+            plottedPoints.add(new PlottingPoint(i, y, Line, PlottingPoint.X));
         }
 
         return plottedPoints;

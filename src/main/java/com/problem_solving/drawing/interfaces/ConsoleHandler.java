@@ -8,8 +8,8 @@ import java.util.stream.Stream;
 import com.problem_solving.drawing.domain.models.PlottingPoint;
 import com.problem_solving.drawing.interfaces.validators.CommandValidator;
 import com.problem_solving.drawing.interfaces.validators.rule.Command;
-import com.problem_solving.drawing.service.FillerPlotter;
-import com.problem_solving.drawing.service.Plotter;
+import com.problem_solving.drawing.application.FillerPlotter;
+import com.problem_solving.drawing.application.Plotter;
 
 public class ConsoleHandler {
 
