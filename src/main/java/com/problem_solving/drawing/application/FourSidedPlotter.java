@@ -9,8 +9,6 @@ import com.problem_solving.drawing.domain.models.PlottingPoint;
 
 public abstract class FourSidedPlotter extends Plotter {
 
-    public abstract List<PlottingPoint> getPlottingPoints(List<String> args);
-
     protected List<PlottingPoint> combineAndGetPlottingPoints(CompletableFuture<List<PlottingPoint>> horizontalSideDrawer,
                                                                 CompletableFuture<List<PlottingPoint>> verticalSideDrawer) {
         List<PlottingPoint> plottedPoints;

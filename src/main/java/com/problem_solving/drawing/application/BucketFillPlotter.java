@@ -9,11 +9,13 @@ import java.util.List;
 
 import com.problem_solving.drawing.domain.models.BucketFillPoint;
 import com.problem_solving.drawing.domain.models.PlottingPoint;
+import com.problem_solving.drawing.infrastructure.MatrixGrid;
 
-public class BucketFillPlotter extends FillerPlotter {
+public class BucketFillPlotter extends Plotter {
 
     @Override
-    public List<PlottingPoint> getPlottingPoints(List<String> args, PlottingPoint[][] matrix) {
+    public List<PlottingPoint> getPlottedPoints(List<String> args) {
+        PlottingPoint[][] matrix = MatrixGrid.getDrawnTillNow();
         var plottedPoints = new ArrayList<PlottingPoint>();
 
         var y = Integer.parseInt(args.get(1));

@@ -11,7 +11,7 @@ import com.problem_solving.drawing.domain.models.PlottingPoint;
 public class CanvasPlotter extends FourSidedPlotter {
 
     @Override
-    public List<PlottingPoint> getPlottingPoints(List<String> args) {
+    public List<PlottingPoint> getPlottedPoints(List<String> args) {
         int w = Integer.parseInt(args.get(0)),
             h = Integer.parseInt(args.get(1));
 

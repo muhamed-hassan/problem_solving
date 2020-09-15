@@ -1,8 +1,11 @@
 package com.problem_solving.drawing.validators;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -29,6 +32,14 @@ public class CanvasCommandTest extends BaseCommandValidatorTest {
             Arguments.of(canvasCommand, List.of("20.5", "4")),
             Arguments.of(canvasCommand, List.of("20", "4.5"))
         );
+    }
+
+    @Test
+    public void testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue() {
+
+        boolean isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('C');
+
+        assertTrue(isValid);
     }
 
 }

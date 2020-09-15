@@ -11,7 +11,7 @@ import com.problem_solving.drawing.domain.models.Point;
 public class HorizontalLinePlotter extends LinePlotter {
 
     @Override
-    public List<PlottingPoint> getPlottingPoints(List<String> args) {
+    public List<PlottingPoint> getPlottedPoints(List<String> args) {
         var plottedPoints = new ArrayList<PlottingPoint>();
 
         int y = Integer.parseInt(args.get(Point.Y1)), // y1, or y2 there is no difference

@@ -1,8 +1,11 @@
 package com.problem_solving.drawing.validators;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -37,6 +40,14 @@ public class RectangleCommandTest extends BaseCommandValidatorTest {
             Arguments.of(rectangleCommand, List.of("16", "1", "20.5", "3")),
             Arguments.of(rectangleCommand, List.of("16", "1", "20", "3.5"))
         );
+    }
+
+    @Test
+    public void testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue() {
+
+        boolean isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('R');
+
+        assertTrue(isValid);
     }
 
 }

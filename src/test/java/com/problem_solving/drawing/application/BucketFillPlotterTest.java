@@ -7,21 +7,26 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import com.problem_solving.drawing.domain.models.PlottingPoint;
-import com.problem_solving.drawing.interfaces.ConsoleHandler;
+import com.problem_solving.drawing.helpers.Coordinates;
+import com.problem_solving.drawing.infrastructure.MatrixGrid;
 
 public class BucketFillPlotterTest {
 
-    private static FillerPlotter bucketFillPlotter;
+    private static Plotter bucketFillPlotter;
 
-    private int w = 20, h = 4;
-    private String fillingPointX = "10", fillingPointY = "3", fillingChar = "o";
-    private PlottingPoint[][] drawnTillNow = null;
+    private static int w = 20, h = 4;
+
+    private static String fillingPointX = "10", fillingPointY = "3", fillingChar = "o";
 
     @BeforeAll
     public static void initBucketFillPlotter() {
@@ -30,74 +35,67 @@ public class BucketFillPlotterTest {
 
     @BeforeEach
     public void initMatrix() {
-        drawnTillNow = new PlottingPoint[h + 2][w + 2];
+        MatrixGrid.initDrawnTillNow(new PlottingPoint[h + 2][w + 2]);
     }
 
     @Test
-    public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndAnEmptyCanvas_ThenReturnListOfPlottedPointsThatFillsTheEntireCanvas() {
-        var plottedPoints = bucketFillPlotter.getPlottingPoints(List.of(fillingPointX, fillingPointY, fillingChar), drawnTillNow);
-
+    public void testGetPlottedPoints_WhenUsingBucketFillingAndCanvasHasNoOtherShapes_ThenReturnListOfPlottedPointsThatFillsTheEntireCanvas() {
         var expectedPlottedPoints = constructExpectedPlottedPoints(point -> true);
-        assertTrue(expectedPlottedPoints.containsAll(plottedPoints));
+
+        var actualPlottedPoints = bucketFillPlotter.getPlottedPoints(List.of(fillingPointX, fillingPointY, fillingChar));
+
+        assertTrue(expectedPlottedPoints.containsAll(actualPlottedPoints));
     }
 
-    @Test
-    public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndCanvasContainsHorizontalLine_ThenReturnListOfPlottedPointsThatFillsTheCanvasWithoutDrawingOverTheHorizontalLine() {
-        var ui = new ConsoleHandler();
-        Integer x1 = 1, y1 = 2, x2 = 6, y2 = 2;
-        var horizontalLinePlotter = new HorizontalLinePlotter();
-        var plottedHorizontalLinePoints = horizontalLinePlotter.getPlottingPoints(List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
-        ui.plotDrawingPoints(drawnTillNow, plottedHorizontalLinePoints);
+    @ParameterizedTest
+    @MethodSource("provideArgsForTestGetPlottedPointsWhenUsingBucketFillingAndCanvasHasAnotherShape")
+    public void testGetPlottedPoints_WhenUsingBucketFilling_ThenReturnPlottedPointsThatDoNotOverlapWithOtherDrawnShapes(
+            Coordinates coordinates,
+            Plotter plotter,
+            List<PlottingPoint> expectedPlottedPoints) {
+        var plottedRectanglePoints = plotter.getPlottedPoints(List.of(coordinates.getX1().toString(),
+                                                                                        coordinates.getY1().toString(),
+                                                                                        coordinates.getX2().toString(),
+                                                                                        coordinates.getY2().toString()));
+        MatrixGrid.plotDrawnPoints(plottedRectanglePoints);
 
-        var plottedPoints = bucketFillPlotter.getPlottingPoints(List.of(fillingPointX, fillingPointY, fillingChar), drawnTillNow);
-        ui.plotDrawingPoints(drawnTillNow, plottedPoints);
+        var actualPlottedPoints = bucketFillPlotter.getPlottedPoints(List.of(fillingPointX, fillingPointY, fillingChar));
 
-        var expectedPlottedPoints = constructExpectedPlottedPoints(point ->
-            !((point.getX() >= x1.intValue() && point.getX() <= x2.intValue()) &&
-                (point.getY() == y1.intValue() || point.getY() == y2.intValue())));
-        assertTrue(expectedPlottedPoints.containsAll(plottedPoints));
+        assertTrue(expectedPlottedPoints.containsAll(actualPlottedPoints));
     }
 
-    @Test
-    public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndCanvasContainsVerticalLine_ThenReturnListOfPlottedPointsThatFillsTheCanvasWithoutDrawingOverTheVerticalLine() {
-        var ui = new ConsoleHandler();
-        Integer x1 = 6, y1 = 3, x2 = 6, y2 = 4;
-        var verticalLinePlotter = new VerticalLinePlotter();
-        var plottedVerticalLinePoints = verticalLinePlotter.getPlottingPoints(List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
-        ui.plotDrawingPoints(drawnTillNow, plottedVerticalLinePoints);
+    private static Stream<Arguments> provideArgsForTestGetPlottedPointsWhenUsingBucketFillingAndCanvasHasAnotherShape() {
+        Coordinates horizontalLineCoordinates = new Coordinates(1, 2, 6, 2);
+        var expectedHorizontalLinePlottedPoints =
+            constructExpectedPlottedPoints(point ->
+                !((point.getX() >= horizontalLineCoordinates.getX1().intValue() && point.getX() <= horizontalLineCoordinates.getX2().intValue()) &&
+                (point.getY() == horizontalLineCoordinates.getY1().intValue() || point.getY() == horizontalLineCoordinates.getY2().intValue())));
 
-        var plottedPoints = bucketFillPlotter.getPlottingPoints(List.of(fillingPointX, fillingPointY, fillingChar), drawnTillNow);
-        ui.plotDrawingPoints(drawnTillNow, plottedPoints);
+        Coordinates verticalLineCoordinates = new Coordinates(6, 3, 6, 4);
+        var expectedVerticalLinePlottedPoints =
+            constructExpectedPlottedPoints(point ->
+                !((point.getX() >= verticalLineCoordinates.getX1().intValue() && point.getX() <= verticalLineCoordinates.getX2().intValue()) &&
+                (point.getY() == verticalLineCoordinates.getY1().intValue() || point.getY() == verticalLineCoordinates.getY2().intValue())));
 
-        var expectedPlottedPoints =
-            constructExpectedPlottedPoints(point -> !((point.getX() >= x1.intValue() && point.getX() <= x2.intValue()) &&
-                (point.getY() == y1.intValue() || point.getY() == y2.intValue())));
-        assertTrue(expectedPlottedPoints.containsAll(plottedPoints));
+        Coordinates rectangleLineCoordinates = new Coordinates(16, 1, 20, 3);
+        var expectedRectanglePlottedPoints =
+            constructExpectedPlottedPoints(point ->
+                !(point.getX() >= rectangleLineCoordinates.getX1().intValue() && point.getX() <= rectangleLineCoordinates.getX2().intValue()
+                && point.getY() >= rectangleLineCoordinates.getY1().intValue() && point.getY() <= rectangleLineCoordinates.getY2().intValue()));
+
+        return Stream.of(
+            Arguments.of(horizontalLineCoordinates, new HorizontalLinePlotter(), expectedHorizontalLinePlottedPoints),
+            Arguments.of(verticalLineCoordinates, new VerticalLinePlotter(), expectedVerticalLinePlottedPoints),
+            Arguments.of(rectangleLineCoordinates, new RectanglePlotter(), expectedRectanglePlottedPoints)
+        );
     }
 
-    @Test
-    public void testGetPlottingPoints_WhenUsingBucketFillingCoordinatesAndCanvasContainsRectangle_ThenReturnListOfPlottedPointsThatFillsTheCanvasWithoutDrawingOverAndWithinTheRectangleCoordinates() {
-        var ui = new ConsoleHandler();
-        Integer x1 = 16, y1 = 1, x2 = 20, y2 = 3;
-        var rectanglePlotter = new RectanglePlotter();
-        var plottedVerticalLinePoints = rectanglePlotter.getPlottingPoints(List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString()));
-        ui.plotDrawingPoints(drawnTillNow, plottedVerticalLinePoints);
-
-        var plottedPoints = bucketFillPlotter.getPlottingPoints(List.of(fillingPointX, fillingPointY, fillingChar), drawnTillNow);
-        ui.plotDrawingPoints(drawnTillNow, plottedPoints);
-
-        var expectedPlottedPoints =
-            constructExpectedPlottedPoints(point -> !(point.getX() >= x1.intValue() && point.getX() <= x2.intValue()
-                && point.getY() >= y1.intValue() && point.getY() <= y2.intValue()));
-        assertTrue(expectedPlottedPoints.containsAll(plottedPoints));
-    }
-
-    private List<PlottingPoint> constructExpectedPlottedPoints(Predicate<PlottingPoint> predicate) {
+    private static List<PlottingPoint> constructExpectedPlottedPoints(Predicate<PlottingPoint> predicate) {
         return IntStream.rangeClosed(1, w)
                             .boxed()
                             .flatMap(x -> IntStream.rangeClosed(1, h)
-                                .boxed()
-                                .map(y -> new PlottingPoint(x, y, BucketFilling, fillingChar.charAt(0))))
+                                                    .boxed()
+                                                    .map(y -> new PlottingPoint(x, y, BucketFilling, fillingChar.charAt(0))))
                             .filter(predicate)
                             .collect(Collectors.toList());
     }

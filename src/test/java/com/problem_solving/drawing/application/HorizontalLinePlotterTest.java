@@ -23,7 +23,7 @@ public class HorizontalLinePlotterTest {
         Integer x1 = 1, y1 = 2, x2 = 6, y2 = 2;
         var args = List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString());
 
-        var actualResult = horizontalLinePlotter.getPlottingPoints(args);
+        var actualResult = horizontalLinePlotter.getPlottedPoints(args);
 
         //Assert that all plotted points drawn on the same Y axis
         assertTrue(actualResult.stream().map(PlottingPoint::getY).allMatch(y -> y == y1.intValue() && y == y2.intValue()));

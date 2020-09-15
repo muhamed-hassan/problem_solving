@@ -2,7 +2,7 @@ package com.problem_solving.drawing.interfaces.validators.rule;
 
 import java.util.List;
 
-import com.problem_solving.drawing.application.BasePlotter;
+import com.problem_solving.drawing.application.Plotter;
 
 public class GeneralCommandRule extends Rule {
 
@@ -11,7 +11,7 @@ public class GeneralCommandRule extends Rule {
     }
 
     @Override
-    public BasePlotter getPlotter(List<String> args) {
+    public Plotter getPlotter(List<String> args) {
         return plotters.get(0);
     }
 

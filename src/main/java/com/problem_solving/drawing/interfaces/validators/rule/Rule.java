@@ -3,11 +3,11 @@ package com.problem_solving.drawing.interfaces.validators.rule;
 import java.util.List;
 import java.util.Objects;
 
-import com.problem_solving.drawing.application.BasePlotter;
+import com.problem_solving.drawing.application.Plotter;
 
 public abstract class Rule {
 
-    protected final List<BasePlotter> plotters;
+    protected final List<Plotter> plotters;
     private final int validNoOfArgs;
     private final List<ValidationRule> validations;
 
@@ -25,13 +25,13 @@ public abstract class Rule {
         return validations.get(position).getExpectedDataType();
     }
 
-    public abstract BasePlotter getPlotter(List<String> args);
+    public abstract Plotter getPlotter(List<String> args);
 
     protected abstract static class RuleBuilder {
 
         private int validNoOfArgs; // mandatory
         private List<ValidationRule> validations; // mandatory
-        private List<BasePlotter> plotters; // optional
+        private List<Plotter> plotters; // optional
 
         public RuleBuilder validNoOfArgs(int validNoOfArgs) {
             this.validNoOfArgs = validNoOfArgs;
@@ -47,7 +47,7 @@ public abstract class Rule {
             return self();
         }
 
-        public RuleBuilder withPlotters(List<BasePlotter> plotters) {
+        public RuleBuilder withPlotters(List<Plotter> plotters) {
             this.plotters = plotters;
             return self();
         }

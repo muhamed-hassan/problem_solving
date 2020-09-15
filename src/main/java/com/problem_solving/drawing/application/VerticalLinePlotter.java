@@ -11,7 +11,7 @@ import com.problem_solving.drawing.domain.models.Point;
 public class VerticalLinePlotter extends LinePlotter {
 
     @Override
-    public List<PlottingPoint> getPlottingPoints(List<String> args) {
+    public List<PlottingPoint> getPlottedPoints(List<String> args) {
         var plottedPoints = new ArrayList<PlottingPoint>();
 
         int x = Integer.parseInt(args.get(Point.X1)), // x1, or x2 there is no difference

@@ -12,7 +12,7 @@ import com.problem_solving.drawing.domain.models.Point;
 public class RectanglePlotter extends FourSidedPlotter {
 
     @Override
-    public List<PlottingPoint> getPlottingPoints(List<String> args) {
+    public List<PlottingPoint> getPlottedPoints(List<String> args) {
         int x1 = Integer.parseInt(args.get(Point.X1)),
             y1 = Integer.parseInt(args.get(Point.Y1)),
             x2 = Integer.parseInt(args.get(Point.X2)),

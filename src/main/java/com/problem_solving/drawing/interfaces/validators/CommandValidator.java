@@ -22,9 +22,9 @@ public final class CommandValidator {
 
     public boolean isCommandValid(char enteredCommand) {
         return Command.VALID_COMMANDS
-            .entrySet()
-            .stream()
-            .anyMatch(entry -> entry.getKey().charValue() == enteredCommand);
+                        .entrySet()
+                        .stream()
+                        .anyMatch(entry -> entry.getKey().charValue() == enteredCommand);
     }
 
     public void isCommandArgsValid(char enteredCommand, List<String> args) {
