@@ -91,12 +91,6 @@ public class ConsoleHandler {
         }
     }
 
-    private void releaseConsoleResources() {
-        if (scanner != null) {
-            scanner.close();
-        }
-    }
-
     private void drawMatrix(PlottingPoint[][] matrix) {
         for (var line : matrix) {
             for (var point : line) {
@@ -114,6 +108,12 @@ public class ConsoleHandler {
 
     private char extractCommand(String commandLine) {
         return commandLine.charAt(0);
+    }
+
+    private void releaseConsoleResources() {
+        if (scanner != null) {
+            scanner.close();
+        }
     }
 
 }
