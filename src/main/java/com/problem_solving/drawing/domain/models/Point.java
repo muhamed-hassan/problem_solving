@@ -39,7 +39,7 @@ public class Point {
         if (getClass() != obj.getClass())
             return false;
         Point other = (Point) obj;
-        return x != other.x || y != other.y;
+        return (x == other.x && y == other.y);
     }
 
     @Override
