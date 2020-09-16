@@ -8,37 +8,37 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class CardsGameProblemTest {
+class CardsGameProblemTest {
 
     private static CardsGameProblem cardsGameProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         cardsGameProblem = new CardsGameProblem();
     }
 
     @Test
-    public void testConanOrAgasa_WhenConanWins_ThenReturnConan() {
+    void testConanOrAgasa_WhenConanWins_ThenReturnConan() {
         var cards = new int[] { 4, 5, 7 };
         var expectedResult = "Conan";
 
-        Optional<String> actualResult = cardsGameProblem.conanOrAgasa(cards);
+        var actualResult = cardsGameProblem.conanOrAgasa(cards);
 
         assertEquals(expectedResult, actualResult.get());
     }
 
     @Test
-    public void testConanOrAgasa_WhenAgasaWins_ThenReturnAgasa() {
+    void testConanOrAgasa_WhenAgasaWins_ThenReturnAgasa() {
         var cards = new int[] { 1, 1 };
         var expectedResult = "Agasa";
 
-        Optional<String> actualResult = cardsGameProblem.conanOrAgasa(cards);
+        var actualResult = cardsGameProblem.conanOrAgasa(cards);
 
         assertEquals(expectedResult, actualResult.get());
     }
 
     @Test
-    public void testConanOrAgasa_WhenCardsArrayIsNull_ThenThrowIllegalArgumentException() {
+    void testConanOrAgasa_WhenCardsArrayIsNull_ThenThrowIllegalArgumentException() {
         int[] cards = null;
 
         assertThrows(IllegalArgumentException.class,
@@ -46,11 +46,11 @@ public class CardsGameProblemTest {
     }
 
     @Test
-    public void testConanOrAgasa_WhenCardsArrayIsEmpty_ThenReturnEmptyOptionaql() {
+    void testConanOrAgata_WhenCardsArrayIsEmpty_ThenReturnEmptyOptional() {
         var cards = new int[0];
         var expectedResult = Optional.empty();
 
-        Optional<String> actualResult = cardsGameProblem.conanOrAgasa(cards);
+        var actualResult = cardsGameProblem.conanOrAgasa(cards);
 
         assertEquals(expectedResult, actualResult);
     }

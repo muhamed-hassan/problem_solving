@@ -6,43 +6,43 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 //https://app.codility.com/programmers/lessons/1-iterations/binary_gap/
-public class BinaryGapProblemTest {
+class BinaryGapProblemTest {
 
     private static BinaryGapProblem binaryGapProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         binaryGapProblem = new BinaryGapProblem();
     }
 
     @Test
-    public void testSolution_WhenAllBitsAreOnes_ThenReturn0() {
+    void testSolution_WhenAllBitsAreOnes_ThenReturn0() {
         var n = 2147483647;
-        var expectedValue = 0;
+        var expectedResult = 0;
 
-        var maxConsecutiveZerosBetween2Ones = binaryGapProblem.solution(n);
+        var actualResult = binaryGapProblem.solution(n);
 
-        assertEquals(expectedValue, maxConsecutiveZerosBetween2Ones);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    public void testSolution_WhenTheBinaryValueIsLarge_ThenReturn28() {
+    void testSolution_WhenTheBinaryValueIsLarge_ThenReturn28() {
         var n = 1610612737;
-        var expectedValue = 28;
+        var expectedResult = 28;
 
-        var maxConsecutiveZerosBetween2Ones = binaryGapProblem.solution(n);
+        var actualResult = binaryGapProblem.solution(n);
 
-        assertEquals(expectedValue, maxConsecutiveZerosBetween2Ones);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    public void testSolution_WhenZeroBitsAtTheEnd_ThenReturn2() {
+    void testSolution_WhenZeroBitsAtTheEnd_ThenReturn2() {
         var n = 328;
-        var expectedValue = 2;
+        var expectedResult = 2;
 
-        var maxConsecutiveZerosBetween2Ones = binaryGapProblem.solution(n);
+        var actualResult = binaryGapProblem.solution(n);
 
-        assertEquals(expectedValue, maxConsecutiveZerosBetween2Ones);
+        assertEquals(expectedResult, actualResult);
     }
 
 }

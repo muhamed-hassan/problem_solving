@@ -1,5 +1,7 @@
 package com.problem_solving.drawing.domain.models;
 
+import java.util.Objects;
+
 public class Point {
 
     public static final int X1 = 0;
@@ -25,27 +27,19 @@ public class Point {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + x;
-        result = prime * result + y;
-        return result;
+        return Objects.hash(x, y);
     }
 
     @Override
     public boolean equals(Object obj) {
-        boolean result = true;
-        if (this == obj) {
-            result = true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            result = false;
-        }
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
         Point other = (Point) obj;
-        if (x != other.x || y != other.y) {
-            result = false;
-        }
-        return result;
+        return x != other.x || y != other.y;
     }
 
     @Override

@@ -22,9 +22,9 @@ rearrange has the following parameter(s):
 
     elements[elements[0],...elements[n-1]]:  an array of integers to sort
 */
-public class AscendingBinarySortingProblem {
+class AscendingBinarySortingProblem {
 
-    public List<Integer> rearrange(List<Integer> elements) {
+    List<Integer> rearrange(List<Integer> elements) {
         if (elements == null) throw new IllegalArgumentException("invalid value of elements list");
 
         return elements.stream()
@@ -33,12 +33,12 @@ public class AscendingBinarySortingProblem {
                         .sorted((a, b) -> {
                             int comparisonResult;
                             Predicate<Character> filterPredicate = literalChar -> literalChar == '1';
-                            long countOfOnesOfFirst = countCharsOf(a, filterPredicate);
-                            long countOfOnesOfSecond = countCharsOf(b, filterPredicate);
+                            var countOfOnesOfFirst = countCharsOf(a, filterPredicate);
+                            var countOfOnesOfSecond = countCharsOf(b, filterPredicate);
 
                             if (countOfOnesOfFirst == countOfOnesOfSecond) {
-                                int intValueOfFirst = Integer.parseInt(a, 2);
-                                int intValueOfSecond = Integer.parseInt(b, 2);
+                                var intValueOfFirst = Integer.parseInt(a, 2);
+                                var intValueOfSecond = Integer.parseInt(b, 2);
                                 comparisonResult = intValueOfFirst - intValueOfSecond;
                             } else {
                                 comparisonResult = (int) (countOfOnesOfFirst - countOfOnesOfSecond);

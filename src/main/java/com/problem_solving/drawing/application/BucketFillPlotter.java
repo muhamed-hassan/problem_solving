@@ -1,8 +1,8 @@
 package com.problem_solving.drawing.application;
 
-import static com.problem_solving.drawing.domain.models.Type.BucketFilling;
-import static com.problem_solving.drawing.domain.models.Type.Canvas;
-import static com.problem_solving.drawing.domain.models.Type.Rectangle;
+import static com.problem_solving.drawing.domain.models.Type.BUCKET_FILLING;
+import static com.problem_solving.drawing.domain.models.Type.CANVAS;
+import static com.problem_solving.drawing.domain.models.Type.RECTANGLE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +21,12 @@ public class BucketFillPlotter extends Plotter {
         var y = Integer.parseInt(args.get(1));
         var fillingCharacter = args.get(2).charAt(0);
 
-        var validPointsForBucketFilling = new ArrayList<ArrayList<BucketFillPoint>>(0);
+        var validPointsForBucketFilling = new ArrayList<ArrayList<BucketFillPoint>>();
         var validPointsCursor = 0;
 
         //collecting valid points for bucket filling
         for (var row = 1; row < matrix.length - 1; row++) {
-            validPointsForBucketFilling.add(validPointsCursor, new ArrayList<>(0));
+            validPointsForBucketFilling.add(validPointsCursor, new ArrayList<>());
 
             for (var column = 1; column < matrix[row].length - 1; column++) {
                 var nextElement = matrix[row][column + 1];
@@ -59,8 +59,8 @@ public class BucketFillPlotter extends Plotter {
                     && nextElement != null
                     && nextElement.getCharacterToBeDrawn() == PlottingPoint.X) {
 
-                    if (nextElement.getType().equals(Rectangle)
-                        || nextElement.getType().equals(Canvas)) {
+                    if (nextElement.getType().equals(RECTANGLE)
+                        || nextElement.getType().equals(CANVAS)) {
                         /**
                          * -- blocked: case1 if nextElement.type eq Rectangle or
                          *                      hit the canvas border 
@@ -96,7 +96,7 @@ public class BucketFillPlotter extends Plotter {
         //plot valid points for drawing on the matrix
         for (var line : validPointsForBucketFilling) {
             for (var point : line) {
-                plottedPoints.add(new PlottingPoint(point.getX(), point.getY(), BucketFilling, fillingCharacter));
+                plottedPoints.add(new PlottingPoint(point.getX(), point.getY(), BUCKET_FILLING, fillingCharacter));
             }
         }
 

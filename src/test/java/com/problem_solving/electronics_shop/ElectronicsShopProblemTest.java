@@ -13,17 +13,17 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 //https://www.hackerrank.com/challenges/electronics-shop/problem
-public class ElectronicsShopProblemTest {
+class ElectronicsShopProblemTest {
 
     private static ElectronicsShopProblem electronicsShopProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         electronicsShopProblem = new ElectronicsShopProblem();
     }
 
     @Test
-    public void testGetMoneySpent_WhenBudgetIsSufficient_ThenCalcTheMaxAmountOfBudgetTheCustomerCouldAffordFromBudget() {
+    void testGetMoneySpent_WhenBudgetIsSufficient_ThenCalcTheMaxAmountOfBudgetTheCustomerCouldAffordFromBudget() {
         var budget = 10;
         int[] keyboards = { 3, 1 },
             usbDrives = { 5, 2, 8 };
@@ -36,7 +36,7 @@ public class ElectronicsShopProblemTest {
     }
 
     @Test
-    public void testGetMoneySpent_WhenBudgetIsNotSufficient_ThenReturnNegativeOne() {
+    void testGetMoneySpent_WhenBudgetIsNotSufficient_ThenReturnNegativeOne() {
         var budget = 5;
         int[] keyboards = { 4 },
             usbDrives = { 5 };
@@ -49,7 +49,7 @@ public class ElectronicsShopProblemTest {
 
     @ParameterizedTest
     @MethodSource("provideArgsForTestGetMoneySpent")
-    public void testGetMoneySpent_WhenPassingInvalidParameters_ThenThrowIllegalArgumentException(int[] keyboards, int[] usbDrives, int budget) {
+    void testGetMoneySpent_WhenPassingInvalidParameters_ThenThrowIllegalArgumentException(int[] keyboards, int[] usbDrives, int budget) {
         assertThrows(IllegalArgumentException.class,
             () -> electronicsShopProblem.getMoneySpent(keyboards, usbDrives, budget));
     }

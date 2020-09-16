@@ -12,17 +12,17 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 //https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/
-public class CyclicRotationProblemTest {
+class CyclicRotationProblemTest {
 
     private static CyclicRotationProblem cyclicRotationProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         cyclicRotationProblem = new CyclicRotationProblem();
     }
 
     @Test
-    public void testSolution_WhenPassingAnArrayAndShiftingTimes_ThenReturnShiftedArrayAccordingToShiftTimes() {
+    void testSolution_WhenPassingAnArrayAndShiftingTimes_ThenReturnShiftedArrayAccordingToShiftTimes() {
         var array = new int[] { 3, 8, 9, 7, 6 };
         var shiftingTimes = 3;
         var expectedResult = new int[] { 9, 7, 6, 3, 8 };
@@ -34,7 +34,7 @@ public class CyclicRotationProblemTest {
 
     @ParameterizedTest
     @MethodSource("provideArgsForTestSolution")
-    public void testSolution_WhenPassingInvalidParameters_ThenThrowIllegalArgumentException(int[] array, int shiftingTimes) {
+    void testSolution_WhenPassingInvalidParameters_ThenThrowIllegalArgumentException(int[] array, int shiftingTimes) {
         assertThrows(IllegalArgumentException.class,
             () -> cyclicRotationProblem.solution(array, shiftingTimes));
     }

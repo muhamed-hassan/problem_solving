@@ -11,30 +11,30 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class DailyTemperatureProblemTest {
+class DailyTemperatureProblemTest {
 
     private static DailyTemperatureProblem dailyTemperatureProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         dailyTemperatureProblem = new DailyTemperatureProblem();
     }
 
     @Test
-    public void testDailyTemperatures() {
-        var T = new int[] { 55, 38, 53, 81, 61, 93, 97, 32, 43, 78 };
+    void testDailyTemperatures() {
+        var temperatures = new int[] { 55, 38, 53, 81, 61, 93, 97, 32, 43, 78 };
         var expectedResult = new int[] { 3, 1, 1, 2, 1, 1, 0, 1, 1, 0 };
 
-        var actualResult = dailyTemperatureProblem.dailyTemperatures(T);
+        var actualResult = dailyTemperatureProblem.dailyTemperatures(temperatures);
 
         assertArrayEquals(expectedResult, actualResult);
     }
 
     @ParameterizedTest
     @MethodSource("provideArgsForTestDailyTemperatures")
-    public void testDailyTemperatures_WhenPassingInvalidParameter_ThenThrowIllegalArgumentException(int[] T) {
+    void testDailyTemperatures_WhenPassingInvalidParameter_ThenThrowIllegalArgumentException(int[] temperatures) {
         assertThrows(IllegalArgumentException.class,
-            () -> dailyTemperatureProblem.dailyTemperatures(T));
+            () -> dailyTemperatureProblem.dailyTemperatures(temperatures));
     }
 
     private static Stream<Arguments> provideArgsForTestDailyTemperatures() {

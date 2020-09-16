@@ -1,6 +1,6 @@
 package com.problem_solving.drawing.application;
 
-import static com.problem_solving.drawing.domain.models.Type.BucketFilling;
+import static com.problem_solving.drawing.domain.models.Type.BUCKET_FILLING;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import com.problem_solving.drawing.domain.models.PlottingPoint;
 import com.problem_solving.drawing.helpers.Coordinates;
 import com.problem_solving.drawing.infrastructure.MatrixGrid;
 
-public class BucketFillPlotterTest {
+class BucketFillPlotterTest {
 
     private static Plotter bucketFillPlotter;
 
@@ -29,17 +29,17 @@ public class BucketFillPlotterTest {
     private static String fillingPointX = "10", fillingPointY = "3", fillingChar = "o";
 
     @BeforeAll
-    public static void initBucketFillPlotter() {
+    static void initBucketFillPlotter() {
         bucketFillPlotter = new BucketFillPlotter();
     }
 
     @BeforeEach
-    public void initMatrix() {
+    void initMatrix() {
         MatrixGrid.initDrawnTillNow(new PlottingPoint[h + 2][w + 2]);
     }
 
     @Test
-    public void testGetPlottedPoints_WhenUsingBucketFillingAndCanvasHasNoOtherShapes_ThenReturnListOfPlottedPointsThatFillsTheEntireCanvas() {
+    void testGetPlottedPoints_WhenUsingBucketFillingAndCanvasHasNoOtherShapes_ThenReturnListOfPlottedPointsThatFillsTheEntireCanvas() {
         var expectedPlottedPoints = constructExpectedPlottedPoints(point -> true);
 
         var actualPlottedPoints = bucketFillPlotter.getPlottedPoints(List.of(fillingPointX, fillingPointY, fillingChar));
@@ -49,7 +49,7 @@ public class BucketFillPlotterTest {
 
     @ParameterizedTest
     @MethodSource("provideArgsForTestGetPlottedPointsWhenUsingBucketFillingAndCanvasHasAnotherShape")
-    public void testGetPlottedPoints_WhenUsingBucketFilling_ThenReturnPlottedPointsThatDoNotOverlapWithOtherDrawnShapes(
+    void testGetPlottedPoints_WhenUsingBucketFilling_ThenReturnPlottedPointsThatDoNotOverlapWithOtherDrawnShapes(
             Coordinates coordinates,
             Plotter plotter,
             List<PlottingPoint> expectedPlottedPoints) {
@@ -95,7 +95,7 @@ public class BucketFillPlotterTest {
                             .boxed()
                             .flatMap(x -> IntStream.rangeClosed(1, h)
                                                     .boxed()
-                                                    .map(y -> new PlottingPoint(x, y, BucketFilling, fillingChar.charAt(0))))
+                                                    .map(y -> new PlottingPoint(x, y, BUCKET_FILLING, fillingChar.charAt(0))))
                             .filter(predicate)
                             .collect(Collectors.toList());
     }

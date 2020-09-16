@@ -1,8 +1,8 @@
 package com.problem_solving.drawing.application;
 
-import static com.problem_solving.drawing.domain.models.Type.Rectangle;
+import static com.problem_solving.drawing.domain.models.Type.RECTANGLE;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -13,25 +13,25 @@ public class RectanglePlotter extends FourSidedPlotter {
 
     @Override
     public List<PlottingPoint> getPlottedPoints(List<String> args) {
-        int x1 = Integer.parseInt(args.get(Point.X1)),
-            y1 = Integer.parseInt(args.get(Point.Y1)),
-            x2 = Integer.parseInt(args.get(Point.X2)),
-            y2 = Integer.parseInt(args.get(Point.Y2));
+        var x1 = Integer.parseInt(args.get(Point.X1));
+        var y1 = Integer.parseInt(args.get(Point.Y1));
+        var x2 = Integer.parseInt(args.get(Point.X2));
+        var y2 = Integer.parseInt(args.get(Point.Y2));
 
         CompletableFuture<List<PlottingPoint>> horizontalSideDrawer = CompletableFuture.supplyAsync(() -> {
-            var horizontalPlottedPoints = new LinkedList<PlottingPoint>();
+            var horizontalPlottedPoints = new ArrayList<PlottingPoint>((x2 - x1 + 1) * 2);
             for (var i = x1; i <= x2; i++) {
-                horizontalPlottedPoints.add(new PlottingPoint(i, y1, Rectangle, PlottingPoint.X));
-                horizontalPlottedPoints.add(new PlottingPoint(i, y2, Rectangle, PlottingPoint.X));
+                horizontalPlottedPoints.add(new PlottingPoint(i, y1, RECTANGLE, PlottingPoint.X));
+                horizontalPlottedPoints.add(new PlottingPoint(i, y2, RECTANGLE, PlottingPoint.X));
             }
             return horizontalPlottedPoints;
         });
 
         CompletableFuture<List<PlottingPoint>> verticalSideDrawer = CompletableFuture.supplyAsync(() -> {
-            var verticalPlottedPoints = new LinkedList<PlottingPoint>();
+            var verticalPlottedPoints = new ArrayList<PlottingPoint>((y2 - y1 + 1) * 2);
             for (var i = y1 + 1; i < y2; i++) {
-                verticalPlottedPoints.add(new PlottingPoint(x1, i, Rectangle, PlottingPoint.X));
-                verticalPlottedPoints.add(new PlottingPoint(x2, i, Rectangle, PlottingPoint.X));
+                verticalPlottedPoints.add(new PlottingPoint(x1, i, RECTANGLE, PlottingPoint.X));
+                verticalPlottedPoints.add(new PlottingPoint(x2, i, RECTANGLE, PlottingPoint.X));
             }
             return verticalPlottedPoints;
         });

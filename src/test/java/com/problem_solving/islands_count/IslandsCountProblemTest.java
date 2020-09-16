@@ -6,17 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class IslandsCountProblemTest {
+class IslandsCountProblemTest {
 
     private static IslandsCountProblem islandsCountProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         islandsCountProblem = new IslandsCountProblem();
     }
 
     @Test
-    public void testSolution_WhenPassingValidMatrix_ThenReturnTheCountOfFoundIslands() {
+    void testSolution_WhenPassingValidMatrix_ThenReturnTheCountOfFoundIslands() {
         var matrix = new int[][] {
             { 1, 0, 1 },
             { 1, 1, 1 },
@@ -31,7 +31,7 @@ public class IslandsCountProblemTest {
     }
 
     @Test
-    public void testSolution_WhenPassingNullMatrix_ThenThrowIllegalArgumentException() {
+    void testSolution_WhenPassingNullMatrix_ThenThrowIllegalArgumentException() {
         int[][] matrix = null;
 
         assertThrows(IllegalArgumentException.class,
@@ -39,7 +39,7 @@ public class IslandsCountProblemTest {
     }
 
     @Test
-    public void testSolution_WhenPassingEmptyMatrix_ThenThrowIllegalArgumentException() {
+    void testSolution_WhenPassingEmptyMatrix_ThenThrowIllegalArgumentException() {
         int[][] matrix = new int[0][];
 
         assertThrows(IllegalArgumentException.class,

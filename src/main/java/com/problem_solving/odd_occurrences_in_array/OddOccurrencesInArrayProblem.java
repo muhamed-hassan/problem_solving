@@ -5,12 +5,12 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 //https://app.codility.com/programmers/lessons/2-arrays/odd_occurrences_in_array/
-public class OddOccurrencesInArrayProblem {
+class OddOccurrencesInArrayProblem {
 
-    public int solution(int[] A) {
-        if (A == null || A.length == 0) throw new IllegalArgumentException("array can not be null or empty");
+    int solution(int[] array) {
+        if (array == null || array.length == 0) throw new IllegalArgumentException("array can not be null or empty");
 
-        return Arrays.stream(A)
+        return Arrays.stream(array)
                         .boxed()
                         .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                         .entrySet()

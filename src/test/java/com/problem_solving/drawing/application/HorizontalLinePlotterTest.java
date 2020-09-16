@@ -9,17 +9,17 @@ import org.junit.jupiter.api.Test;
 
 import com.problem_solving.drawing.domain.models.PlottingPoint;
 
-public class HorizontalLinePlotterTest {
+class HorizontalLinePlotterTest {
 
     private static Plotter horizontalLinePlotter;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         horizontalLinePlotter = new HorizontalLinePlotter();
     }
 
     @Test
-    public void testGetPlottingPoints_WhenUsingHorizontalLineCoordinates_ThenReturnListOfPlottedPointsOfHorizontalLine() {
+    void testGetPlottingPoints_WhenUsingHorizontalLineCoordinates_ThenReturnListOfPlottedPointsOfHorizontalLine() {
         Integer x1 = 1, y1 = 2, x2 = 6, y2 = 2;
         var args = List.of(x1.toString(), y1.toString(), x2.toString(), y2.toString());
 

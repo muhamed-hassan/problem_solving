@@ -12,17 +12,17 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 //https://app.codility.com/programmers/lessons/2-arrays/odd_occurrences_in_array/
-public class OddOccurrencesInArrayProblemTest {
+class OddOccurrencesInArrayProblemTest {
 
     private static OddOccurrencesInArrayProblem oddOccurrencesInArrayProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         oddOccurrencesInArrayProblem = new OddOccurrencesInArrayProblem();
     }
 
     @Test
-    public void testSolution_WhenPassingCollectionOfIntegers_ThenReturnUnpairedNumber() {
+    void testSolution_WhenPassingCollectionOfIntegers_ThenReturnUnpairedNumber() {
         var array = new int[] { 9, 3, 9, 3, 9, 7, 9 };
         var expectedResult = 7;
 
@@ -33,7 +33,7 @@ public class OddOccurrencesInArrayProblemTest {
 
     @ParameterizedTest
     @MethodSource("provideArgsForTestSolutionWhenParametersAreInvalid")
-    public void testSolution_WhenParametersAreInvalid_ThenThrowIllegalArgumentException(int[] array) {
+    void testSolution_WhenParametersAreInvalid_ThenThrowIllegalArgumentException(int[] array) {
         assertThrows(IllegalArgumentException.class,
             () -> oddOccurrencesInArrayProblem.solution(array));
     }

@@ -1,9 +1,9 @@
 package com.problem_solving.cyclic_rotation;
 
 //https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/
-public class CyclicRotationProblem {
+class CyclicRotationProblem {
 
-    public int[] solution(int[] array, int shiftingTimes) {
+    int[] solution(int[] array, int shiftingTimes) {
         if (array == null || array.length == 0) throw new IllegalArgumentException("array can not be null or empty");
 
         if (shiftingTimes < 1) throw new IllegalArgumentException("shifting times should be 1 at least");

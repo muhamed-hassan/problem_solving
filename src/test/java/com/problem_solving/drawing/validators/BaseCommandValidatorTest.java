@@ -15,18 +15,18 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.problem_solving.drawing.interfaces.validators.CommandValidator;
 
-public class BaseCommandValidatorTest {
+class BaseCommandValidatorTest {
 
-    protected CommandValidator commandValidator;
+    private CommandValidator commandValidator;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         commandValidator = new CommandValidator();
     }
 
     @ParameterizedTest
     @MethodSource("provideArgsForTestIsCommandLineValid")
-    public void testIsCommandLineValid_WhenUsingInvalidCommandLine_ThenReturnFalse(String commandLine) {
+    void testIsCommandLineValid_WhenUsingInvalidCommandLine_ThenReturnFalse(String commandLine) {
 
         boolean isValid = commandValidator.isCommandLineValid(commandLine);
 
@@ -41,7 +41,7 @@ public class BaseCommandValidatorTest {
     }
 
     @Test
-    public void testIsCommandLineValid_WhenUsingValidCommandLine_ThenReturnTrue() {
+    void testIsCommandLineValid_WhenUsingValidCommandLine_ThenReturnTrue() {
         var commandLine = "C 10 5";
 
         boolean isValid = commandValidator.isCommandLineValid(commandLine);
@@ -49,19 +49,19 @@ public class BaseCommandValidatorTest {
         assertTrue(isValid);
     }
 
-    protected boolean testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue(char command) {
+    boolean testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue(char command) {
         return commandValidator.isCommandValid(command);
     }
 
     @Test
-    public void testIsCommandValid_WhenUsingInvalidCommand_ThenReturnFalse() {
+    void testIsCommandValid_WhenUsingInvalidCommand_ThenReturnFalse() {
 
         boolean isValid = commandValidator.isCommandValid('X');
 
         assertFalse(isValid);
     }
 
-    protected void testIsCommandArgsValid_WhenUsingInvalidCommandArgs_ThenThrowIllegalArgumentException(char command, List<String> args) {
+    void testIsCommandArgsValid_WhenUsingInvalidCommandArgs_ThenThrowIllegalArgumentException(char command, List<String> args) {
         assertThrows(IllegalArgumentException.class,
             () -> commandValidator.isCommandArgsValid(command, args));
     }

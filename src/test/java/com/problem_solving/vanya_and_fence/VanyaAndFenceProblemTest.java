@@ -11,18 +11,19 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class VanyaAndFenceProblemTest {
+class VanyaAndFenceProblemTest {
 
     private static VanyaAndFenceProblem vafp;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         vafp = new VanyaAndFenceProblem();
     }
 
     @Test
-    public void testFindTheMinimumPossibleValidWidthOfTheRoad_WhenParametersAreValid_ThenReturnTheCalculatedResult() {
-        int numberOfFriends = 6, heightOfFence = 5;
+    void testFindTheMinimumPossibleValidWidthOfTheRoad_WhenParametersAreValid_ThenReturnTheCalculatedResult() {
+        var numberOfFriends = 6;
+        var heightOfFence = 5;
         var friendsHeights = new int[] { 7, 6, 8, 9, 10, 5 };
         var expectedResult = 11;
 
@@ -33,7 +34,7 @@ public class VanyaAndFenceProblemTest {
 
     @ParameterizedTest
     @MethodSource("provideArgsForTestFindTheMinimumPossibleValidWidthOfTheRoadWhenParametersAreInvalid")
-    public void testFindTheMinimumPossibleValidWidthOfTheRoad_WhenParametersAreInvalid_ThenThrowIllegalArgumentException(int numberOfFriends, int heightOfFence, int[] friendsHeights) {
+    void testFindTheMinimumPossibleValidWidthOfTheRoad_WhenParametersAreInvalid_ThenThrowIllegalArgumentException(int numberOfFriends, int heightOfFence, int[] friendsHeights) {
         assertThrows(IllegalArgumentException.class,
             () ->  vafp.findTheMinimumPossibleValidWidthOfTheRoad(numberOfFriends, heightOfFence, friendsHeights));
     }

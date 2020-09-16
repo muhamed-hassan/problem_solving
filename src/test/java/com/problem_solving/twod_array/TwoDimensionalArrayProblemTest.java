@@ -7,17 +7,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 //https://www.hackerrank.com/challenges/2d-array/problem
-public class TwoDimensionalArrayProblemTest {
+class TwoDimensionalArrayProblemTest {
 
     private static TwoDimensionalArrayProblem twoDimensionalArrayProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         twoDimensionalArrayProblem = new TwoDimensionalArrayProblem();
     }
 
     @Test
-    public void testHourglassSum_WhenMatrixIsValid_ThenCalcTheResult() {
+    void testHourglassSum_WhenMatrixIsValid_ThenCalcTheResult() {
         var matrix = new int[][] {
             { -9, -9, -9, 1, 1, 1 },
             { 0, -9, 0, 4, 3, 2 },
@@ -34,7 +34,7 @@ public class TwoDimensionalArrayProblemTest {
     }
 
     @Test
-    public void testHourglassSum_WhenPassingNullMatrix_ThenThrowIllegalArgumentException() {
+    void testHourglassSum_WhenPassingNullMatrix_ThenThrowIllegalArgumentException() {
         int[][] matrix = null;
 
         assertThrows(IllegalArgumentException.class,
@@ -42,7 +42,7 @@ public class TwoDimensionalArrayProblemTest {
     }
 
     @Test
-    public void testHourglassSum_WhenPassingEmptyMatrix_ThenThrowIllegalArgumentException() {
+    void testHourglassSum_WhenPassingEmptyMatrix_ThenThrowIllegalArgumentException() {
         int[][] matrix = new int[0][];
 
         assertThrows(IllegalArgumentException.class,

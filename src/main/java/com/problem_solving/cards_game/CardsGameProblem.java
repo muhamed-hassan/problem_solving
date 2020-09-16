@@ -31,31 +31,31 @@ Input	Result
 4 5 7   Conan
 1 1     Agasa
 */
-public class CardsGameProblem {
+class CardsGameProblem {
 
-    public Optional<String> conanOrAgasa(int[] cards) {
+    Optional<String> conanOrAgasa(int[] cards) {
         if (cards == null) throw new IllegalArgumentException("cards can not be null");
 
-        int numberOfCards = cards.length;
+        var numberOfCards = cards.length;
         if (numberOfCards == 0) return Optional.empty();
 
-        int maxCardValue = Arrays.stream(cards).max().getAsInt(),
-            maxCardValueOccurrences = (int) Arrays.stream(cards)
-                                                    .filter(card -> card == maxCardValue)
-                                                    .count();
-        boolean connanWins = false,
-                maxCardValueSelected,
-                noCardsLeft;
+        var maxCardValue = Arrays.stream(cards).max().getAsInt();
+        var maxCardValueOccurrences = (int) Arrays.stream(cards)
+                                                        .filter(card -> card == maxCardValue)
+                                                        .count();
+        var conanWins = false;
+        var maxCardValueSelected = false;
+        var noCardsLeft = false;
         for (var cursor = 0; cursor < numberOfCards; cursor++) {
             maxCardValueSelected = (cards[cursor] == maxCardValue) && (maxCardValueOccurrences == 1);
             noCardsLeft = (cursor == numberOfCards - 1);
             if (maxCardValueSelected || noCardsLeft) {
-                connanWins = (cursor % 2 == 0); //conan's turn -> even #=# agasa's turn -> odd
+                conanWins = (cursor % 2 == 0); //conan's turn -> even #=# agasa's turn -> odd
                 break;
             }
         }
 
-        return Optional.of(connanWins ? "Conan" : "Agasa");
+        return Optional.of(conanWins ? "Conan" : "Agasa");
     }
 
 }

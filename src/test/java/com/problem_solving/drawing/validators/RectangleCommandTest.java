@@ -14,7 +14,7 @@ public class RectangleCommandTest extends BaseCommandValidatorTest {
 
     @ParameterizedTest
     @MethodSource("provideArgsForTestIsCommandArgsValid")
-    public void testIsCommandArgsValid_WhenUsingInvalidCommandArgs_ThenThrowIllegalArgumentException(char command, List<String> args) {
+    void testIsCommandArgsValid_WhenUsingInvalidCommandArgs_ThenThrowIllegalArgumentException(char command, List<String> args) {
         super.testIsCommandArgsValid_WhenUsingInvalidCommandArgs_ThenThrowIllegalArgumentException(command, args);
     }
 
@@ -43,7 +43,7 @@ public class RectangleCommandTest extends BaseCommandValidatorTest {
     }
 
     @Test
-    public void testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue() {
+    void testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue() {
 
         boolean isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('R');
 

@@ -12,17 +12,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class SecondElementWithMaxFrequencyProblemTest {
+class SecondElementWithMaxFrequencyProblemTest {
 
     private static SecondElementWithMaxFrequencyProblem secondElementWithMaxFrequencyProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         secondElementWithMaxFrequencyProblem = new SecondElementWithMaxFrequencyProblem();
     }
 
     @Test
-    public void testSolve_WhenPassingCollectionOfIntegers_ThenReturnElementWith2ndBiggestFrequency() {
+    void testSolve_WhenPassingCollectionOfIntegers_ThenReturnElementWith2ndBiggestFrequency() {
         var numbers = List.of(1, 2, 1, 3, 4, 3, 3, 4, 9, 11, 4, 4, 4);
         var expectedResult = 3;
 
@@ -33,7 +33,7 @@ public class SecondElementWithMaxFrequencyProblemTest {
 
     @ParameterizedTest
     @MethodSource("provideArgsForTestSolveWhenParameterIsInvalid")
-    public void testSolve_WhenParameterIsInvalid_ThenThrowIllegalArgumentException(List<Integer> numbers) {
+    void testSolve_WhenParameterIsInvalid_ThenThrowIllegalArgumentException(List<Integer> numbers) {
         assertThrows(IllegalArgumentException.class,
             () -> secondElementWithMaxFrequencyProblem.solve(numbers));
     }

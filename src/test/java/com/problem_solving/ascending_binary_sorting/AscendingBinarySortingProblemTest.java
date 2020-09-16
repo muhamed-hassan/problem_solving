@@ -8,17 +8,17 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class AscendingBinarySortingProblemTest {
+class AscendingBinarySortingProblemTest {
 
     private static AscendingBinarySortingProblem ascendingBinarySortingProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         ascendingBinarySortingProblem = new AscendingBinarySortingProblem();
     }
 
     @Test
-    public void testRearrange_WhenDataSetIsValid_ThenRearrangeIt() {
+    void testRearrange_WhenDataSetIsValid_ThenRearrangeIt() {
         var dataSet = List.of(5, 5, 3, 7, 10, 14);
         var expectedResult = List.of(3, 5, 10, 7, 14);
 
@@ -28,7 +28,7 @@ public class AscendingBinarySortingProblemTest {
     }
 
     @Test
-    public void testRearrange_WhenDataSetEmpty_ThenReturnAnEmptyDataSet() {
+    void testRearrange_WhenDataSetEmpty_ThenReturnAnEmptyDataSet() {
         List<Integer> dataSet = List.of();
         var expectedResult = List.of();
 
@@ -38,7 +38,7 @@ public class AscendingBinarySortingProblemTest {
     }
 
     @Test
-    public void testRearrange_WhenDataSetIsNull_ThenThrowIllegalArgumentException() {
+    void testRearrange_WhenDataSetIsNull_ThenThrowIllegalArgumentException() {
         List<Integer> dataSet = null;
 
         assertThrows(IllegalArgumentException.class,

@@ -10,11 +10,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class VerticalLineCommandTest extends BaseCommandValidatorTest {
+class VerticalLineCommandTest extends BaseCommandValidatorTest {
 
     @ParameterizedTest
     @MethodSource("provideArgsForTestIsCommandArgsValid")
-    public void testIsCommandArgsValid_WhenUsingInvalidCommandArgs_ThenThrowIllegalArgumentException(char command, List<String> args) {
+    void testIsCommandArgsValid_WhenUsingInvalidCommandArgs_ThenThrowIllegalArgumentException(char command, List<String> args) {
         super.testIsCommandArgsValid_WhenUsingInvalidCommandArgs_ThenThrowIllegalArgumentException(command, args);
     }
 
@@ -43,7 +43,7 @@ public class VerticalLineCommandTest extends BaseCommandValidatorTest {
     }
 
     @Test
-    public void testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue() {
+    void testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue() {
 
         boolean isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('L');
 

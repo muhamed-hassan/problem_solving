@@ -6,24 +6,25 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 //https://app.codility.com/programmers/lessons/3-time_complexity/frog_jmp/
-public class FrogJumpProblemTest {
+class FrogJumpProblemTest {
 
     private static FrogJumpProblem frogJumpProblem;
 
     @BeforeAll
-    public static void setup() {
+    static void setup() {
         frogJumpProblem = new FrogJumpProblem();
     }
 
     @Test
-    public void testSolution_WhenPassing10And85And30_ThenReturn3() {
-        int x = 10,
-            y = 85,
-            d = 30;
+    void testSolution_WhenPassing10And85And30_ThenReturn3() {
+        var x = 10;
+        var y = 85;
+        var d = 30;
+        var expectedResult = 3;
 
-        var minimalNumberOfJumps = frogJumpProblem.solution(x, y, d);
+        var actualResult = frogJumpProblem.solution(x, y, d);
 
-        assertEquals(3, minimalNumberOfJumps);
+        assertEquals(expectedResult, actualResult);
     }
 
 }

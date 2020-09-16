@@ -1,18 +1,18 @@
 package com.problem_solving.baseball_game;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Optional;
 
 //https://leetcode.com/problems/baseball-game/
-public class BaseballGameProblem {
+class BaseballGameProblem {
 
-    public int calPoints(String[] ops) {
+    Optional<Integer> calPoints(String[] ops) {
         if (ops == null) throw new IllegalArgumentException("operations list can not be null");
 
-        if (ops.length == 0) return -1;
+        if (ops.length == 0) return Optional.empty();
 
-        int lastElementCursor = -1;
-        var result = new LinkedList<Integer>();
-
+        var lastElementCursor = -1;
+        var result = new ArrayList<Integer>();
         for (var recordedEvent : ops) {
             switch (recordedEvent) {
                 case "+":
@@ -36,8 +36,8 @@ public class BaseballGameProblem {
             }
         }
 
-        return result.stream()
-                        .reduce(0, (a, b) -> a + b);
+        return Optional.of(result.stream()
+                                    .reduce(0, (a, b) -> a + b));
     }
 
 }
