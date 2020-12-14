@@ -19,7 +19,7 @@ class BucketFillingCommandTest extends BaseCommandValidatorTest {
     }
 
     private static Stream<Arguments> provideArgsForTestIsCommandArgsValid() {
-        char bucketFillingCommand = 'B';
+        var bucketFillingCommand = 'B';
         return Stream.of(
             Arguments.of(bucketFillingCommand, List.of("10", "3", "o", "1")),
             Arguments.of(bucketFillingCommand, List.of("10", "3")),
@@ -37,7 +37,7 @@ class BucketFillingCommandTest extends BaseCommandValidatorTest {
     @Test
     void testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue() {
 
-        boolean isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('B');
+        var isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('B');
 
         assertTrue(isValid);
     }

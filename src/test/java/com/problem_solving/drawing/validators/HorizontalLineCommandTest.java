@@ -19,7 +19,7 @@ class HorizontalLineCommandTest extends BaseCommandValidatorTest {
     }
 
     private static Stream<Arguments> provideArgsForTestIsCommandArgsValid() {
-        char horizontalLineCommand = 'L';
+        var horizontalLineCommand = 'L';
         return Stream.of(
             Arguments.of(horizontalLineCommand, List.of("1", "2", "6", "2", "1")),
             Arguments.of(horizontalLineCommand, List.of("1", "2", "6")),
@@ -45,7 +45,7 @@ class HorizontalLineCommandTest extends BaseCommandValidatorTest {
     @Test
     void testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue() {
 
-        boolean isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('L');
+        var isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('L');
 
         assertTrue(isValid);
     }

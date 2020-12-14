@@ -65,19 +65,19 @@ class BucketFillPlotterTest {
     }
 
     private static Stream<Arguments> provideArgsForTestGetPlottedPointsWhenUsingBucketFillingAndCanvasHasAnotherShape() {
-        Coordinates horizontalLineCoordinates = new Coordinates(1, 2, 6, 2);
+        var horizontalLineCoordinates = new Coordinates(1, 2, 6, 2);
         var expectedHorizontalLinePlottedPoints =
             constructExpectedPlottedPoints(point ->
                 !((point.getX() >= horizontalLineCoordinates.getX1().intValue() && point.getX() <= horizontalLineCoordinates.getX2().intValue()) &&
                 (point.getY() == horizontalLineCoordinates.getY1().intValue() || point.getY() == horizontalLineCoordinates.getY2().intValue())));
 
-        Coordinates verticalLineCoordinates = new Coordinates(6, 3, 6, 4);
+        var verticalLineCoordinates = new Coordinates(6, 3, 6, 4);
         var expectedVerticalLinePlottedPoints =
             constructExpectedPlottedPoints(point ->
                 !((point.getX() >= verticalLineCoordinates.getX1().intValue() && point.getX() <= verticalLineCoordinates.getX2().intValue()) &&
                 (point.getY() == verticalLineCoordinates.getY1().intValue() || point.getY() == verticalLineCoordinates.getY2().intValue())));
 
-        Coordinates rectangleLineCoordinates = new Coordinates(16, 1, 20, 3);
+        var rectangleLineCoordinates = new Coordinates(16, 1, 20, 3);
         var expectedRectanglePlottedPoints =
             constructExpectedPlottedPoints(point ->
                 !(point.getX() >= rectangleLineCoordinates.getX1().intValue() && point.getX() <= rectangleLineCoordinates.getX2().intValue()

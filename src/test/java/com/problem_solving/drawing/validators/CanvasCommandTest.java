@@ -19,7 +19,7 @@ class CanvasCommandTest extends BaseCommandValidatorTest {
     }
 
     private static Stream<Arguments> provideArgsForTestIsCommandArgsValid() {
-        char canvasCommand = 'C';
+        var canvasCommand = 'C';
         return Stream.of(
             Arguments.of(canvasCommand, List.of("20", "4", "3")),
             Arguments.of(canvasCommand, List.of("20")),
@@ -37,7 +37,7 @@ class CanvasCommandTest extends BaseCommandValidatorTest {
     @Test
     void testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue() {
 
-        boolean isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('C');
+        var isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('C');
 
         assertTrue(isValid);
     }

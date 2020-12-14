@@ -1,5 +1,7 @@
 package com.problem_solving.drawing.domain.models;
 
+import java.util.Objects;
+
 public class PlottingPoint extends Point {
 
     public static final char X = 'X';
@@ -24,11 +26,11 @@ public class PlottingPoint extends Point {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        PlottingPoint other = (PlottingPoint) obj;
-        return super.equals(obj)
-            && type.equals(other.getType())
-            && characterToBeDrawn == other.characterToBeDrawn;
+    public boolean equals(Object other) {
+        PlottingPoint that = (PlottingPoint) other;
+        return super.equals(other)
+            && Objects.equals(type, that.type)
+            && Objects.equals(characterToBeDrawn, that.characterToBeDrawn);
     }
 
 }

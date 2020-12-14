@@ -31,15 +31,16 @@ public class Point {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
-        if (obj == null)
+        }
+        if (other == null || getClass() != other.getClass()) {
             return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Point other = (Point) obj;
-        return (x == other.x && y == other.y);
+        }
+        Point that = (Point) other;
+        return Objects.equals(x, that.x)
+            && Objects.equals(y, that.y);
     }
 
     @Override

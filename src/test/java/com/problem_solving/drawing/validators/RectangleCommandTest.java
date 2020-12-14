@@ -19,7 +19,7 @@ public class RectangleCommandTest extends BaseCommandValidatorTest {
     }
 
     private static Stream<Arguments> provideArgsForTestIsCommandArgsValid() {
-        char rectangleCommand = 'R';
+        var rectangleCommand = 'R';
         return Stream.of(
             Arguments.of(rectangleCommand, List.of("16", "1", "20", "3", "5")), 
             Arguments.of(rectangleCommand, List.of("16", "1", "20")),
@@ -45,7 +45,7 @@ public class RectangleCommandTest extends BaseCommandValidatorTest {
     @Test
     void testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue() {
 
-        boolean isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('R');
+        var isValid = super.testIsCommandValid_WhenUsingValidCommand_ThenReturnTrue('R');
 
         assertTrue(isValid);
     }

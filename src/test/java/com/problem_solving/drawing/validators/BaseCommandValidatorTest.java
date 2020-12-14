@@ -28,7 +28,7 @@ class BaseCommandValidatorTest {
     @MethodSource("provideArgsForTestIsCommandLineValid")
     void testIsCommandLineValid_WhenUsingInvalidCommandLine_ThenReturnFalse(String commandLine) {
 
-        boolean isValid = commandValidator.isCommandLineValid(commandLine);
+        var isValid = commandValidator.isCommandLineValid(commandLine);
 
         assertFalse(isValid);
     }
@@ -44,7 +44,7 @@ class BaseCommandValidatorTest {
     void testIsCommandLineValid_WhenUsingValidCommandLine_ThenReturnTrue() {
         var commandLine = "C 10 5";
 
-        boolean isValid = commandValidator.isCommandLineValid(commandLine);
+        var isValid = commandValidator.isCommandLineValid(commandLine);
 
         assertTrue(isValid);
     }
@@ -56,7 +56,7 @@ class BaseCommandValidatorTest {
     @Test
     void testIsCommandValid_WhenUsingInvalidCommand_ThenReturnFalse() {
 
-        boolean isValid = commandValidator.isCommandValid('X');
+        var isValid = commandValidator.isCommandValid('X');
 
         assertFalse(isValid);
     }
