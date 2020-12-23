@@ -15,7 +15,7 @@ public class BucketFillPlotter extends Plotter {
 
     @Override
     public List<PlottingPoint> getPlottedPoints(List<String> args) {
-        PlottingPoint[][] matrix = MatrixGrid.getDrawnTillNow();
+        var matrix = MatrixGrid.getDrawnTillNow();
         var plottedPoints = new ArrayList<PlottingPoint>();
 
         var y = Integer.parseInt(args.get(1));
